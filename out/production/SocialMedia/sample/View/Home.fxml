@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <VBox prefHeight="73.0" prefWidth="600.0" BorderPane.alignment="CENTER">
+         <children>
+            <MenuBar>
+              <menus>
+                <Menu mnemonicParsing="false" text="Home">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Close" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="PeerRequests">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="Delete" />
+                  </items>
+                </Menu>
+                <Menu mnemonicParsing="false" text="chats">
+                  <items>
+                    <MenuItem mnemonicParsing="false" text="About" />
+                  </items>
+                </Menu>
+              </menus>
+            </MenuBar>
+            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="112.0" prefWidth="600.0" spacing="10.0">
+               <children>
+                  <Label prefHeight="17.0" prefWidth="74.0" text="New Post" />
+                  <TextArea prefHeight="112.0" prefWidth="302.0" />
+                  <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" text="Post">
+                     <HBox.margin>
+                        <Insets top="10.0" />
+                     </HBox.margin>
+                  </Button>
+                  <Button mnemonicParsing="false" text="Cancel">
+                     <HBox.margin>
+                        <Insets left="-60.0" top="60.0" />
+                     </HBox.margin></Button>
+               </children>
+            </HBox>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </VBox>
+   </top>
+   <left>
+      <TreeView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
+   </left>
+   <center>
+      <Pane prefHeight="263.0" prefWidth="487.0" BorderPane.alignment="CENTER">
+         <children>
+            <TextField fx:id="txt_created_date" layoutX="159.0" layoutY="64.0" />
+            <TextField fx:id="txt_content" layoutX="159.0" layoutY="132.0" />
+         </children></Pane>
+   </center>
+</BorderPane>
