@@ -46,7 +46,11 @@ public class Post implements Serializable {
         return true;
     }
     public void notifyController(){
+        System.out.println("came to notify controller");
+        System.out.println("usename from post cladss"+this.username);
+        System.out.println("content from post cladss"+this.content);
         HomeController hc=new HomeController();
         hc.showNewPost(this);
+
     }
 }

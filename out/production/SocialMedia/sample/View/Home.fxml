@@ -37,18 +37,21 @@
                 </Menu>
               </menus>
             </MenuBar>
-            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="112.0" prefWidth="600.0" spacing="10.0">
+            <HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="38.0" prefWidth="600.0">
                <children>
-                  <Label prefHeight="17.0" prefWidth="74.0" text="New Post" />
-                  <TextArea prefHeight="112.0" prefWidth="302.0" />
+                  <Label prefHeight="17.0" prefWidth="74.0" text="New Post">
+                     <HBox.margin>
+                        <Insets top="10.0" />
+                     </HBox.margin></Label>
+                  <TextArea prefHeight="44.0" prefWidth="302.0" />
                   <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" text="Post">
                      <HBox.margin>
                         <Insets top="10.0" />
                      </HBox.margin>
                   </Button>
-                  <Button mnemonicParsing="false" text="Cancel">
+                  <Button minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="25.0" prefWidth="55.0" text="Button">
                      <HBox.margin>
-                        <Insets left="-60.0" top="60.0" />
+                        <Insets top="10.0" />
                      </HBox.margin></Button>
                </children>
             </HBox>
@@ -62,7 +65,7 @@
       <TreeView prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER" />
    </left>
    <center>
-      <Pane prefHeight="263.0" prefWidth="487.0" BorderPane.alignment="CENTER">
+      <Pane prefHeight="340.0" prefWidth="400.0" BorderPane.alignment="CENTER">
          <children>
             <TextField fx:id="txt_created_date" layoutX="159.0" layoutY="64.0" />
             <TextField fx:id="txt_content" layoutX="159.0" layoutY="132.0" />

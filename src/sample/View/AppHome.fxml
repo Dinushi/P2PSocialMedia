@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.LinearGradient?>
+<?import javafx.scene.paint.Stop?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="445.0" prefWidth="565.0" style="-fx-background-color: *36394E;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.View.AppHome">
+   <children>
+      <Separator layoutX="180.0" orientation="VERTICAL" prefHeight="504.0" prefWidth="7.0" />
+      <Pane prefHeight="504.0" prefWidth="182.0" style="-fx-background-color: #36394E;">
+         <children>
+            <Label layoutX="17.0" layoutY="22.0" prefHeight="17.0" prefWidth="144.0" text="Dinushi Ranagalage" wrapText="true">
+               <font>
+                  <Font size="16.0" />
+               </font>
+               <textFill>
+                  <LinearGradient endX="0.04761904761904767" endY="0.1380952380952381">
+                     <stops>
+                        <Stop color="BLACK" />
+                        <Stop color="WHITE" offset="1.0" />
+                     </stops>
+                  </LinearGradient>
+               </textFill>
+            </Label>
+            <ImageView fitHeight="97.0" fitWidth="118.0" layoutX="30.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true" />
+         </children>
+      </Pane>
+      <Pane layoutX="182.0" layoutY="46.0" prefHeight="463.0" prefWidth="395.0" />
+      <Pane layoutX="182.0" prefHeight="41.0" prefWidth="395.0" style="-fx-background-color: #frgghh;" />
+   </children>
+</AnchorPane>

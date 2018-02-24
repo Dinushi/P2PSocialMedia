@@ -22,13 +22,19 @@ public class PeerConnection {
     public void createTheSocketListner() {
         try {
             socket = new DatagramSocket(9875);//use the registerd port in BS
+            System.out.println("Spcket is started");
             //make a therad to listen forever from this port.this should be the registerd por of peer
             ReaderThread readerThread = new ReaderThread(socket);
+            System.out.println("Thread create");
             readerThread.start();
+            System.out.println("Thrad started");
 
         } catch (SocketException e) {
             e.printStackTrace();
         }
+    }
+    public void clodeThesocket(){
+        socket.disconnect();
     }
     public void sendViaSocket() {
         try {
@@ -37,19 +43,24 @@ public class PeerConnection {
             InetAddress IPAddress = InetAddress.getByName("localhost");
             byte[] incomingData = new byte[1024];
             Post student = new Post("Dinushi123", "I am not well my Friends");
+
+            System.out.println("new post is created");
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             ObjectOutputStream os = new ObjectOutputStream(outputStream);
+            System.out.println("output stream ok");
             os.writeObject(student);
             byte[] data = outputStream.toByteArray();
             //use the dedicated socket to send data...
+            System.out.println("ready tos send to the port");
             DatagramPacket sendPacket = new DatagramPacket(data, data.length, IPAddress, 9875);
+
             Socket.send(sendPacket);
             System.out.println("Message sent from client");
-            DatagramPacket incomingPacket = new DatagramPacket(incomingData, incomingData.length);
-            Socket.receive(incomingPacket);
-            String response = new String(incomingPacket.getData());
-            System.out.println("Response from server:" + response);
-            Thread.sleep(2000);
+            //DatagramPacket incomingPacket = new DatagramPacket(incomingData, incomingData.length);
+            //Socket.receive(incomingPacket);
+            //String response = new String(incomingPacket.getData());
+            //System.out.println("Response from server:" + response);
+            //Thread.sleep(2000);
 
         } catch (UnknownHostException e) {
             e.printStackTrace();
@@ -57,8 +68,8 @@ public class PeerConnection {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        } catch (InterruptedException e) {
-            e.printStackTrace();
+        //} catch (InterruptedException e) {
+            //e.printStackTrace();
         }
     }
 }

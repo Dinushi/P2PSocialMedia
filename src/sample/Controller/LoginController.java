@@ -6,13 +6,18 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.stage.Stage;
 import javafx.scene.control.TextField;
+import javafx.stage.Window;
 import sample.CommunicationHandler.PeerConnection;
 import sample.DBHandler.DatabaseHandler;
+import sample.Model.ThisPeer;
 
 
 import java.io.IOException;
+import java.net.InetAddress;
 
 /**
  * Created by Pasidu Chinthiya on 1/31/2018.
@@ -24,30 +29,47 @@ public class LoginController {
     @FXML
     private TextField userName;
 
+    @FXML
+    private Button btn_login;
+
     // The reference of outputText will be injected by the FXML loader
     @FXML
     private TextField password;
-
+    PeerConnection pc;
 
     public void pressLogin(ActionEvent event){
-        PeerConnection pc=new PeerConnection();
-        //System.out.println("Socket is listning");
-        //pc.createTheSocketListner();
-        System.out.println("Socket is sending");
+        Window owner = btn_login.getScene().getWindow();
+        Validator v=new Validator();
+        int result=v.validateUser(userName.getText(),password.getText());
 
-        pc.sendViaSocket();
-        System.out.println("Hello you are welcomed"+userName.getText());
-        System.out.println("Hello you are welcomed"+password.getText());
-        //from contoller level validate for password for minimum 8 characters
-        //this.auth=new Authenticate(userName.getText(),password.getText());
-        //DatabaseHandler DBhandler=new DatabaseHandler();
+        if (result==0){
+            //better to make this peer singleton if needed.
+            ThisPeer me=new ThisPeer(userName.getText(),v.getMyIp(),v.getMyPort(),password.getText());
+            //pc=new PeerConnection();
+
+            System.out.println("Socket is listning");
+            //pc.createTheSocketListner();
+
+            AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Login Successful!",
+                    "Welcome " + userName.getText());
+
+        }else if(result==1){
+            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Login Error!",
+                    "Please enter the correct password");
+
+        }else{
+            AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Login Error!",
+                    "Username is Invalid");
+        }
 
     }
+
     public void pressCancel(ActionEvent event){
         System.out.println("Asked to cancel");
         this.userName.setText("");
         this.password.setText("");
     }
+
     public void pressRegister(ActionEvent event) throws Exception{
         System.out.println("New User is Ready to Register");
         //Parent root = FXMLLoader.load(getClass().getResource("../View/Register.fxml"));

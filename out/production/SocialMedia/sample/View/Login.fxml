@@ -40,8 +40,8 @@
         <TextField fx:id="password" layoutX="226.0" layoutY="121.0" />
         <Label layoutX="165.0" layoutY="220.0" prefHeight="17.0" prefWidth="123.0" text="New User" />
         <Button layoutX="315.0" layoutY="244.0" mnemonicParsing="false" text="Register" onAction="#pressRegister" />
-        <Button layoutX="250.0" layoutY="166.0" mnemonicParsing="false" onAction="#pressLogin" prefHeight="25.0" prefWidth="52.0" text="Login" />
-        <Button layoutX="323.0" layoutY="164.0" mnemonicParsing="false" onAction="#pressCancel" text="Cancel" />
+        <Button layoutX="250.0" layoutY="166.0" mnemonicParsing="false" onAction="#pressLogin" prefHeight="25.0" prefWidth="52.0" text="Login" fx:id="btn_login" />
+        <Button layoutX="323.0" layoutY="164.0" mnemonicParsing="false" onAction="#pressCancel" text="Cancel" fx:id="btn_cancel" />
         <ParallelCamera />
     </children>
 </AnchorPane>

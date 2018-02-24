@@ -18,8 +18,9 @@ public class ReceivedPacketHandler extends Thread {
     public void run(){
         String type=receivedObject.getClass().getSimpleName();//this will not work
         Post post = (Post) receivedObject;
-        System.out.println("Receiver:"+post.getContent());
-        System.out.println("Receiver:"+post.getDate_created());
+        post.notifyController();
+        //System.out.println("Receiver:"+post.getContent());
+        //System.out.println("Receiver:"+post.getDate_created());
         if(type=="Post"){
 
         }
