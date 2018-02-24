@@ -26,8 +26,8 @@ public class Validator {
         String username_stored=userCredentials[0];
         String password_stored=userCredentials[1];
 
-        if (username_entered==username_stored) {
-            if (password_entered == password_stored) {
+        if (username_entered.contentEquals(username_stored)) {
+            if (password_entered.contentEquals(password_stored)) {
                 try {
                     this.myIp=InetAddress.getByName(userCredentials[2]);
                     this.myPort=Integer.parseInt(userCredentials[3]);
@@ -72,9 +72,8 @@ public class Validator {
                     new BufferedReader(fileReader);
             int i=0;
             while((line = bufferedReader.readLine()) != null) {
-                userCredentials[i]=line;
-                //userDetails.add(line);
-                System.out.println(line);
+                userCredentials[i]=line.replaceAll("[\n\r]", "");
+                i++;
             }
             bufferedReader.close();
         }

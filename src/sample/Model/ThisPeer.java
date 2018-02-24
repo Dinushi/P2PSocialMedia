@@ -13,7 +13,7 @@ public class ThisPeer extends AbstractPeer{
         this.setPassword("123");
         //this.password=password;
         //
-        this.updateDatabase();
+        //this.updateDatabase();
 
 
     }

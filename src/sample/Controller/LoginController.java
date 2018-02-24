@@ -38,6 +38,7 @@ public class LoginController {
     PeerConnection pc;
 
     public void pressLogin(ActionEvent event){
+
         Window owner = btn_login.getScene().getWindow();
         Validator v=new Validator();
         int result=v.validateUser(userName.getText(),password.getText());

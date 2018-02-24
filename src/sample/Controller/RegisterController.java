@@ -70,7 +70,7 @@ public class RegisterController {
     private void connectToServer() {
         //this.client=new Client(userName.getText());###############################
         this.client=new ClientConnection(userName.getText());
-    }//when modify add the clientConnection class ofcommunication handler instead
+    }
 
     private void createThisUser() {
         ThisPeer me=new ThisPeer(userName.getText(),this.client.getLocal_address(),this.client.getLocal_port(),password.getText());

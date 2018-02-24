@@ -1,5 +1,6 @@
 package sample.CommunicationHandler;
 
+import sample.EventHandler.NewPeerListner;
 import sample.Model.DiscoverdPeer;
 
 import java.io.*;
@@ -39,24 +40,50 @@ public class ClientConnection {
             //this.local_address= s1.getLocalAddress();//insert these values to user table in database
             //this.local_port=s1.getLocalPort();
 
-
-            //this.is1 = socket.getInputStream();//********
-            //this.ois = new ObjectInputStream(is1);//************
-
-
             this.os1 = socket.getOutputStream();//****
             this.oos = new ObjectOutputStream(os1);//***********
+
+            this.is1 = socket.getInputStream();//********
+            this.ois = new ObjectInputStream(is1);//************
+
+
+
+
             //br= new BufferedReader(new InputStreamReader(System.in));
             //is=new BufferedReader(new InputStreamReader(s1.getInputStream()));
             //os= new PrintWriter(s1.getOutputStream());
 
-            communicate(username);
+            SendToBS(username);
+            receiveFromBs();
         }catch (IOException e){
             e.printStackTrace();
             System.err.print("IO Exception");
         }
     }
-    private void communicate(String username){
+    private void receiveFromBs(){
+            try {
+                String reply=(String)this.ois.readObject();
+                if(reply.contentEquals("UserName Exists")) {
+                    //ask to enter a new username
+                }else if(reply.contentEquals("IP Port Already Used")){
+                    //system must automatically change the port
+                }else if(reply.substring(0,reply.length()-1).contentEquals("Success")) {
+                    int i=0;
+                        while(i<Integer.parseInt(reply.substring(reply.length() - 1))) {
+                            DiscoverdPeer neighbour_peer = (DiscoverdPeer) this.ois.readObject();
+                            NewPeerListner.update(neighbour_peer);
+                            System.out.println("Received A new peer");
+                            System.out.println(neighbour_peer.getUsername());
+                            i++;
+                        }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+    }
+    private void SendToBS(String username){
         try {
             System.out.println("tyrrrrrrrrrrr");
             DiscoverdPeer peer=new DiscoverdPeer("new join request",username,local_address,local_port);
