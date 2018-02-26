@@ -18,16 +18,17 @@ import java.net.*;
 //a udp communication handler
 public class PeerConnection {
     DatagramSocket socket = null;
-
+//1----listen 9877 send 9875
+    //next run listen 9875 send 9877
     public void createTheSocketListner() {
         try {
-            socket = new DatagramSocket(9875);//use the registerd port in BS
+            socket = new DatagramSocket(9877);//use the registerd port in BS
             System.out.println("Spcket is started");
             //make a therad to listen forever from this port.this should be the registerd por of peer
             ReaderThread readerThread = new ReaderThread(socket);
             System.out.println("Thread create");
             readerThread.start();
-            System.out.println("Thrad started");
+            System.out.println("Thread started");
 
         } catch (SocketException e) {
             e.printStackTrace();
@@ -36,26 +37,28 @@ public class PeerConnection {
     public void clodeThesocket(){
         socket.disconnect();
     }
-    public void sendViaSocket() {
+
+    public void sendViaSocket(Post post) {
         try {
 
             DatagramSocket Socket = new DatagramSocket();
             InetAddress IPAddress = InetAddress.getByName("localhost");
             byte[] incomingData = new byte[1024];
-            Post student = new Post("Dinushi123", "I am not well my Friends");
+            //Post student = new Post("Dinushi123", "I am not well my Friends");
 
-            System.out.println("new post is created");
+            //System.out.println("new post is created");
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             ObjectOutputStream os = new ObjectOutputStream(outputStream);
             System.out.println("output stream ok");
-            os.writeObject(student);
+            //os.writeObject(student);
+            os.writeObject(post);
             byte[] data = outputStream.toByteArray();
             //use the dedicated socket to send data...
             System.out.println("ready tos send to the port");
             DatagramPacket sendPacket = new DatagramPacket(data, data.length, IPAddress, 9875);
 
             Socket.send(sendPacket);
-            System.out.println("Message sent from client");
+            System.out.println("Post sent");
             //DatagramPacket incomingPacket = new DatagramPacket(incomingData, incomingData.length);
             //Socket.receive(incomingPacket);
             //String response = new String(incomingPacket.getData());

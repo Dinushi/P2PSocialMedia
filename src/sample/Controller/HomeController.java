@@ -7,6 +7,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import sample.Model.Post;
@@ -18,6 +20,12 @@ public class HomeController{
     private TextField txt_created_date;
     @FXML
     private TextField txt_content;
+    @FXML
+    private TextArea txt_post;
+    @FXML
+    private Button btn_post_share;
+    @FXML
+    private Button btn_post_cancel;
 
     public void showNewPost(Post post){
         //Parent root = FXMLLoader.load(getClass().getResource("../View/Register.fxml"));
@@ -42,8 +50,10 @@ public class HomeController{
                 }
             }
         });
-
-
+    }
+    public void sharePost(ActionEvent event){
+        Post p=new Post(Validator.username,txt_post.getText());
+        p.sendPost();
 
     }
 

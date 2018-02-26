@@ -1,5 +1,6 @@
 package sample.Model;
 
+import sample.CommunicationHandler.PeerConnection;
 import sample.Controller.HomeController;
 
 import java.io.Serializable;
@@ -52,5 +53,8 @@ public class Post implements Serializable {
         HomeController hc=new HomeController();
         hc.showNewPost(this);
 
+    }
+    public void sendPost(){
+        new PeerConnection().sendViaSocket(this);
     }
 }

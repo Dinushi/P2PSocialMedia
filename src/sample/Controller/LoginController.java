@@ -24,6 +24,7 @@ import java.net.InetAddress;
  */
 public class LoginController {
 
+
     // Authenticate auth;
     // The reference of inputText will be injected by the FXML loader
     @FXML
@@ -46,13 +47,26 @@ public class LoginController {
         if (result==0){
             //better to make this peer singleton if needed.
             ThisPeer me=new ThisPeer(userName.getText(),v.getMyIp(),v.getMyPort(),password.getText());
-            //pc=new PeerConnection();
+            pc=new PeerConnection();
 
             System.out.println("Socket is listning");
-            //pc.createTheSocketListner();
+            pc.createTheSocketListner();
 
             AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Login Successful!",
                     "Welcome " + userName.getText());
+
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource("../View/AppHome.fxml"));
+                Stage stage = new Stage();
+                stage.setTitle("PeerNet");
+                stage.setScene(new Scene(root, 600, 400));
+                stage.show();
+                // Hide this current window (if this is what you want)
+                ((Node) (event.getSource())).getScene().getWindow().hide();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
 
         }else if(result==1){
             AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Login Error!",

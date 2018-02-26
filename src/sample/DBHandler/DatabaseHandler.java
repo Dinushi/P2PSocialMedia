@@ -7,7 +7,7 @@ import java.sql.*;
 
 public class DatabaseHandler {
 
-        private static final String DB_URL="jdbc:derby:C:/Users/Dinushi Ranagalage/IdeaProjects/SocialMedia/PeerDB";
+        private static final String DB_URL="jdbc:derby:C:/Users/Dinushi Ranagalage/IdeaProjects/P2PSocialMedia/PeerDB";
         private static Connection conn= null;
         private static Statement stmt =null;
         public DatabaseHandler(){

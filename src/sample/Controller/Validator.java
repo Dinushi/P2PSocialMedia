@@ -17,6 +17,7 @@ public class Validator {
     private String[] userCredentials;
     private InetAddress myIp;
     private int myPort;
+    public static String username;
 
     public int validateUser(String username_entered,String password_entered){
 
@@ -36,6 +37,7 @@ public class Validator {
                     e.printStackTrace();
                 }
                 System.out.println("user is valid");
+                username=username_stored;//this done temporalarily to get username when required.
                 return 0;
             }else{
                 System.out.println("user password wrong");
