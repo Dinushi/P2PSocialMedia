@@ -1,0 +1,39 @@
+#btn_conv {
+    -fx-base:	#1E90FF;
+    -fx-background-image: url("../images/chat.png");
+    -fx-background-size: 18 18;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:left;
+}
+#btn_online{
+    -fx-base:	#1E90FF;
+    -fx-background-image: url("../images/ViewOnline.png");
+    -fx-background-size: 18 18;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:left;
+}
+#btn_peer_requests {
+    -fx-base:	#1E90FF;
+    -fx-background-image: url("../images/request.png");
+    -fx-background-size: 18 18;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:left;
+}
+#btn_discover{
+    -fx-base:	#1E90FF;
+    -fx-background-image: url("../images/peerSelect.png");
+    -fx-background-size: 18 18;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:left;
+}
+#btn_edit {
+    -fx-base:	#1E90FF;
+    -fx-background-image: url("../images/edit_prof.png");
+    -fx-background-size: 18 18;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:left;
+}
+#separator1{
+    -fx-background-color: #e79423;
+    -fx-background-radius: 2;
+}

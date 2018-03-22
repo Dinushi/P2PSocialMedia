@@ -1,5 +1,6 @@
 package sample.CommunicationHandler;
 import javafx.geometry.Pos;
+import sample.Model.Message;
 import sample.Model.Post;
 
 import java.io.ByteArrayInputStream;
@@ -18,11 +19,15 @@ import java.net.*;
 //a udp communication handler
 public class PeerConnection {
     DatagramSocket socket = null;
-//1----listen 9877 send 9875
-    //next run listen 9875 send 9877
-    public void createTheSocketListner() {
+    public static int myPort;
+//1----listen 9877 send 9876
+    //next run listen 9876 send 9877
+    public void createTheSocketListner(int port) {
         try {
-            socket = new DatagramSocket(9877);//use the registerd port in BS
+            myPort=port;
+            //socket = new DatagramSocket(9877);//use the registerd port in BS
+            socket = new DatagramSocket(port);//use the registerd port in BS
+            //socket = new DatagramSocket(9877);
             System.out.println("Spcket is started");
             //make a therad to listen forever from this port.this should be the registerd por of peer
             ReaderThread readerThread = new ReaderThread(socket);
@@ -38,10 +43,10 @@ public class PeerConnection {
         socket.disconnect();
     }
 
-    public void sendViaSocket(Post post) {
+    public void sendViaSocket(Object obj) {
         try {
 
-            DatagramSocket Socket = new DatagramSocket();
+            DatagramSocket Socket = new DatagramSocket();//this should be sent using the same port which t listens
             InetAddress IPAddress = InetAddress.getByName("localhost");
             byte[] incomingData = new byte[1024];
             //Post student = new Post("Dinushi123", "I am not well my Friends");
@@ -50,12 +55,20 @@ public class PeerConnection {
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             ObjectOutputStream os = new ObjectOutputStream(outputStream);
             System.out.println("output stream ok");
+
+            if (obj instanceof Post) {
+                Post post=(Post)obj;
+                os.writeObject(post);
+            }else if(obj instanceof Message){
+                Message msg=(Message)obj;
+                os.writeObject(msg);
+            }
             //os.writeObject(student);
-            os.writeObject(post);
+            //os.writeObject(post);
             byte[] data = outputStream.toByteArray();
             //use the dedicated socket to send data...
             System.out.println("ready tos send to the port");
-            DatagramPacket sendPacket = new DatagramPacket(data, data.length, IPAddress, 9875);
+            DatagramPacket sendPacket = new DatagramPacket(data, data.length, IPAddress, 9876);
 
             Socket.send(sendPacket);
             System.out.println("Post sent");
@@ -75,4 +88,5 @@ public class PeerConnection {
             //e.printStackTrace();
         }
     }
+
 }

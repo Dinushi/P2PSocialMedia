@@ -3,12 +3,18 @@ package sample.Controller;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.RadioButton;
+import javafx.stage.Stage;
 import sample.CommunicationHandler.ClientConnection;
 import sample.Model.ThisPeer;
 
+import java.io.IOException;
 import java.io.Serializable;
 
 public class RegisterController {
@@ -48,6 +54,7 @@ public class RegisterController {
         //sent username,ip,port to bootstrap server
         this.connectToServer();
         this.createThisUser();
+        this.showLoginPage(event);
 
 
         //from contoller level validate for password for minimum 8 characters
@@ -68,13 +75,26 @@ public class RegisterController {
     }
 
     private void connectToServer() {
-        //this.client=new Client(userName.getText());###############################
         this.client=new ClientConnection(userName.getText());
+
     }
 
     private void createThisUser() {
         ThisPeer me=new ThisPeer(userName.getText(),this.client.getLocal_address(),this.client.getLocal_port(),password.getText());
 
+    }
+    private void showLoginPage(ActionEvent event){
+        try {
+            Parent root = FXMLLoader.load(getClass().getResource("../View/Login.fxml"));
+            Stage stage = new Stage();
+            stage.setTitle("Login P2P social media");
+            stage.setScene(new Scene(root, 400, 300));
+            stage.show();
+            // Hide this current window
+            ((Node) (event.getSource())).getScene().getWindow().hide();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     //private void createClientConnection() {
       //  ClientConnection connection = new ClientConnection("127.0.0.1", 55555, (Serializable data) -> {

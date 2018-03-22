@@ -1,0 +1,8 @@
+.root {
+    -fx-background-image: url("../images/register_background.jfif");
+    -fx-background-position: center;
+    -fx-background-repeat: stretch;
+    -fx-background-size: auto;
+    -fx-background-size: 750 550;
+
+}

@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataSource name="MyDB">
+  <database-model serializer="dbm" rdbms="DERBY" format-version="4.7">
+    <root id="1"/>
+    <schema id="2" parent="1" name="APP">
+      <Current>1</Current>
+      <Visible>1</Visible>
+    </schema>
+    <schema id="3" parent="1" name="NULLID"/>
+    <schema id="4" parent="1" name="SQLJ"/>
+    <schema id="5" parent="1" name="SYS"/>
+    <schema id="6" parent="1" name="SYSCAT"/>
+    <schema id="7" parent="1" name="SYSCS_DIAG"/>
+    <schema id="8" parent="1" name="SYSCS_UTIL"/>
+    <schema id="9" parent="1" name="SYSFUN"/>
+    <schema id="10" parent="1" name="SYSIBM"/>
+    <schema id="11" parent="1" name="SYSPROC"/>
+    <schema id="12" parent="1" name="SYSSTAT"/>
+    <table id="13" parent="2" name="CHAT"/>
+    <table id="14" parent="2" name="CONVERSATION"/>
+    <table id="15" parent="2" name="MESSAGE"/>
+    <table id="16" parent="2" name="PEER"/>
+    <table id="17" parent="2" name="POST"/>
+    <column id="18" parent="13" name="CONVERSATION_ID">
+      <Position>1</Position>
+      <DataType>INTEGER(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="19" parent="13" name="PARTNER">
+      <Position>2</Position>
+      <DataType>VARCHAR(30)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <key id="20" parent="13" name="PK_CHAT">
+      <ColNames>CONVERSATION_ID
+PARTNER</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="21" parent="13" name="SQL180310151103280">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>CONVERSATION_ID</ColNames>
+      <RefSchemaName>APP</RefSchemaName>
+      <RefTableName>CONVERSATION</RefTableName>
+      <RefKeyName>SQL180310151103100</RefKeyName>
+      <RefColNames>CONVERSATION_ID</RefColNames>
+    </foreign-key>
+    <foreign-key id="22" parent="13" name="SQL180310151103281">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>PARTNER</ColNames>
+      <RefSchemaName>APP</RefSchemaName>
+      <RefTableName>PEER</RefTableName>
+      <RefKeyName>SQL180310151101250</RefKeyName>
+      <RefColNames>USERNAME</RefColNames>
+    </foreign-key>
+    <column id="23" parent="14" name="CONVERSATION_ID">
+      <Position>1</Position>
+      <DataType>INTEGER(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="24" parent="14" name="STARTED_DATE">
+      <Position>2</Position>
+      <DataType>DATE(10)|91</DataType>
+    </column>
+    <key id="25" parent="14" name="SQL180310151103100">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>CONVERSATION_ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="26" parent="15" name="CONVERSATION_ID">
+      <Position>1</Position>
+      <DataType>INTEGER(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="27" parent="15" name="MESSAGE_ID">
+      <Position>2</Position>
+      <DataType>INTEGER(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="28" parent="15" name="TIME">
+      <Position>3</Position>
+      <DataType>DATE(10)|91</DataType>
+    </column>
+    <column id="29" parent="15" name="CONTENT">
+      <Position>4</Position>
+      <DataType>VARCHAR(300)|12</DataType>
+    </column>
+    <column id="30" parent="15" name="MSG_TYPE">
+      <Position>5</Position>
+      <DataType>VARCHAR(1)|12</DataType>
+    </column>
+    <column id="31" parent="15" name="DELIVERD_STATUS">
+      <Position>6</Position>
+      <DataType>VARCHAR(1)|12</DataType>
+    </column>
+    <key id="32" parent="15" name="PK_MESSAGE">
+      <ColNames>CONVERSATION_ID
+MESSAGE_ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="33" parent="15" name="SQL180310151103880">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>CONVERSATION_ID</ColNames>
+      <RefSchemaName>APP</RefSchemaName>
+      <RefTableName>CONVERSATION</RefTableName>
+      <RefKeyName>SQL180310151103100</RefKeyName>
+      <RefColNames>CONVERSATION_ID</RefColNames>
+    </foreign-key>
+    <column id="34" parent="16" name="USERNAME">
+      <Position>1</Position>
+      <DataType>VARCHAR(30)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="35" parent="16" name="IP">
+      <Position>2</Position>
+      <DataType>VARCHAR(20)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="36" parent="16" name="PORT">
+      <Position>3</Position>
+      <DataType>INTEGER(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="37" parent="16" name="FULLNAME">
+      <Position>4</Position>
+      <DataType>VARCHAR(100)|12</DataType>
+    </column>
+    <column id="38" parent="16" name="STATUS">
+      <Position>5</Position>
+      <DataType>VARCHAR(100)|12</DataType>
+    </column>
+    <column id="39" parent="16" name="BIRTHDAY">
+      <Position>6</Position>
+      <DataType>DATE(10)|91</DataType>
+    </column>
+    <column id="40" parent="16" name="GENDER">
+      <Position>7</Position>
+      <DataType>VARCHAR(1)|12</DataType>
+    </column>
+    <column id="41" parent="16" name="HOMETOWN">
+      <Position>8</Position>
+      <DataType>VARCHAR(100)|12</DataType>
+    </column>
+    <key id="42" parent="16" name="SQL180310151101250">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>USERNAME</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <column id="43" parent="17" name="USERNAME">
+      <Position>1</Position>
+      <DataType>VARCHAR(30)|12</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="44" parent="17" name="POST_ID">
+      <Position>2</Position>
+      <DataType>INTEGER(10)|4</DataType>
+      <NotNull>1</NotNull>
+    </column>
+    <column id="45" parent="17" name="CONTENT">
+      <Position>3</Position>
+      <DataType>VARCHAR(500)|12</DataType>
+    </column>
+    <column id="46" parent="17" name="CREATED_DATE">
+      <Position>4</Position>
+      <DataType>DATE(10)|91</DataType>
+    </column>
+    <column id="47" parent="17" name="IMAGE">
+      <Position>5</Position>
+      <DataType>BLOB|2004</DataType>
+    </column>
+    <key id="48" parent="17" name="PK_POST">
+      <ColNames>USERNAME
+POST_ID</ColNames>
+      <Primary>1</Primary>
+    </key>
+    <foreign-key id="49" parent="17" name="SQL180310151101640">
+      <NameSurrogate>1</NameSurrogate>
+      <ColNames>USERNAME</ColNames>
+      <RefSchemaName>APP</RefSchemaName>
+      <RefTableName>PEER</RefTableName>
+      <RefKeyName>SQL180310151101250</RefKeyName>
+      <RefColNames>USERNAME</RefColNames>
+    </foreign-key>
+  </database-model>
+</dataSource>

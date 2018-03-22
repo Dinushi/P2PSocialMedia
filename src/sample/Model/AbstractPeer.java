@@ -1,18 +1,19 @@
 package sample.Model;
 
 import java.net.InetAddress;
+import java.util.Date;
 
 public class AbstractPeer {
 
         protected String username;
         protected InetAddress ip;
         protected int port;
-        protected   String fullname;
+        private String fullname;
         protected   String status;
         protected   String gender;
-        private  String bday;
+        private Date bday;
         //private String prof_pic;
-        protected   String hometown;
+        private String hometown;
 
 
         public AbstractPeer(String username,InetAddress ip,int port){
@@ -54,12 +55,11 @@ public class AbstractPeer {
             this.gender = gender;
         }
 
-        public String getBday() {
+        public Date getBday() {
             return bday;
         }
 
-        public void setBday(String bday) {
-            this.bday = bday;
+        public void setBday(Date bday) { this.bday = bday;
         }
 
         public String getHometown() {
@@ -69,5 +69,13 @@ public class AbstractPeer {
         public void setHometown(String hometown) {
             this.hometown = hometown;
         }
+
+    public String getFullname() {
+        return fullname;
     }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+}
 

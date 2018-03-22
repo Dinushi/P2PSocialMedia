@@ -50,7 +50,7 @@ public class LoginController {
             pc=new PeerConnection();
 
             System.out.println("Socket is listning");
-            pc.createTheSocketListner();
+            pc.createTheSocketListner(v.getMyPort());
 
             AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Login Successful!",
                     "Welcome " + userName.getText());
@@ -59,7 +59,7 @@ public class LoginController {
                 Parent root = FXMLLoader.load(getClass().getResource("../View/AppHome.fxml"));
                 Stage stage = new Stage();
                 stage.setTitle("PeerNet");
-                stage.setScene(new Scene(root, 600, 400));
+                stage.setScene(new Scene(root, 565, 445));
                 stage.show();
                 // Hide this current window (if this is what you want)
                 ((Node) (event.getSource())).getScene().getWindow().hide();
@@ -93,7 +93,10 @@ public class LoginController {
             Parent root = FXMLLoader.load(getClass().getResource("../View/Register.fxml"));
             Stage stage = new Stage();
             stage.setTitle("Register Form");
-            stage.setScene(new Scene(root, 400, 600));
+            Scene scene=new Scene(root, 750, 550);
+            //stage.setScene(new Scene(root, 400, 600));
+            stage.setScene(scene);
+            scene.getStylesheets().add(getClass().getResource("Register.css").toString());
             stage.show();
             // Hide this current window (if this is what you want)
             ((Node) (event.getSource())).getScene().getWindow().hide();

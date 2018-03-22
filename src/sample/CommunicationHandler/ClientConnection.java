@@ -55,6 +55,9 @@ public class ClientConnection {
 
             SendToBS(username);
             receiveFromBs();
+            createTheUserCredentials(username);
+            System.out.println("Server Connection closed");
+            this.socket.close();
         }catch (IOException e){
             e.printStackTrace();
             System.err.print("IO Exception");
@@ -75,6 +78,9 @@ public class ClientConnection {
                             System.out.println("Received A new peer");
                             System.out.println(neighbour_peer.getUsername());
                             i++;
+                            //if(reply.contentEquals("End")){
+                               // return;
+                            //}
                         }
                 }
             } catch (IOException e) {
@@ -138,6 +144,22 @@ public class ClientConnection {
     }
     public int getLocal_port() {
         return local_port;
+    }
+
+
+    private void createTheUserCredentials(String username) throws IOException{
+
+            BufferedWriter writer = new BufferedWriter(new FileWriter("ThisUser.txt"));
+            writer.write(username);
+            writer.newLine();
+            writer.write(String.valueOf(this.getLocal_address()));
+            writer.newLine();
+            writer.write(String.valueOf(this.getLocal_port()));
+            writer.newLine();
+            writer.close();
+            System.out.print("user Credentials has added in the file");
+
+
     }
 
 }

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+
+<BorderPane prefHeight="369.0" prefWidth="465.0" style="-fx-background-color: #696969;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.ChatController">
+    <center>
+        <TabPane fx:id="tabPane" />
+    </center>
+    <bottom>
+        <HBox alignment="center">
+            <Button fx:id="btn_newChat" onAction="#createNewConversation" text="New Chat" />
+            <Button onAction="#listTabs" prefHeight="25.0" prefWidth="66.0" text="Delete" />
+        </HBox>
+    </bottom>
+</BorderPane>

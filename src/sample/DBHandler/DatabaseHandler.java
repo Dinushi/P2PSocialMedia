@@ -1,6 +1,7 @@
 package sample.DBHandler;
 
 import sample.Model.AbstractPeer;
+import sample.Model.DiscoverdPeer;
 import sample.Model.Peer;
 
 import java.sql.*;
@@ -84,6 +85,23 @@ public class DatabaseHandler {
             stmt.executeUpdate();
 
             System.out.println("Statement has been successfully  executed.");
+            return true;
+        } catch (SQLException ex) {
+            System.out.println("ERROR4: " + ex.getMessage());
+            return false;
+        }
+    }
+    public boolean updatePeerDetails(DiscoverdPeer peer) {
+        try {
+
+            String template = "INSERT INTO PEERDETAIL (PEERUSERNAME,IP,PORT) values (?,?,?)";
+            PreparedStatement stmt = conn.prepareStatement(template);
+            stmt.setString(1,peer.getUsername());
+            stmt.setString(2,String.valueOf(peer.getIp()));
+            stmt.setInt(3,peer.getPort());
+            stmt.executeUpdate();
+
+            System.out.println("Discoverd peer has stored.");
             return true;
         } catch (SQLException ex) {
             System.out.println("ERROR4: " + ex.getMessage());

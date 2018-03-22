@@ -26,12 +26,14 @@ public class Validator {
         readTheUserDataFile();
         String username_stored=userCredentials[0];
         String password_stored=userCredentials[1];
+        password_stored="123";
 
         if (username_entered.contentEquals(username_stored)) {
             if (password_entered.contentEquals(password_stored)) {
                 try {
-                    this.myIp=InetAddress.getByName(userCredentials[2]);
-                    this.myPort=Integer.parseInt(userCredentials[3]);
+                    this.myIp=InetAddress.getByName(userCredentials[1]);
+                    this.myPort=Integer.parseInt(userCredentials[2]);
+                    //this.myPort=9877;
 
                 } catch (UnknownHostException e) {
                     e.printStackTrace();

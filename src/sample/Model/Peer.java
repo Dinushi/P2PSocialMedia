@@ -4,7 +4,7 @@ import java.net.InetAddress;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public abstract class Peer extends AbstractPeer {
+public class Peer extends AbstractPeer {
     private  boolean isJoined;
     private LocalDateTime joinedDate;
     private boolean onlineStatus;
@@ -16,6 +16,8 @@ public abstract class Peer extends AbstractPeer {
             if(isJoined){
                 this.setJoinedDate();
             }
+           // this.onlineStatus=this.checkOnlineStatus(ip,port);
+
     }
 
     private void setJoinedDate(){
@@ -44,4 +46,15 @@ public abstract class Peer extends AbstractPeer {
     public void setOnlineStatus(boolean onlineStatus) {
         this.onlineStatus = onlineStatus;
     }
+
+    /*
+    public boolean checkOnlineStatus(InetAddress IP,int port){
+       if(){
+            return true;
+        } else{
+            return false;
+        }
+
+    }
+    */
 }
