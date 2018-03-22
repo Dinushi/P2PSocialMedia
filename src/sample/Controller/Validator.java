@@ -25,8 +25,9 @@ public class Validator {
         //user credentials are read
         readTheUserDataFile();
         String username_stored=userCredentials[0];
-        String password_stored=userCredentials[1];
-        password_stored="123";
+        String password_stored=userCredentials[3];
+
+        //password_stored="123";
 
         if (username_entered.contentEquals(username_stored)) {
             if (password_entered.contentEquals(password_stored)) {

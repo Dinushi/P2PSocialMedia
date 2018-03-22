@@ -55,7 +55,7 @@ public class ClientConnection {
 
             SendToBS(username);
             receiveFromBs();
-            createTheUserCredentials(username);
+            //createTheUserCredentials(username);
             System.out.println("Server Connection closed");
             this.socket.close();
         }catch (IOException e){
@@ -72,7 +72,7 @@ public class ClientConnection {
                     //system must automatically change the port
                 }else if(reply.substring(0,reply.length()-1).contentEquals("Success")) {
                     int i=0;
-                        while(i<Integer.parseInt(reply.substring(reply.length() - 1))) {
+                        while(i<Integer.parseInt(reply.substring(reply.length()-1))) {
                             DiscoverdPeer neighbour_peer = (DiscoverdPeer) this.ois.readObject();
                             NewPeerListner.update(neighbour_peer);
                             System.out.println("Received A new peer");
@@ -152,7 +152,7 @@ public class ClientConnection {
             BufferedWriter writer = new BufferedWriter(new FileWriter("ThisUser.txt"));
             writer.write(username);
             writer.newLine();
-            writer.write(String.valueOf(this.getLocal_address()));
+            writer.write(String.valueOf(this.getLocal_address().toString().split("/")[1]));
             writer.newLine();
             writer.write(String.valueOf(this.getLocal_port()));
             writer.newLine();

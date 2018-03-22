@@ -23,7 +23,9 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("View/Login.fxml"));
         primaryStage.setTitle("Login P2P social media");
-        primaryStage.setScene(new Scene(root, 400, 300));
+        Scene scene=new Scene(root, 400, 300);
+        primaryStage.setScene(scene);
+        scene.getStylesheets().add(getClass().getResource("CSS/Login.css").toString());
         primaryStage.show();
     }
 

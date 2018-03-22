@@ -51,6 +51,7 @@ public class LoginController {
 
             System.out.println("Socket is listning");
             pc.createTheSocketListner(v.getMyPort());
+            //now only the port is specified to create a peer connection
 
             AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Login Successful!",
                     "Welcome " + userName.getText());
@@ -59,7 +60,7 @@ public class LoginController {
                 Parent root = FXMLLoader.load(getClass().getResource("../View/AppHome.fxml"));
                 Stage stage = new Stage();
                 stage.setTitle("PeerNet");
-                stage.setScene(new Scene(root, 565, 445));
+                stage.setScene(new Scene(root, 577, 602));
                 stage.show();
                 // Hide this current window (if this is what you want)
                 ((Node) (event.getSource())).getScene().getWindow().hide();

@@ -7,13 +7,15 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.TextField;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.RadioButton;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
+import javafx.stage.Window;
 import sample.CommunicationHandler.ClientConnection;
+import sample.DBHandler.CreateDB;
 import sample.Model.ThisPeer;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Serializable;
 
@@ -41,11 +43,16 @@ public class RegisterController {
     private TextField password;
 
     @FXML
+    private Button btn_submit;
+
+    @FXML
     private TextField re_password;
     //private Client client;######################
     private ClientConnection client;//??????????????
+    Window owner;
 
     public void pressSubmit(ActionEvent event) {
+        this.owner = btn_submit.getScene().getWindow();
         System.out.println("Hello you are welcomed" + userName.getText());
         System.out.println("Hello you are welcomed" + password.getText());
         //this.validateUsername();
@@ -53,7 +60,15 @@ public class RegisterController {
         //validate the other data input by user
         //sent username,ip,port to bootstrap server
         this.connectToServer();
+        //create the database
+        //CreateDB dbCreator=new CreateDB();
         this.createThisUser();
+        try {
+            createTheUserCredentials();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        this.sendConfirmation();
         this.showLoginPage(event);
 
 
@@ -83,12 +98,35 @@ public class RegisterController {
         ThisPeer me=new ThisPeer(userName.getText(),this.client.getLocal_address(),this.client.getLocal_port(),password.getText());
 
     }
+    private void createTheUserCredentials() throws IOException{
+
+        BufferedWriter writer = new BufferedWriter(new FileWriter("ThisUser.txt"));
+        writer.write(userName.getText());
+        writer.newLine();
+        writer.write(String.valueOf(client.getLocal_address().toString().split("/")[1]));
+        writer.newLine();
+        writer.write(String.valueOf(client.getLocal_port()));
+        writer.newLine();
+        writer.write(String.valueOf(password.getText()));
+        writer.close();
+        System.out.print("user Credentials has added in the file");
+
+
+    }
+    private void sendConfirmation(){
+
+        AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, this.owner, "Successfully registered in the Bootstrap Server!",
+                "Now you can Login");
+
+    }
     private void showLoginPage(ActionEvent event){
         try {
             Parent root = FXMLLoader.load(getClass().getResource("../View/Login.fxml"));
             Stage stage = new Stage();
             stage.setTitle("Login P2P social media");
-            stage.setScene(new Scene(root, 400, 300));
+            Scene scene=new Scene(root, 400, 300);
+            stage.setScene(scene);
+            scene.getStylesheets().add(getClass().getResource("../CSS/Login.css").toString());
             stage.show();
             // Hide this current window
             ((Node) (event.getSource())).getScene().getWindow().hide();
