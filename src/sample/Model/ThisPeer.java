@@ -1,6 +1,8 @@
 package sample.Model;
 
 import java.net.InetAddress;
+import java.util.Date;
+
 import sample.DBHandler.DatabaseHandler;
 
 //make this class singleton

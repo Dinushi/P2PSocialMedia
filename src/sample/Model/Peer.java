@@ -3,22 +3,24 @@ package sample.Model;
 import java.net.InetAddress;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Date;
 
-public class Peer extends AbstractPeer {
+public class Peer extends AbstractPeer{
     private  boolean isJoined;
     private LocalDateTime joinedDate;
     private boolean onlineStatus;
 
 
-    public Peer(String username,InetAddress ip,int port,boolean isJoined){
-            super(username,ip,port);
-            this.setJoined(isJoined);
-            if(isJoined){
-                this.setJoinedDate();
-            }
-           // this.onlineStatus=this.checkOnlineStatus(ip,port);
+    public Peer(String username,InetAddress ip,int port,boolean isJoined) {
 
+        super(username,ip,port);
+        this.setJoined(isJoined);
+        if(isJoined){
+            this.setJoinedDate();
+        }
+        // this.onlineStatus=this.checkOnlineStatus(ip,port);
     }
+
 
     private void setJoinedDate(){
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");

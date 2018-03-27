@@ -29,6 +29,7 @@ public class CreateDB{
             build_table_CONVERSATION();
             build_table_CHAT();
             build_table_MESSAGE();
+            create_table_PEERDATA();
         }
         private void create_table_PEER(){
             try {
@@ -49,6 +50,21 @@ public class CreateDB{
             } catch (SQLException ex) {
                 System.out.println("ERROR: " + ex.getMessage());
             }
+
+    }
+    private void create_table_PEERDATA(){
+        try {
+
+            // Create the table.
+            stmt.execute("CREATE TABLE PEER_DATA " +
+                    "( USERNAME VARCHAR(30) PRIMARY KEY NOT NULL, " +
+                    "  IP VARCHAR(20) NOT NULL," +
+                    "  PORT INT NOT NULL )");
+
+            System.out.println("PeerData table created.");
+        } catch (SQLException ex) {
+            System.out.println("ERROR: " + ex.getMessage());
+        }
 
     }
     public void create_table_POST() {

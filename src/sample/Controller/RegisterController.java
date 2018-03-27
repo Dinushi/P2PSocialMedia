@@ -11,7 +11,11 @@ import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 import sample.CommunicationHandler.ClientConnection;
+import sample.CommunicationHandler.PeerConnection;
 import sample.DBHandler.CreateDB;
+import sample.EventHandler.NewPeerListner;
+import sample.Model.Owner;
+import sample.Model.Peer;
 import sample.Model.ThisPeer;
 
 import java.io.BufferedWriter;
@@ -47,6 +51,7 @@ public class RegisterController {
 
     @FXML
     private TextField re_password;
+    public Peer thisPeer;
     //private Client client;######################
     private ClientConnection client;//??????????????
     Window owner;
@@ -95,8 +100,14 @@ public class RegisterController {
     }
 
     private void createThisUser() {
+        Owner.myIP =client.getLocal_address();
+        Owner.myUsername=userName.getText();
+        Owner.myPort=client.getLocal_port();
+        //thisPeer=new Peer();tikak hithala balala karanam
         ThisPeer me=new ThisPeer(userName.getText(),this.client.getLocal_address(),this.client.getLocal_port(),password.getText());
-
+        NewPeerListner.sendJoinRequestToDiscoverdPeer();//peer connections are set with discoverd peers
+        PeerConnection peerCon=new PeerConnection();
+        peerCon.createTheSocketListner();//a listen socket will be created to listen on requests.
     }
     private void createTheUserCredentials() throws IOException{
 

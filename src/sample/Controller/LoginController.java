@@ -13,6 +13,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Window;
 import sample.CommunicationHandler.PeerConnection;
 import sample.DBHandler.DatabaseHandler;
+import sample.EventHandler.NewPeerListner;
 import sample.Model.ThisPeer;
 
 
@@ -37,6 +38,11 @@ public class LoginController {
     @FXML
     private TextField password;
     PeerConnection pc;
+    public void initialize() {
+        PeerConnection peerConn=new PeerConnection();
+        peerConn.createTheSocketListner();
+        NewPeerListner.sendJoinRequestToDiscoverdPeer();
+    }
 
     public void pressLogin(ActionEvent event){
 
@@ -50,7 +56,7 @@ public class LoginController {
             pc=new PeerConnection();
 
             System.out.println("Socket is listning");
-            pc.createTheSocketListner(v.getMyPort());
+            //pc.createTheSocketListner();
             //now only the port is specified to create a peer connection
 
             AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Login Successful!",
@@ -60,7 +66,9 @@ public class LoginController {
                 Parent root = FXMLLoader.load(getClass().getResource("../View/AppHome.fxml"));
                 Stage stage = new Stage();
                 stage.setTitle("PeerNet");
-                stage.setScene(new Scene(root, 577, 602));
+                Scene scene=new Scene(root, 577, 602);
+                stage.setScene(scene);
+                scene.getStylesheets().add(getClass().getResource("../CSS/Home.css").toString());
                 stage.show();
                 // Hide this current window (if this is what you want)
                 ((Node) (event.getSource())).getScene().getWindow().hide();
@@ -97,7 +105,7 @@ public class LoginController {
             Scene scene=new Scene(root, 750, 550);
             //stage.setScene(new Scene(root, 400, 600));
             stage.setScene(scene);
-            scene.getStylesheets().add(getClass().getResource("Register.css").toString());
+            scene.getStylesheets().add(getClass().getResource("../CSS/Register.css").toString());
             stage.show();
             // Hide this current window (if this is what you want)
             ((Node) (event.getSource())).getScene().getWindow().hide();

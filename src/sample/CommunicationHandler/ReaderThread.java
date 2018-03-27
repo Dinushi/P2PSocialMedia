@@ -21,6 +21,7 @@ public class ReaderThread extends  Thread {
 
     public void run() {
         while(true) {
+            Thread.currentThread().setPriority(8);
             byte[] incomingData = new byte[1024];
             DatagramPacket incomingPacket = new DatagramPacket(incomingData, incomingData.length);
             System.out.println("Ready to accept a packet");
@@ -33,11 +34,11 @@ public class ReaderThread extends  Thread {
                 InetAddress sender_IPAddress = incomingPacket.getAddress();//holds the sender details
                 int sender_port = incomingPacket.getPort();
                 try {
-                    Post post = (Post) is.readObject();
-                    System.out.println("Post object received = " + post);
-                    ReceivedPacketHandler pktHandler=new ReceivedPacketHandler(post,sender_IPAddress,sender_port);
+                    //Post post = (Post) is.readObject();
+                    //System.out.println("Post object received = " + post);
+                    //assign a seperate thread to handle the data packet
+                    ReceivedPacketHandler pktHandler=new ReceivedPacketHandler(is.readObject(),sender_IPAddress,sender_port);
                     pktHandler.start();
-
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 }

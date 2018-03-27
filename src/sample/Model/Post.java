@@ -3,6 +3,7 @@ package sample.Model;
 import sample.CommunicationHandler.PeerConnection;
 import sample.Controller.HomeController;
 import sample.DBHandler.DbHandler;
+import sample.EventHandler.PostHandler;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
@@ -56,7 +57,8 @@ public class Post implements Serializable {
 
     }
     public void sendPost(){
-        new PeerConnection().sendViaSocket(this);
+        PostHandler.sentThePostToPeers(this);
+        //new PeerConnection().sendViaSocket(this);
     }
 
     public void setDate_created(LocalDateTime date_created) {
@@ -64,6 +66,7 @@ public class Post implements Serializable {
     }
     public static ArrayList<Post> selectAllPosts(){
         DbHandler db=new DbHandler();
+
         ArrayList<Post> allPosts=db.getPosts();
         db.closeConnection();
         return allPosts;

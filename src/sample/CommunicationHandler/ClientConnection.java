@@ -33,7 +33,7 @@ public class ClientConnection {
     public ClientConnection(String username){//create  a singleton client class in any case of user name error ame client object can be used
         try {
             this.bs_address=InetAddress.getLocalHost();
-            this.socket=new Socket(bs_address, bs_port_no);
+            this.socket=new Socket(bs_address, bs_port_no);//find a way to set bs address,and port in the program input
             this.local_address=socket.getLocalAddress();
             this.local_port=socket.getLocalPort();
 
@@ -91,7 +91,6 @@ public class ClientConnection {
     }
     private void SendToBS(String username){
         try {
-            System.out.println("tyrrrrrrrrrrr");
             DiscoverdPeer peer=new DiscoverdPeer("new join request",username,local_address,local_port);
             //DiscoverdPeer peer1=(DiscoverdPeer)this.ois.readObject();//**************8//read objects from client
 

@@ -5,9 +5,9 @@ import java.util.Date;
 
 public class AbstractPeer {
 
-        protected String username;
-        protected InetAddress ip;
-        protected int port;
+        protected static String username;
+        protected static InetAddress ip;
+        protected static int port;
         private String fullname;
         protected   String status;
         protected   String gender;
