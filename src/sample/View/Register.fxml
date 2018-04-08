@@ -25,9 +25,9 @@
               <Label layoutX="15.0" layoutY="150.0" text="User Name" />
               <TextField fx:id="userName" layoutX="89.0" layoutY="146.0" prefHeight="25.0" prefWidth="174.0" />
               <Label layoutX="13.0" layoutY="188.0" text="Home town" />
-              <TextField layoutX="89.0" layoutY="184.0" prefHeight="25.0" prefWidth="174.0" />
+              <TextField fx:id="hometown" layoutX="89.0" layoutY="184.0" prefHeight="25.0" prefWidth="174.0" />
               <Label layoutX="36.0" layoutY="230.0" text="Gender" />
-              <RadioButton fx:id="check_Male" layoutX="101.0" layoutY="230.0" mnemonicParsing="false" text="Male" textFill="#807171" />
+              <RadioButton fx:id="check_male" layoutX="101.0" layoutY="230.0" mnemonicParsing="false" text="Male" textFill="#807171" />
               <RadioButton fx:id="check_female" layoutX="171.0" layoutY="230.0" mnemonicParsing="false" text="Female" textFill="#807171" />
               <Label layoutX="33.0" layoutY="264.0" text="Birthday" />
               <DatePicker fx:id="birthday" layoutX="89.0" layoutY="260.0" prefHeight="25.0" prefWidth="174.0" />

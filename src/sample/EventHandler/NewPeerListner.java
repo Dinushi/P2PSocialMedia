@@ -2,63 +2,96 @@ package sample.EventHandler;
 
 import sample.CommunicationHandler.PeerConnection;
 import sample.CommunicationHandler.ReceivingPeer;
-import sample.DBHandler.DatabaseHandler;
+import sample.Controller.Validator;
 import sample.DBHandler.DbHandler;
 import sample.Model.DiscoverdPeer;
 import sample.Model.Owner;
 import sample.Model.Peer;
 
-import javax.xml.crypto.Data;
 import java.util.ArrayList;
 
 public class NewPeerListner {
-    static ArrayList<DiscoverdPeer> discoverdPeers=new ArrayList<DiscoverdPeer>();
+    private static ArrayList<DiscoverdPeer> peersSentByBS=new ArrayList<DiscoverdPeer>();//hold the requests sent by the Bs
+    private static ArrayList<Peer> peerRequests=new ArrayList<Peer>();//hold the peers sent by the peers
 
     //when ever a new peer is discoverd this method is called
-    public static void update(DiscoverdPeer peer){
-        discoverdPeers.add(peer);
-        //new DatabaseHandler().updatePeerDetails(peer);
+    public static void update_PeersSentByBS(DiscoverdPeer peer){
+        peersSentByBS.add(peer);
         //add all these peers to the database
     }
-//use some thrad mechanism to sent re transmissions
-    public static void sendJoinRequestToDiscoverdPeer(){
+
+    //use some thrad mechanism to sent re transmissions
+    public static void sendJoinRequestToDiscoverdPeersFromBs(){
+        System.out.println("Came to send requests to discoverd peers from BS");
         DbHandler db=new DbHandler();
-        if(discoverdPeers.isEmpty()){
-            discoverdPeers=db.getAllReceivedPeers();
-        }
-        PeerConnection peerConn = new PeerConnection();
+        PeerConnection peerConn = PeerConnection.getPeerConnection();
         ArrayList<ReceivingPeer> receivers = new ArrayList<>();
-        for (DiscoverdPeer peer : discoverdPeers) {
-            ReceivingPeer receiver = new ReceivingPeer(peer.getIp(), peer.getPort());
+
+        for (DiscoverdPeer d_peer : peersSentByBS) {
+            System.out.println("A requesting Peer"+d_peer.getPort()+" "+d_peer.getIp());
+            ReceivingPeer receiver = new ReceivingPeer(d_peer.getIp(), d_peer.getPort());
             receivers.add(receiver);
-            db.addNewReceivedPeer(peer);
+            db.addNewDiscoverdPeer(d_peer,"T");
+
         }
-        peerConn.sendViaSocket(new DiscoverdPeer("Join",Owner.myUsername,Owner.myIP,Owner.myPort), receivers);
+        if(!receivers.isEmpty()) {
+            peerConn.sendViaSocket(Validator.thisPeer, receivers);
+        }
         //add these received peers to the database
-
         db.closeConnection();
+    }
+    public static void requestPeerToSharePeerDetails(Peer peer){
 
     }
-    public synchronized static void gotAPeerConfirmation(Peer peer){
-        DiscoverdPeer newPeer=new DiscoverdPeer("Join",peer.getUsername(),peer.getIp(),peer.getPort());
-        discoverdPeers.remove(newPeer);//check for the correct performance of hashcode equals override
-        //update the database
+
+
+    //when a peer has confirmed.
+    public synchronized static void gotAPeer(Peer newPeer){
+        System.out.println("Printing details of received new Peer  "+newPeer.getUsername()+" "+newPeer.getIp()+" "+newPeer.getPort()+" "+newPeer.getHometown());
+
         DbHandler db=new DbHandler();
-        db.addAnewPeer(peer);
-        db.removeAdiscoverdPeer(newPeer);
+        boolean result=db.removeAdiscoverdPeer(newPeer.getUsername());
+        System.out.println("reslt"+result);
+
+        if(result){
+            newPeer.setJoined(true);
+            db.addAnewPeer(newPeer);
+
+            //connected with this user
+        }else{
+            db.addAnewPeer(newPeer);
+            //setJoined is false.Neeed to get user confirmation and send back this peer
+        }
+        //peerRequests.remove(newPeer);//check for the correct performance of hashcode equals override
         db.closeConnection();
-        //show notification to the user
+        //show notification to the user if possible
     }
 
-    public static void gotAPeerJoinRequest(DiscoverdPeer newPeer){
-        System.out.println(newPeer.getUsername());
-        //show these requests to the user and get his reply.
-        //according to user reply sent acceptance message
-        //sent the username string as the reply
+
+    //send reply to received requests
+    public static  void sendTheConfirmation(ArrayList <Peer> selectedPeers,ArrayList<Peer> rejectedPeer){
+        DbHandler db=new DbHandler();
+        for (Peer rej_peer : rejectedPeer) {
+           peerRequests.remove(rej_peer);
+           db.removeAPeer(rej_peer.getUsername());
+        }
+        ArrayList<ReceivingPeer> receivingPeers=new ArrayList<>();
+        for (Peer sel_peer : selectedPeers) {
+            db.updatePeerConfirmation(sel_peer.getUsername());//add the confirmed peer to the database also
+            receivingPeers.add(new ReceivingPeer(sel_peer.getIp(),sel_peer.getPort()));
+        }
+
+
+        PeerConnection.getPeerConnection().sendViaSocket(Validator.thisPeer,receivingPeers);
+    }
+
+    public static ArrayList<Peer> getRequestedPeers() {
+        DbHandler db = new DbHandler();
+        peerRequests = db.getAllPeers("F");
+        db.closeConnection();
+        peerRequests.remove(Validator.thisPeer);
+        return peerRequests;
 
     }
-    public static  void sendTheConfirmation(){
 
-
-    }
 }

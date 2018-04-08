@@ -12,13 +12,14 @@ import javafx.stage.Stage;
 import javafx.scene.control.TextField;
 import javafx.stage.Window;
 import sample.CommunicationHandler.PeerConnection;
-import sample.DBHandler.DatabaseHandler;
 import sample.EventHandler.NewPeerListner;
+import sample.Model.Peer;
 import sample.Model.ThisPeer;
 
 
 import java.io.IOException;
-import java.net.InetAddress;
+
+import static sample.Controller.Validator.thisPeer;
 
 /**
  * Created by Pasidu Chinthiya on 1/31/2018.
@@ -38,25 +39,31 @@ public class LoginController {
     @FXML
     private TextField password;
     PeerConnection pc;
-    public void initialize() {
-        PeerConnection peerConn=new PeerConnection();
-        peerConn.createTheSocketListner();
-        NewPeerListner.sendJoinRequestToDiscoverdPeer();
-    }
+
 
     public void pressLogin(ActionEvent event){
 
+
+
         Window owner = btn_login.getScene().getWindow();
+
         Validator v=new Validator();
         int result=v.validateUser(userName.getText(),password.getText());
 
-        if (result==0){
-            //better to make this peer singleton if needed.
-            ThisPeer me=new ThisPeer(userName.getText(),v.getMyIp(),v.getMyPort(),password.getText());
-            pc=new PeerConnection();
 
-            System.out.println("Socket is listning");
-            //pc.createTheSocketListner();
+        if (result==0){
+
+            if(!PeerConnection.initialLogin){
+                pc=PeerConnection.getPeerConnection();
+                pc.createTheSocketListner();
+                if(thisPeer==null){
+                    thisPeer= Peer.retrieveAPeer(userName.getText());
+                }
+
+
+            }
+
+            //NewPeerListner.sendJoinRequestToDiscoverdPeersFromBs();
             //now only the port is specified to create a peer connection
 
             AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Login Successful!",

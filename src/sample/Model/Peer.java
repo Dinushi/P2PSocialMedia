@@ -1,23 +1,38 @@
 package sample.Model;
 
+import sample.DBHandler.DbHandler;
+
+import java.io.Serializable;
 import java.net.InetAddress;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.Objects;
 
-public class Peer extends AbstractPeer{
+public class Peer implements Serializable {
+    private String username;
+    private  InetAddress ip;
+    private int port;
+    private String fullname;
+    private   String status;
+    private   String gender;
+    private Date bday;
+    //private String prof_pic;
+    private String hometown;
     private  boolean isJoined;
     private LocalDateTime joinedDate;
     private boolean onlineStatus;
 
 
     public Peer(String username,InetAddress ip,int port,boolean isJoined) {
-
-        super(username,ip,port);
+        this.username=username;
+        this.ip=ip;
+        this.port=port;
         this.setJoined(isJoined);
         if(isJoined){
             this.setJoinedDate();
         }
+        this.onlineStatus=true;
         // this.onlineStatus=this.checkOnlineStatus(ip,port);
     }
 
@@ -59,4 +74,90 @@ public class Peer extends AbstractPeer{
 
     }
     */
+    @Override
+    public boolean equals(Object o) {
+
+        if (o == this) return true;
+       if (!(o instanceof Peer)) {
+            return false;
+        }
+        Peer peer = (Peer) o;
+        return username == peer.getUsername() &&
+               Objects.equals(ip, peer.getIp()) &&
+                Objects.equals(port, peer.getPort());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(username, ip, port);
+   }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public InetAddress getIp() {
+        return ip;
+    }
+
+    public int getPort() {
+        return port;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public Date getBday() {
+        return bday;
+    }
+
+    public void setBday(Date bday) { this.bday = bday;
+    }
+
+    public String getHometown() {
+        return hometown;
+    }
+
+    public void setHometown(String hometown) {
+        this.hometown = hometown;
+    }
+
+    public String getFullname() {
+        return fullname;
+    }
+
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
+    }
+
+    public boolean insertToDb(){
+        DbHandler db=new DbHandler();
+        boolean result= db.addAnewPeer(this);
+        db.closeConnection();
+        return result;
+    }
+    public static Peer retrieveAPeer(String username){
+        DbHandler db=new DbHandler();
+        Peer peer= db.getPeer(username);
+        db.closeConnection();
+        return peer;
+    }
+
 }

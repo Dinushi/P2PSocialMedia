@@ -1,5 +1,7 @@
 package sample.Controller;
 
+import sample.Model.Owner;
+import sample.Model.Peer;
 import sample.Model.ThisPeer;
 
 import java.io.BufferedReader;
@@ -14,6 +16,7 @@ import java.util.ArrayList;
 public class Validator {
 
     //ArrayList<String> userDetails;
+    public static Peer thisPeer=null;
     private String[] userCredentials;
     private InetAddress myIp;
     private int myPort;
@@ -24,6 +27,15 @@ public class Validator {
 
         //user credentials are read
         readTheUserDataFile();
+
+        Owner.myUsername=userCredentials[0];
+        try {
+            Owner.myIP=InetAddress.getByName(userCredentials[1]);
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
+        Owner.myPort=Integer.parseInt(userCredentials[2]);
+
         String username_stored=userCredentials[0];
         String password_stored=userCredentials[3];
 

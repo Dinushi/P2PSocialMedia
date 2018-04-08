@@ -4,23 +4,15 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-import sample.CommunicationHandler.PeerConnection;
-import sample.DBHandler.CreateDB;
-import sample.DBHandler.DbHandler;
-import sample.Model.Peer;
-import sample.Model.Post;
-
-import java.net.InetAddress;
-import java.sql.Date;
-import java.text.SimpleDateFormat;
+import test.NewRequests.TestRequests;
 
 public class Main extends Application {
 
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        new TestRequests().addANewPeerRequest();
         Parent root = FXMLLoader.load(getClass().getResource("View/Login.fxml"));
         primaryStage.setTitle("Login P2P social media");
         Scene scene=new Scene(root, 400, 300);

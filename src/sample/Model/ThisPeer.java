@@ -1,9 +1,6 @@
 package sample.Model;
 
 import java.net.InetAddress;
-import java.util.Date;
-
-import sample.DBHandler.DatabaseHandler;
 
 //make this class singleton
 
@@ -21,7 +18,7 @@ public class ThisPeer extends AbstractPeer{
     }
 
     public void updateDatabase(){
-        new DatabaseHandler().updateThisUserTable(this);
+
         System.out.println("Successfully Updated the Database");
 
     }

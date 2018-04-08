@@ -13,13 +13,10 @@ public class ClientConnection {
     private InetAddress bs_address=null;
     static  final int bs_port_no=55554;
     private Socket socket=null;
-    private String line=null;
-    private BufferedReader br=null;
-    private BufferedReader is=null;
-    private PrintWriter os=null;
-    private String response=null;
+
     private InetAddress local_address;
     private int local_port;
+
     InputStream is1;//**********
     ObjectInputStream ois;//***********
     OutputStream os1;//***********
@@ -35,7 +32,7 @@ public class ClientConnection {
             this.bs_address=InetAddress.getLocalHost();
             this.socket=new Socket(bs_address, bs_port_no);//find a way to set bs address,and port in the program input
             this.local_address=socket.getLocalAddress();
-            this.local_port=socket.getLocalPort();
+            this.local_port = socket.getLocalPort();
 
             //this.local_address= s1.getLocalAddress();//insert these values to user table in database
             //this.local_port=s1.getLocalPort();
@@ -55,9 +52,17 @@ public class ClientConnection {
 
             SendToBS(username);
             receiveFromBs();
+
             //createTheUserCredentials(username);
             System.out.println("Server Connection closed");
-            this.socket.close();
+            this.socket.close();this.ois.close();this.is1.close();this.os1.close();this.oos.close();
+            if(this.socket.isClosed()){
+                System.out.println("yes socket closed");
+            }else{
+                System.out.println("No socket not closed");
+            }
+
+
         }catch (IOException e){
             e.printStackTrace();
             System.err.print("IO Exception");
@@ -66,6 +71,8 @@ public class ClientConnection {
     private void receiveFromBs(){
             try {
                 String reply=(String)this.ois.readObject();
+                System.out.println("Reply"+reply);
+
                 if(reply.contentEquals("UserName Exists")) {
                     //ask to enter a new username
                 }else if(reply.contentEquals("IP Port Already Used")){
@@ -74,9 +81,9 @@ public class ClientConnection {
                     int i=0;
                         while(i<Integer.parseInt(reply.substring(reply.length()-1))) {
                             DiscoverdPeer neighbour_peer = (DiscoverdPeer) this.ois.readObject();
-                            NewPeerListner.update(neighbour_peer);
+                            NewPeerListner.update_PeersSentByBS(neighbour_peer);
                             System.out.println("Received A new peer");
-                            System.out.println(neighbour_peer.getUsername());
+                            System.out.println(neighbour_peer.getUsername()+" "+neighbour_peer.getIp()+" "+neighbour_peer.getPort());
                             i++;
                             //if(reply.contentEquals("End")){
                                // return;
@@ -114,7 +121,7 @@ public class ClientConnection {
         }finally{
             //after all communication done close this socket
             // is.close();os.close();br.close();s1.close();
-            System.out.println("Connection Closed");
+            //System.out.println("Connection Closed");
         }
             /*
             //System.out.println("Enter Data to Server ( Enter QUIT to end):");\

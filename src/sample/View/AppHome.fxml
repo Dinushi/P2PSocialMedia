@@ -33,9 +33,9 @@
             </Label>
             <Button fx:id="btn_conv" layoutX="33.0" layoutY="372.0" mnemonicParsing="false" onAction="#pressConversation" prefHeight="25.0" prefWidth="118.0" text="Conversations" />
             <Button fx:id="btn_online" layoutX="33.0" layoutY="411.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="118.0" text="Online Peers" />
-            <Button fx:id="btn_peer_requests" layoutX="33.0" layoutY="450.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="118.0" text="Peer Requests" />
+            <Button fx:id="btn_peer_requests" layoutX="33.0" layoutY="450.0" mnemonicParsing="false" onAction="#pressPeerRequests" prefHeight="25.0" prefWidth="118.0" text="Peer Requests" />
             <Button fx:id="btn_discover" layoutX="33.0" layoutY="488.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="118.0" text="Discover Peers" />
-            <Button fx:id="btn_edit" layoutX="33.0" layoutY="526.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="118.0" text="Edit My Profile" />
+            <Button fx:id="btn_edit" layoutX="33.0" layoutY="526.0" mnemonicParsing="false" onAction="#pressMyProfile" prefHeight="25.0" prefWidth="118.0" text="My Profile" />
             <ImageView fitHeight="55.0" fitWidth="70.0" layoutX="60.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Images/logo.jfif" />
@@ -58,8 +58,8 @@
                      </font>
                   </Label>
                   <TextArea fx:id="txt_post" layoutX="14.0" layoutY="24.0" prefHeight="74.0" prefWidth="294.0" promptText="Enter your post here." />
-                  <Button fx:id="btn_post_share" layoutX="323.0" layoutY="36.0" mnemonicParsing="false" onAction="#sharePost" text="Share" />
-                  <Button fx:id="btn_post_cancel" layoutX="317.0" layoutY="63.0" mnemonicParsing="false" text="Cancel" />
+                  <Button fx:id="btn_post_share" layoutX="318.0" layoutY="36.0" mnemonicParsing="false" onAction="#sharePost" prefHeight="25.0" prefWidth="51.0" text="Share" />
+                  <Button fx:id="btn_post_cancel" layoutX="318.0" layoutY="61.0" mnemonicParsing="false" onAction="#pressPostCancel" text="Cancel" />
                </children>
             </Pane>
             <Pane fx:id="wall" layoutX="-3.0" prefHeight="416.0" prefWidth="395.0" />

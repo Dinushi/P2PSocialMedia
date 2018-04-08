@@ -1,9 +1,10 @@
 package sample.Model;
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public class Reply {
+public class Reply implements Serializable {
 
     private  String username;
     private String content;

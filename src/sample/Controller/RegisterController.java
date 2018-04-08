@@ -1,6 +1,6 @@
 package sample.Controller;
 
-import javafx.application.Platform;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -22,6 +22,9 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Serializable;
+import java.sql.Date;
+
+import static sample.Controller.Validator.thisPeer;
 
 public class RegisterController {
 
@@ -35,10 +38,10 @@ public class RegisterController {
     private TextField hometown;
 
     @FXML
-    private RadioButton male;
+    private RadioButton check_male;
 
     @FXML
-    private RadioButton female;
+    private RadioButton check_female;
 
     @FXML
     private DatePicker birthday;
@@ -51,23 +54,34 @@ public class RegisterController {
 
     @FXML
     private TextField re_password;
-    public Peer thisPeer;
+
+
+
     //private Client client;######################
     private ClientConnection client;//??????????????
     Window owner;
 
     public void pressSubmit(ActionEvent event) {
         this.owner = btn_submit.getScene().getWindow();
-        System.out.println("Hello you are welcomed" + userName.getText());
-        System.out.println("Hello you are welcomed" + password.getText());
+
         //this.validateUsername();
         //this.validatePassword();
         //validate the other data input by user
+
         //sent username,ip,port to bootstrap server
         this.connectToServer();
         //create the database
-        //CreateDB dbCreator=new CreateDB();
+        CreateDB dbCreator=new CreateDB();
+        //create the thisUser
         this.createThisUser();
+
+        PeerConnection peerCon=PeerConnection.getPeerConnection();
+        peerCon.createTheSocketListner();//a listen socket will be created to listen on requests.
+        PeerConnection.initialLogin=true;
+        //assign this work to a thrad to allow re transmissions and continue login page dispaly quickly
+        NewPeerListner.sendJoinRequestToDiscoverdPeersFromBs();//peer connections are set with discoverd peers
+
+
         try {
             createTheUserCredentials();
         } catch (IOException e) {
@@ -103,11 +117,23 @@ public class RegisterController {
         Owner.myIP =client.getLocal_address();
         Owner.myUsername=userName.getText();
         Owner.myPort=client.getLocal_port();
-        //thisPeer=new Peer();tikak hithala balala karanam
-        ThisPeer me=new ThisPeer(userName.getText(),this.client.getLocal_address(),this.client.getLocal_port(),password.getText());
-        NewPeerListner.sendJoinRequestToDiscoverdPeer();//peer connections are set with discoverd peers
-        PeerConnection peerCon=new PeerConnection();
-        peerCon.createTheSocketListner();//a listen socket will be created to listen on requests.
+        //validator has this variable
+        thisPeer=new Peer(Owner.myUsername,Owner.myIP,Owner.myPort,false);
+
+        thisPeer.setFullname(name.getText());//but you have to validate before using
+        thisPeer.setHometown(hometown.getText());
+        thisPeer.setBday(Date.valueOf(birthday.getValue()));
+        if(check_male.isSelected())
+            thisPeer.setGender("M");
+        else
+            thisPeer.setGender("F");
+        boolean result=thisPeer.insertToDb();
+        if(result){
+            System.out.println("This user has been successfully stored.");
+        }else{
+            System.out.println("This user failed to store.");
+        }
+
     }
     private void createTheUserCredentials() throws IOException{
 
@@ -120,8 +146,7 @@ public class RegisterController {
         writer.newLine();
         writer.write(String.valueOf(password.getText()));
         writer.close();
-        System.out.print("user Credentials has added in the file");
-
+        System.out.print("User Credentials has added in the file");
 
     }
     private void sendConfirmation(){

@@ -29,7 +29,7 @@ public class CreateDB{
             build_table_CONVERSATION();
             build_table_CHAT();
             build_table_MESSAGE();
-            create_table_PEERDATA();
+            create_table_discoverdPeers();
         }
         private void create_table_PEER(){
             try {
@@ -43,8 +43,9 @@ public class CreateDB{
                         "  STATUS VARCHAR(100)," +
                         "  BIRTHDAY DATE ," +
                         "  GENDER VARCHAR(1)," +
+                        "  HOMETOWN VARCHAR(100)," +
                         //PROF+PIC
-                        "  HOMETOWN VARCHAR(100) )");
+                        " JOINED_STATUS CHAR(1) )");
 
                 System.out.println("Peer table created.");
             } catch (SQLException ex) {
@@ -52,16 +53,17 @@ public class CreateDB{
             }
 
     }
-    private void create_table_PEERDATA(){
+    private void create_table_discoverdPeers(){
         try {
 
             // Create the table.
-            stmt.execute("CREATE TABLE PEER_DATA " +
+            stmt.execute("CREATE TABLE DISCOVERD_PEERS " +
                     "( USERNAME VARCHAR(30) PRIMARY KEY NOT NULL, " +
                     "  IP VARCHAR(20) NOT NULL," +
-                    "  PORT INT NOT NULL )");
+                    "  PORT INT NOT NULL," +
+                    "  REQUESTED CHAR(1) NOT NULL )");
 
-            System.out.println("PeerData table created.");
+            System.out.println("Discoverd peer table created.");
         } catch (SQLException ex) {
             System.out.println("ERROR: " + ex.getMessage());
         }
@@ -87,11 +89,12 @@ public class CreateDB{
         try {
             // Create the table.
             stmt.execute("CREATE TABLE REPLY " +
-                    "( USERNAME VARCHAR(30) NOT NULL REFERENCES PEER(USERNAME), " +
-                    "  POST_ID INT  NOT NULL REFERENCES POST(POST_ID)," +
+                    "( USERNAME VARCHAR(30) NOT NULL , " +
+                    "  POST_ID INT  NOT NULL ," +
                     "  REPLY_ID INT NOT NULL ," +
                     "  CONTENT VARCHAR(300)," +
                     "  CREATED_DATE DATE,"+
+                    "  CONSTRAINT FK_reply FOREIGN KEY (USERNAME,POST_ID) REFERENCES POST(USERNAME,POST_ID) ,"+
                     "  CONSTRAINT PK_reply PRIMARY KEY (USERNAME,POST_ID,REPLY_ID))");
 
             System.out.println("REPLY table created.");

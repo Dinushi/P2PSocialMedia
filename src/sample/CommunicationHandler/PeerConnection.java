@@ -17,6 +17,19 @@ import java.util.ArrayList;
 
 //a udp communication handler
 public class PeerConnection {
+    private static PeerConnection peerConn=null;
+    public static boolean initialLogin=false;
+    private PeerConnection(){
+    }
+
+    public static PeerConnection getPeerConnection(){
+        if(peerConn==null) {
+            peerConn = new PeerConnection();
+            return peerConn;
+        }else{
+            return peerConn;
+        }
+    }
     DatagramSocket socket = null;
    // public static int myPort;
 //1----listen 9877 send 9876
@@ -25,7 +38,9 @@ public class PeerConnection {
         try {
             //myPort=port;
             //socket = new DatagramSocket(9877);//use the registerd port in BS
-            socket = new DatagramSocket(Owner.myPort,Owner.myIP);//use the registerd port in BS
+            System.out.println("MyIP"+Owner.myIP);
+            System.out.println("MyPort"+Owner.myPort);
+            this.socket = new DatagramSocket(Owner.myPort,Owner.myIP);//use the registerd port in BS
             //socket = new DatagramSocket(9877);
             System.out.println("Spcket is started");
             //make a therad to listen forever from this port.this should be the registerd por of peer
@@ -43,9 +58,10 @@ public class PeerConnection {
     }
 
     public void sendViaSocket(Object obj, ArrayList<ReceivingPeer> peerIP_ports) {//these will bring the ips of peers to sent
+        System.out.println("Came to send via socket");
         try {
 
-            DatagramSocket Socket = new DatagramSocket(Owner.myPort,Owner.myIP);//this should be sent using the same port which t listens
+            //DatagramSocket Socket = new DatagramSocket(Owner.myPort,Owner.myIP);//this should be sent using the same port which t listens
 
             byte[] incomingData = new byte[1024];
             //Post student = new Post("Dinushi123", "I am not well my Friends");
@@ -57,15 +73,20 @@ public class PeerConnection {
 
             if (obj instanceof Post) {
                 Post post=(Post)obj;
+                System.out.println("write to send a Post");
                 os.writeObject(post);
             }else if(obj instanceof Message){
                 Message msg=(Message)obj;
+                System.out.println("write to send a Message");
                 os.writeObject(msg);
             }else if(obj instanceof DiscoverdPeer){
                 DiscoverdPeer joinReq=(DiscoverdPeer) obj;
+                System.out.println("Write to send  a Dis_peer");
                 os.writeObject(joinReq);
             }else if(obj instanceof Peer){
                 Peer peer=(Peer) obj;
+                System.out.println("Peer Object that i sent"+peer.getUsername()+""+peer.getIp()+""+peer.getPort());
+                System.out.println("Write to send A peer");
                 os.writeObject(peer);
             }
             //os.writeObject(student);
@@ -76,15 +97,17 @@ public class PeerConnection {
             System.out.println("ready tos send to the port");
             //InetAddress IPAddress = InetAddress.getByName("localhost");//for now Ip is taken as Localhost
             //take all ip and port combinations sent to al of them.
+
+            //DatagramPacket sendPacket = new DatagramPacket(data, data.length, InetAddress.getByName("127.0.0.1"), 13967);
             for (ReceivingPeer receiver : peerIP_ports) {
                 DatagramPacket sendPacket = new DatagramPacket(data, data.length, receiver.getIP(), receiver.getPort());
-                Socket.send(sendPacket);
+                this.socket.send(sendPacket);
             }
             //earlier this two is the code.Not the loop
             //DatagramPacket sendPacket = new DatagramPacket(data, data.length, IPAddress, 9876);
 
             //Socket.send(sendPacket);
-            System.out.println("Post sent");
+            System.out.println("Packet sent");
             //DatagramPacket incomingPacket = new DatagramPacket(incomingData, incomingData.length);
             //Socket.receive(incomingPacket);
             //String response = new String(incomingPacket.getData());

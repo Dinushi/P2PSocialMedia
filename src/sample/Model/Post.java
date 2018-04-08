@@ -1,6 +1,5 @@
 package sample.Model;
 
-import sample.CommunicationHandler.PeerConnection;
 import sample.Controller.HomeController;
 import sample.DBHandler.DbHandler;
 import sample.EventHandler.PostHandler;
@@ -93,6 +92,7 @@ public class Post implements Serializable {
     public void setReplies(ArrayList<Reply> replies) {
         this.replies = replies;
     }
+
     public Reply getLastReply(){
         return new Reply("Thilini123","well done boys");
         //return replies.get(replies.size()-1);
