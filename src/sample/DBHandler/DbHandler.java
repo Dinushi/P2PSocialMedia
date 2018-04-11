@@ -107,7 +107,7 @@ public class DbHandler {
         try {
             statement = conn.prepareStatement("UPDATE PEER SET JOINED_STATUS=? WHERE USERNAME = ? ");
             statement.setString(1, "T");
-            statement.setString(2, String.valueOf(username));
+            statement.setString(2, username);
             ResultSet resultSet = statement.executeQuery();
             statement.clearParameters();
 

@@ -1,5 +1,6 @@
 package sample.Controller;
 
+import sample.DBHandler.DbHandler;
 import sample.Model.Owner;
 import sample.Model.Peer;
 import sample.Model.ThisPeer;
@@ -24,17 +25,8 @@ public class Validator {
 
     public int validateUser(String username_entered,String password_entered){
 
-
         //user credentials are read
         readTheUserDataFile();
-
-        Owner.myUsername=userCredentials[0];
-        try {
-            Owner.myIP=InetAddress.getByName(userCredentials[1]);
-        } catch (UnknownHostException e) {
-            e.printStackTrace();
-        }
-        Owner.myPort=Integer.parseInt(userCredentials[2]);
 
         String username_stored=userCredentials[0];
         String password_stored=userCredentials[3];
@@ -53,6 +45,15 @@ public class Validator {
                 }
                 System.out.println("user is valid");
                 username=username_stored;//this done temporalarily to get username when required.
+
+                //setting the static variable to cratte the socket listner
+                DbHandler db=new DbHandler();
+                Peer myself=db.getPeer(username);
+                Owner.myUsername=username;
+                Owner.myIP=myself.getIp();
+                Owner.myPort=myself.getPort();
+
+
                 return 0;
             }else{
                 System.out.println("user password wrong");
