@@ -31,7 +31,10 @@ public class NewPeerListner {
             System.out.println("A requesting Peer"+d_peer.getPort()+" "+d_peer.getIp());
             ReceivingPeer receiver = new ReceivingPeer(d_peer.getIp(), d_peer.getPort());
             receivers.add(receiver);
-            db.addNewDiscoverdPeer(d_peer,"T");
+            boolean result=db.addNewDiscoverdPeer(d_peer,"T");
+            if(result){
+                System.out.println("The known peer has stored");
+            }
 
         }
         if(!receivers.isEmpty()) {
@@ -50,15 +53,15 @@ public class NewPeerListner {
         System.out.println("Printing details of received new Peer  "+newPeer.getUsername()+" "+newPeer.getIp()+" "+newPeer.getPort()+" "+newPeer.getHometown());
 
         DbHandler db=new DbHandler();
-        boolean result=db.removeAdiscoverdPeer(newPeer.getUsername());
+        int result = db.removeAdiscoverdPeer(newPeer.getUsername());
         System.out.println("reslt"+result);
 
-        if(result){
+        if(result==1){
             newPeer.setJoined(true);
             db.addAnewPeer(newPeer);
 
             //connected with this user
-        }else{
+        }else if(result==0){
             db.addAnewPeer(newPeer);
             //setJoined is false.Neeed to get user confirmation and send back this peer
         }
@@ -77,7 +80,10 @@ public class NewPeerListner {
         }
         ArrayList<ReceivingPeer> receivingPeers=new ArrayList<>();
         for (Peer sel_peer : selectedPeers) {
-            db.updatePeerConfirmation(sel_peer.getUsername());//add the confirmed peer to the database also
+            boolean result=db.updatePeerConfirmation(sel_peer.getUsername());//add the confirmed peer to the database also
+            if(result){
+                System.out.println("Successfully updated the perr requested as a friend of you");
+            }
             receivingPeers.add(new ReceivingPeer(sel_peer.getIp(),sel_peer.getPort()));
         }
 
@@ -89,7 +95,11 @@ public class NewPeerListner {
         DbHandler db = new DbHandler();
         peerRequests = db.getAllPeers("F");
         db.closeConnection();
-        peerRequests.remove(Validator.thisPeer);
+        boolean result=peerRequests.remove(Validator.thisPeer);
+        if(!result){
+            System.out.println("Removing this peer from result set has failed");
+        }
+
         return peerRequests;
 
     }

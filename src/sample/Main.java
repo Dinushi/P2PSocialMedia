@@ -5,13 +5,34 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import sample.DBHandler.DbHandler;
+import sample.Model.DiscoverdPeer;
 import test.NewRequests.TestRequests;
+
+import java.net.InetAddress;
 
 public class Main extends Application {
 
 
     @Override
     public void start(Stage primaryStage) throws Exception{
+        /*
+        DbHandler db=new DbHandler();
+        DiscoverdPeer d_peer=new DiscoverdPeer("Join","Thilini",InetAddress.getByName("127.0.0.1"),3456);
+        boolean result=db.addNewDiscoverdPeer(d_peer,"T");
+        System.out.print(result);
+
+
+        DbHandler db=new DbHandler();
+        boolean result2=db.removeAdiscoverdPeer("Thilini");
+        if(result2){
+            System.out.print("sucessful2");
+        }else{
+            System.out.print("UnSucessful2");
+        }
+
+*/
+
         new TestRequests().addANewPeerRequest();
         Parent root = FXMLLoader.load(getClass().getResource("View/Login.fxml"));
         primaryStage.setTitle("Login P2P social media");
@@ -19,6 +40,7 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         scene.getStylesheets().add(getClass().getResource("CSS/Login.css").toString());
         primaryStage.show();
+
     }
 
 /*

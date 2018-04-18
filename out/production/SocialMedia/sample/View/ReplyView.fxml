@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+
+
+<AnchorPane prefHeight="400.0" prefWidth="253.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.ReplyController">
+   <children>
+      <Pane fx:id="ReplyPane" layoutX="19.0" layoutY="29.0" prefHeight="357.0" prefWidth="215.0" />
+      <Label layoutX="99.0" layoutY="6.0" text="Replies" />
+   </children>
+</AnchorPane>

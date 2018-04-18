@@ -42,7 +42,7 @@ public class PeerConnection {
             System.out.println("MyPort"+Owner.myPort);
             this.socket = new DatagramSocket(Owner.myPort,Owner.myIP);//use the registerd port in BS
             //socket = new DatagramSocket(9877);
-            System.out.println("Spcket is started");
+            System.out.println("Socket is started");
             //make a therad to listen forever from this port.this should be the registerd por of peer
             ReaderThread readerThread = new ReaderThread(socket);
             System.out.println("Thread create");
@@ -75,10 +75,14 @@ public class PeerConnection {
                 Post post=(Post)obj;
                 System.out.println("write to send a Post");
                 os.writeObject(post);
-            }else if(obj instanceof Message){
-                Message msg=(Message)obj;
+            }else if(obj instanceof Message) {
+                Message msg = (Message) obj;
                 System.out.println("write to send a Message");
                 os.writeObject(msg);
+            }else if(obj instanceof Conversation){
+                Conversation conv=(Conversation)obj;
+                System.out.println("write to send a Conversation");
+                os.writeObject(conv);
             }else if(obj instanceof DiscoverdPeer){
                 DiscoverdPeer joinReq=(DiscoverdPeer) obj;
                 System.out.println("Write to send  a Dis_peer");

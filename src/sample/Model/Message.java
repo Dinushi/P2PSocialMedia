@@ -1,21 +1,45 @@
 package sample.Model;
 
 import java.io.Serializable;
-import java.net.InetAddress;
 import java.time.LocalDateTime;
 
 public class Message implements Serializable {
-    private InetAddress senderIp;
-    private int senderPort;
+    private String msg_creator;
     private String content;
+    private String sent_received;//sent/received
+    private String status;//delivered/notDelivered/seen/unseen
     private LocalDateTime sent_time;
 
-    public Message(String content){
+    public Message(String msg_creator,String content){
+        this.msg_creator=msg_creator;
         this.content=content;
-        this.sent_time= LocalDateTime.now();
-
+        this.setSent_time(LocalDateTime.now());
     }
 
 
+    public LocalDateTime getSent_time() {
+        return sent_time;
+    }
 
+    public void setSent_time(LocalDateTime sent_time) {
+        this.sent_time = sent_time;
+    }
+
+    public String getSent_received() {
+        return sent_received;
+    }
+
+    public void setSent_received(String sent_received) {
+        this.sent_received = sent_received;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+    public String getContent() {
+        return content;
+    }
+    public void setStatus(String status) {
+        this.status = status;
+    }
 }

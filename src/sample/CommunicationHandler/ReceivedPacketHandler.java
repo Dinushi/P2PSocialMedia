@@ -1,10 +1,9 @@
 package sample.CommunicationHandler;
 
+import sample.EventHandler.ConversationHandler;
 import sample.EventHandler.NewPeerListner;
-import sample.Model.DiscoverdPeer;
-import sample.Model.Message;
-import sample.Model.Peer;
-import sample.Model.Post;
+import sample.EventHandler.PostHandler;
+import sample.Model.*;
 
 import java.net.InetAddress;
 
@@ -24,8 +23,14 @@ public class ReceivedPacketHandler extends Thread {
         //select the type of the packet
         if (receivedObject instanceof Post) {
             System.out.println("Packet handler got post ");
-            Post post=(Post)receivedObject;
-            post.notifyController();
+            Post post = (Post) receivedObject;
+            PostHandler.gotAPost(post);
+            //post.notifyController();
+        }else if (receivedObject instanceof Reply) {
+            System.out.println("Packet handler got reply ");
+            Reply reply=(Reply) receivedObject;
+            PostHandler.gotAReply(reply);
+            //post.notifyController();
         }else if(receivedObject instanceof Message){
             System.out.println("Packet handler got Meaasge");
             Message msg=(Message)receivedObject;
@@ -40,6 +45,10 @@ public class ReceivedPacketHandler extends Thread {
         }else if(receivedObject instanceof String){
             System.out.println("Packet handler got a string object");
             System.out.println(((String)receivedObject));
+        }else if(receivedObject instanceof Conversation){
+            System.out.println("Packet handler got a Conversation object");
+            Conversation conv = (Conversation)receivedObject;
+            ConversationHandler.gotAInitialConversation(conv);
 
     }
 

@@ -4,39 +4,28 @@ import sample.CommunicationHandler.HeartbeatAgent;
 import sample.DBHandler.DbHandler;
 
 
+import java.io.Serializable;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 
-public class Conversation {
+public class Conversation implements Serializable {
     private ArrayList<Peer> partners;
     private ArrayList<Message> messages;
     private  LocalDateTime started_date;
+    private Peer conversation_initiator;
+    private int conversation_id;
+    private boolean unseenMessages;
+    private String title;
+
 
     public Conversation(){
         partners=new ArrayList<>();
         messages=new ArrayList<>();
         this.setStarted_date(LocalDateTime.now());
-        DbHandler db=new DbHandler();
-        db.addNewConv(this);
-
 
     }
-    private void addPartner(Peer p){
-        this.partners.add(p);
-    }
-    public void createMessage(){
-        Message msg=new Message("I will come");
-        this.messages.add(msg);
-        this.sentAMessage(msg);
 
-    }
-    private void sentAMessage(Message msg){
-
-
-
-
-    }
     public void selectPeer(String partnerUsername){
         //connect to db and get partner data
         DbHandler db=new DbHandler();
@@ -47,6 +36,23 @@ public class Conversation {
         db.closeConnection();
 
     }
+    private void addPartner(Peer p){
+        this.partners.add(p);
+    }
+
+    public void createMessage(String content){
+        Message msg=new Message(Owner.myUsername,content);
+        this.messages.add(msg);
+        this.sentAMessage(msg);
+
+    }
+    private void sentAMessage(Message msg){
+
+
+
+
+    }
+
     public static ArrayList<String> selectAllPeerUsernames(){
         DbHandler db=new DbHandler();
         ArrayList<String> allpeers=db.selectAllPeerUsernames();
@@ -60,5 +66,54 @@ public class Conversation {
 
     public void setStarted_date(LocalDateTime started_date) {
         this.started_date = started_date;
+    }
+
+
+    public Peer getConversation_initiator() {
+        return conversation_initiator;
+    }
+
+    public void setConversation_initiator(Peer conversation_initiator) {
+        this.conversation_initiator = conversation_initiator;
+    }
+
+    public int getConversation_id() {
+        return conversation_id;
+    }
+
+    public void setConversation_id(int conversation_id) {
+        this.conversation_id = conversation_id;
+    }
+
+    public void setUnseenMessages(boolean unseenMessages) {
+        this.unseenMessages = unseenMessages;
+    }
+    public boolean getUnseenMessage(){
+        return unseenMessages;
+    }
+    public void setChatPartners(ArrayList<Peer> chat_partners){
+        this.partners=chat_partners;
+    }
+    public ArrayList<Peer> getChatPartner(){
+        return partners;
+    }
+    public void setMessages(ArrayList<Message> messages){
+        this.messages=messages;
+    }
+
+    public static void getAllConversations(){
+        DbHandler db=new DbHandler();
+        ArrayList<Conversation> allConversations=db.getAllConversationsWithNewMessages();
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+    public ArrayList<Message> getMessages(){
+        return messages;
     }
 }

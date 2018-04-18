@@ -16,3 +16,22 @@
 .FlowPane {
     -fx-background-color: whitesmoke;
 }
+#sep1{
+    -fx-background-color: 	#8B008B;
+    -fx-background-radius: 4;
+}
+
+#ReplyPane{
+    -fx-background-color: #ccccff;
+}
+#label_post_content{
+    -font-family: "Times New Roman", Times, serif;
+    -font-style: oblique;
+    -font-weight: bold;
+}
+#Peer_contentPane{
+    -fx-background-color: #958adb;
+}
+#Post_contentPane{
+    -fx-background-color:  #e9eefc;
+}

@@ -37,7 +37,7 @@ public class CreateDB{
                 // Create the table.
                 stmt.execute("CREATE TABLE PEER " +
                         "( USERNAME VARCHAR(30) PRIMARY KEY NOT NULL, " +
-                        "  IP VARCHAR(20) NOT NULL," +
+                        "  IP VARCHAR(50) NOT NULL," +
                         "  PORT INT NOT NULL," +
                         "  FULLNAME VARCHAR(100)," +
                         "  STATUS VARCHAR(100)," +
@@ -59,7 +59,7 @@ public class CreateDB{
             // Create the table.
             stmt.execute("CREATE TABLE DISCOVERD_PEERS " +
                     "( USERNAME VARCHAR(30) PRIMARY KEY NOT NULL, " +
-                    "  IP VARCHAR(20) NOT NULL," +
+                    "  IP VARCHAR(50) NOT NULL," +
                     "  PORT INT NOT NULL," +
                     "  REQUESTED CHAR(1) NOT NULL )");
 
@@ -107,8 +107,12 @@ public class CreateDB{
 
             // Create the table.
             stmt.execute("CREATE TABLE CONVERSATION " +
-                    "( CONVERSATION_ID INT PRIMARY KEY , " +
-                    "  STARTED_DATE DATE )");
+                    "( CONVERSATION_ID INT NOT NULL , " +
+                    "CONVERSATION_INITIATOR VARCHAR(30) NOT NULL  REFERENCES PEER(USERNAME) , " +
+                    "STARTED_DATE DATE ,"+
+                    "CONV_TITLE VARCHAR(50),"+
+                    "NEW_RECEIVED_MESSAGES VARCHAR(1),"+
+                    " CONSTRAINT PK_CONV PRIMARY KEY (CONVERSATION_ID,CONVERSATION_INITIATOR))");
 
             System.out.println("CONVERSATION table created.");
         } catch (SQLException ex) {
@@ -119,9 +123,11 @@ public class CreateDB{
         try {
             // Create the table.
             stmt.execute("CREATE TABLE CHAT " +
-                    "( CONVERSATION_ID INT NOT  NULL REFERENCES CONVERSATION(CONVERSATION_ID), " +
+                    "( CONVERSATION_ID INT NOT  NULL , " +
+                    "CONVERSATION_INITIATOR VARCHAR(30) NOT NULL , " +
                     "PARTNER VARCHAR(30) NOT NULL REFERENCES PEER(USERNAME), " +
-                    " CONSTRAINT PK_chat PRIMARY KEY (CONVERSATION_ID,PARTNER))");
+                    "CONSTRAINT FK_message FOREIGN KEY (CONVERSATION_ID,CONVERSATION_INITIATOR ) REFERENCES CONVERSATION (CONVERSATION_ID,CONVERSATION_INITIATOR ) ,"+
+                    "CONSTRAINT PK_chat PRIMARY KEY (CONVERSATION_ID,PARTNER))");
 
             System.out.println("CHAT table created.");
         } catch (SQLException ex) {
@@ -132,13 +138,16 @@ public class CreateDB{
         try {
             // Create the table.
             stmt.execute("CREATE TABLE MESSAGE " +
-                    "( CONVERSATION_ID INT NOT  NULL REFERENCES CONVERSATION(CONVERSATION_ID), " +
+                    "( CONVERSATION_ID INT NOT  NULL, " +
+                    "CONVERSATION_INITIATOR VARCHAR(30) NOT NULL , " +
                     "  MESSAGE_ID INT NOT NULL ," +
+                    "  MESSAGE_CREATOR VARCHAR(30) NOT NULL REFERENCES CHAT(PARTNER) ," +
                     "  TIME DATE ," +
                     "  CONTENT VARCHAR(300)," +
-                    "  MSG_TYPE VARCHAR(1)," +
-                    "  DELIVERD_STATUS VARCHAR(1)," +
-                    "  CONSTRAINT PK_message PRIMARY KEY (CONVERSATION_ID,MESSAGE_ID ))");
+                    "  MSG_TYPE VARCHAR(1)," +//sent_> S or Received -> R
+                    "  MSG_STATUS VARCHAR(1)," + //S---> D(Delivered),N(Not Deliverd)  R-------> S(Seen)/U(unseen)
+                    "  CONSTRAINT FK_message FOREIGN KEY (CONVERSATION_ID,CONVERSATION_INITIATOR ) REFERENCES CONVERSATION (CONVERSATION_ID,CONVERSATION_INITIATOR ) ,"+                  "  CONSTRAINT FK_message FOREIGN KEY (CONVERSATION_ID,CONVERSATION_INITIATOR) REFERENCES CONVERSATION(CONVERSATION_ID,CONVERSATION_INITIATOR) ,"+
+                    "  CONSTRAINT PK_message PRIMARY KEY (CONVERSATION_ID,CONVERSATION_INITIATOR,MESSAGE_ID ))");
             System.out.println("MESSAGE table created.");
         } catch (SQLException ex) {
             System.out.println("ERROR: " + ex.getMessage());

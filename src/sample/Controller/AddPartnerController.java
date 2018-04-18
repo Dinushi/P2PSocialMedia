@@ -17,7 +17,12 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.Window;
+import sample.DBHandler.DbHandler;
+import sample.EventHandler.ConversationHandler;
 import sample.Model.Conversation;
+import sample.Model.DiscoverdPeer;
+import sample.Model.Owner;
+import sample.Model.Peer;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -26,6 +31,9 @@ public class AddPartnerController {
     public static ArrayList<String> selectedPartners;
     @FXML
     private Pane peerPane;
+
+    @FXML
+    private Pane paneTitle;
     @FXML
     private Button btn_newChatOK;
 
@@ -41,7 +49,6 @@ public class AddPartnerController {
         ObservableList<Pane> panes = FXCollections.observableArrayList();
 
         Tab tab = new Tab("All Conversations");
-    ;
 
         for (int i = 0; i < allPeerUsernames.size(); i++) {
 
@@ -89,15 +96,55 @@ public class AddPartnerController {
 
     }
     public void pressOk(ActionEvent event) throws IOException {
+        //In here the conversation is created and send the conversation object to other peers
         ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
         Window owner = btn_newChatOK.getScene().getWindow();
         AlertHelper.showAlert(Alert.AlertType.INFORMATION, owner, "New Conversation Created",
                 "With " + selectedPartners);
-        Parent root = FXMLLoader.load(getClass().getResource("../View/addPartner.fxml"));
-        Stage stage2 = new Stage();
-        stage2.setTitle("New Conversation");
-        stage2.setScene(new Scene(root, 800, 600));
-        stage2.show();
+        Conversation conv=new Conversation();
+        DbHandler db = new DbHandler();
+        conv.setConversation_id(db.getMaxConvID()+1);
+        conv.setConversation_initiator(Validator.thisPeer);
+        conv.setUnseenMessages(false);
+
+        for (String username : selectedPartners) {
+            conv.selectPeer(username);
+        }
+        if(selectedPartners.size()==1){
+            conv.setTitle(selectedPartners.get(0));
+        }else{
+            FlowPane f_pane=new FlowPane();
+            Label label3 = new Label("Conversation Name");
+            label3.setTextFill(Color.web("#0076a3"));
+            label3.setFont(Font.font("Cambria", 12));
+
+            TextField textField2 = new TextField ();
+            textField2.setPromptText("Conversation Name");
+
+            textField2.setPrefWidth(150);
+            f_pane.getChildren().addAll(label3,textField2);
+
+
+            Button b1 = new Button("OK");
+            b1.setStyle("-fx-font: 09 arial; -fx-base: #a9a9a9;");
+            b1.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent e) {
+                    String title = textField2.getText();
+                    conv.setTitle(title);
+                }
+            });
+            paneTitle.getChildren().addAll(f_pane,b1);
+        }
+        ConversationHandler.sendTheInitialConversation(conv);
+        ChatController.chatController.addTab();
+
+        //Parent root = FXMLLoader.load(getClass().getResource("../View/Chats.fxml"));
+        //Stage stage = new Stage();
+        //stage.setTitle("My Conversations");
+        //stage.setScene(new Scene(root, 369.0, 465.0));
+
+        ///stage.show();
 
     }
     public void pressCancel(ActionEvent event){

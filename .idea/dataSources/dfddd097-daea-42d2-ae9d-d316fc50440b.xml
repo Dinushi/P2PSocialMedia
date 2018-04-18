@@ -38,20 +38,20 @@
 PARTNER</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="23" parent="13" name="SQL180408170351580">
+    <foreign-key id="23" parent="13" name="SQL180412100323640">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>CONVERSATION_ID</ColNames>
       <RefSchemaName>APP</RefSchemaName>
       <RefTableName>CONVERSATION</RefTableName>
-      <RefKeyName>SQL180408170351430</RefKeyName>
+      <RefKeyName>SQL180412100323420</RefKeyName>
       <RefColNames>CONVERSATION_ID</RefColNames>
     </foreign-key>
-    <foreign-key id="24" parent="13" name="SQL180408170351581">
+    <foreign-key id="24" parent="13" name="SQL180412100323660">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>PARTNER</ColNames>
       <RefSchemaName>APP</RefSchemaName>
       <RefTableName>PEER</RefTableName>
-      <RefKeyName>SQL180408170350180</RefKeyName>
+      <RefKeyName>SQL180412100321900</RefKeyName>
       <RefColNames>USERNAME</RefColNames>
     </foreign-key>
     <column id="25" parent="14" name="CONVERSATION_ID">
@@ -63,7 +63,7 @@ PARTNER</ColNames>
       <Position>2</Position>
       <DataType>DATE(10)|91</DataType>
     </column>
-    <key id="27" parent="14" name="SQL180408170351430">
+    <key id="27" parent="14" name="SQL180412100323420">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>CONVERSATION_ID</ColNames>
       <Primary>1</Primary>
@@ -88,7 +88,7 @@ PARTNER</ColNames>
       <DataType>CHAR(1)|1</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="32" parent="15" name="SQL180408170355510">
+    <key id="32" parent="15" name="SQL180412100324620">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>USERNAME</ColNames>
       <Primary>1</Primary>
@@ -124,12 +124,12 @@ PARTNER</ColNames>
 MESSAGE_ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="40" parent="16" name="SQL180408170353420">
+    <foreign-key id="40" parent="16" name="SQL180412100324210">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>CONVERSATION_ID</ColNames>
       <RefSchemaName>APP</RefSchemaName>
       <RefTableName>CONVERSATION</RefTableName>
-      <RefKeyName>SQL180408170351430</RefKeyName>
+      <RefKeyName>SQL180412100323420</RefKeyName>
       <RefColNames>CONVERSATION_ID</RefColNames>
     </foreign-key>
     <column id="41" parent="17" name="USERNAME">
@@ -171,7 +171,7 @@ MESSAGE_ID</ColNames>
       <Position>9</Position>
       <DataType>CHAR(1)|1</DataType>
     </column>
-    <key id="50" parent="17" name="SQL180408170350180">
+    <key id="50" parent="17" name="SQL180412100321900">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>USERNAME</ColNames>
       <Primary>1</Primary>
@@ -203,12 +203,12 @@ MESSAGE_ID</ColNames>
 POST_ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="57" parent="18" name="SQL180408170350500">
+    <foreign-key id="57" parent="18" name="SQL180412100322190">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>USERNAME</ColNames>
       <RefSchemaName>APP</RefSchemaName>
       <RefTableName>PEER</RefTableName>
-      <RefKeyName>SQL180408170350180</RefKeyName>
+      <RefKeyName>SQL180412100321900</RefKeyName>
       <RefColNames>USERNAME</RefColNames>
     </foreign-key>
     <column id="58" parent="19" name="USERNAME">
@@ -234,7 +234,7 @@ POST_ID</ColNames>
       <Position>5</Position>
       <DataType>DATE(10)|91</DataType>
     </column>
-    <index id="63" parent="19" name="SQL180408170350970">
+    <index id="63" parent="19" name="SQL180412100322950">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>USERNAME
 POST_ID</ColNames>

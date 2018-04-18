@@ -17,23 +17,37 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import sample.EventHandler.ConversationHandler;
 import sample.Model.Conversation;
 
 import java.io.IOException;
 import java.util.ArrayList;
 
 public class ChatController {
+    public static ChatController chatController;
 
     @FXML
     private TabPane tabPane;
+    ListView<Pane> list;
+    ObservableList<Pane> panes ;
+
+    private ArrayList<Conversation> allConversations;
+
+
+    public ChatController(){
+        chatController=this;
+    }
 
     public void initialize() {
+        allConversations=ConversationHandler.getAllConversations();
 
         Tab tab = new Tab("All Conversations");
         // Rectangle rect = new Rectangle(200, 200, Color.RED);
         //VBox v=new VBox();
-        ListView<Pane> list = new ListView<Pane>();
-        ObservableList<Pane> panes = FXCollections.observableArrayList();
+        ///ListView<Pane> list = new ListView<Pane>();
+        list = new ListView<Pane>();
+        ///ObservableList<Pane> panes = FXCollections.observableArrayList();
+        panes = FXCollections.observableArrayList();
 
         for (int i = 0; i < 5; i++) {
             // StackPane p1= new StackPane();
@@ -106,9 +120,103 @@ public class ChatController {
 
     }
 
+    public void showConversations(Conversation conv){
+        allConversations.add(conv);
+        Tab tab = new Tab("All Conversations");
+        // Rectangle rect = new Rectangle(200, 200, Color.RED);
+        //VBox v=new VBox();
+        ///ListView<Pane> list = new ListView<Pane>();
+        list = new ListView<Pane>();
+        ///ObservableList<Pane> panes = FXCollections.observableArrayList();
+        panes = FXCollections.observableArrayList();
+
+        for (int i = 0; i < allConversations.size(); i++) {
+            // StackPane p1= new StackPane();
+            //p1.setAlignment(Pos.CENTER);
+
+            FlowPane p1 = new FlowPane();
+            p1.setVgap(8);
+            p1.setHgap(4);
+            p1.setPrefWrapLength(300);
+
+            Image image_user = new Image(getClass().getResourceAsStream("dinu.jpg"));
+            ImageView img = new ImageView(image_user);
+            img.setFitHeight(50);
+            img.setFitWidth(50);
+            img.setPreserveRatio(true);
+
+            Image image_group = new Image(getClass().getResourceAsStream("../Images/chat.jpg"));
+            ImageView img2 = new ImageView(image_user);
+            img2.setFitHeight(50);
+            img2.setFitWidth(50);
+            img2.setPreserveRatio(true);
+
+            Label label3;
+            if(allConversations.get(i).getChatPartner().size()==1){
+                label3 = new Label(allConversations.get(i).getTitle(), img);
+            }else{
+                label3 = new Label(allConversations.get(i).getTitle(), img2);
+            }
+            //Label label3 = new Label(allConversations.get(i).getTitle(), img);
+            label3.setTextFill(Color.web("#0076a3"));
+            label3.setFont(Font.font("Cambria", 15));
+
+
+            Label label4 = new Label(allConversations.get(i).getMessages().get(0).getContent());
+            label4.setFont(Font.font("Arial", 12));
+            label4.setWrapText(true);
+            Button b1 = new Button("View");
+
+            b1.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent e) {
+                    int numTabs = tabPane.getTabs().size();
+                    Tab tab = new Tab("Tab " + (numTabs + 1));
+                    tabPane.getTabs().add(tab);
+                }
+            });
+            b1.setStyle("-fx-font: 10 arial; -fx-base: #b6e7c9;");
+            p1.getChildren().addAll(label3, label4, b1);
+
+            panes.add(p1);
+            //v.getChildren().setAll(p1);
+            //tab.setContent(v);
+        }
+        list.setItems(panes);
+        tab.setContent(list);
+        tabPane.getTabs().add(tab);
+
+        //A label with the text element
+        //Label label2 = new Label("Dinushi1234");
+        //A label with the text element and graphical icon
+
+        //Label label1 = new Label("Dinushi1234");
+        //Label label3 = new Label("Dinushi1234", img);
+        //label3.setMinWidth(50);
+        //label3.setMinHeight(50);
+        //p1.getChildren().addAll(label1,label3 );
+        //v.getChildren().setAll(p1);
+        //tab.setContent(v);
+
+        //ListView<Pane> list = new ListView<Pane>();
+        //ObservableList<Pane> panes = FXCollections.observableArrayList (
+        // p1,new Pane());
+
+        ObservableList<String> items = FXCollections.observableArrayList(
+                "Single", "Double", "Suite", "Family App");
+        //list.setItems(panes);
+
+        //ScrollPane s1 = new ScrollPane();
+        //s1.setPrefSize(120, 120);
+        //s1.setContent(rect);
+        //tab.setContent(list);
+        // tabPane.getTabs().add(tab);
+
+
+    }
 
     @FXML
-    private void addTab() {
+    public void addTab() {
         int numTabs = tabPane.getTabs().size();
         Tab tab = new Tab("Tab " + (numTabs + 1));
         tabPane.getTabs().add(tab);
