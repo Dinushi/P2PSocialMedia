@@ -63,7 +63,7 @@ public class PeerConnection {
 
             //DatagramSocket Socket = new DatagramSocket(Owner.myPort,Owner.myIP);//this should be sent using the same port which t listens
 
-            byte[] incomingData = new byte[1024];
+
             //Post student = new Post("Dinushi123", "I am not well my Friends");
 
             //System.out.println("new post is created");

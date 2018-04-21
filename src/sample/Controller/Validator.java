@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.lang.reflect.Array;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Validator {
@@ -32,36 +33,41 @@ public class Validator {
         String password_stored=userCredentials[3];
 
         //password_stored="123";
+        try {
+            if (username_entered.contentEquals(username_stored)) {
+                if (password_entered.contentEquals(password_stored)) {
+                    try {
+                        this.myIp = InetAddress.getByName(userCredentials[1]);
+                        this.myPort = Integer.parseInt(userCredentials[2]);
+                        //this.myPort=9877;
 
-        if (username_entered.contentEquals(username_stored)) {
-            if (password_entered.contentEquals(password_stored)) {
-                try {
-                    this.myIp=InetAddress.getByName(userCredentials[1]);
-                    this.myPort=Integer.parseInt(userCredentials[2]);
-                    //this.myPort=9877;
+                    } catch (UnknownHostException e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println("user is valid");
+                    username = username_stored;//this done temporalarily to get username when required.
 
-                } catch (UnknownHostException e) {
-                    e.printStackTrace();
+                    //setting the static variable to cratte the socket listner
+
+                    DbHandler db = new DbHandler();
+
+                    Peer myself = db.getPeer(username);
+                    Owner.myUsername = username;
+                    Owner.myIP = myself.getIp();
+                    Owner.myPort = myself.getPort();
+
+
+                    return 0;
+                } else {
+                    System.out.println("user password wrong");
+                    return 1;
                 }
-                System.out.println("user is valid");
-                username=username_stored;//this done temporalarily to get username when required.
-
-                //setting the static variable to cratte the socket listner
-                DbHandler db=new DbHandler();
-                Peer myself=db.getPeer(username);
-                Owner.myUsername=username;
-                Owner.myIP=myself.getIp();
-                Owner.myPort=myself.getPort();
-
-
-                return 0;
-            }else{
-                System.out.println("user password wrong");
-                return 1;
+            } else {
+                System.out.println("username is incorrect");
+                return 2;
             }
-        }else{
-            System.out.println("username is incorrect");
-            return 2;
+        }catch(NullPointerException ex){
+            return 4;
         }
     }
     public InetAddress getMyIp(){

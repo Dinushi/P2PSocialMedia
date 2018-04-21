@@ -18,6 +18,7 @@ import sample.Model.ThisPeer;
 
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 import static sample.Controller.Validator.thisPeer;
 
@@ -48,7 +49,9 @@ public class LoginController {
         Window owner = btn_login.getScene().getWindow();
 
         Validator v=new Validator();
-        int result=v.validateUser(userName.getText(),password.getText());
+
+         int result = v.validateUser(userName.getText(), password.getText());
+
 
 
         if (result==0){
@@ -87,8 +90,10 @@ public class LoginController {
         }else if(result==1){
             AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Login Error!",
                     "Please enter the correct password");
-
-        }else{
+        }else if(result==4){
+            AlertHelper.showAlert(Alert.AlertType.WARNING, owner, "Require Registration",
+                    "You have to Register First!");
+        } else{
             AlertHelper.showAlert(Alert.AlertType.ERROR, owner, "Login Error!",
                     "Username is Invalid");
         }

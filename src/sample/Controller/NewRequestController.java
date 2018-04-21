@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.geometry.HPos;
 import javafx.geometry.Insets;
 import javafx.geometry.Orientation;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -135,7 +136,8 @@ public class NewRequestController {
 
     }
     //try to use a anoynemous inner cass to assign this task to a thrad
-    public void sendUserChoice(ActionEvent e){
+    public void sendUserChoice(ActionEvent event){
+        ((Node) (event.getSource())).getScene().getWindow().hide();
         new Worker().start();
     }
     //public void sendUserChoice(ActionEvent e){

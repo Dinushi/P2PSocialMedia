@@ -2,7 +2,10 @@ package sample.DBHandler;
 
 import com.sun.corba.se.impl.orbutil.ObjectWriter;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import sample.CommunicationHandler.ReceivingPeer;
+import sample.Controller.AlertHelper;
+import sample.Controller.LoginController;
 import sample.Model.*;
 
 import java.net.InetAddress;
@@ -163,7 +166,9 @@ public class DbHandler {
         PreparedStatement statement = null;
         ArrayList<String> allPeerUsernames = new ArrayList<>();
         try {
-            statement = conn.prepareStatement("select USERNAME from PEER");
+            statement = conn.prepareStatement("select USERNAME from PEER WHERE USERNAME<>? AND JOINED_STATUS=?");
+            statement.setString(1, String.valueOf(Owner.myUsername));
+            statement.setString(2, String.valueOf("T"));
             ResultSet resultSet = statement.executeQuery();
             statement.clearParameters();
             while (resultSet.next()) {
@@ -177,7 +182,6 @@ public class DbHandler {
         System.out.print("At Db :" + allPeerUsernames);
         return allPeerUsernames;
     }
-
 
 
     public synchronized ArrayList<String> selectAllConversations() {
@@ -416,8 +420,8 @@ public class DbHandler {
             while (resultSet.next()) {
                 conv = new Conversation();
                 conv.setConversation_id(resultSet.getInt("CONVERSATION_ID"));
-                conv.setConversation_initiator(this.getPeer(resultSet.getString(" CONVERSATION_INITIATOR")));
-                conv.setStarted_date(resultSet.getTimestamp("CREATED_DATE").toLocalDateTime());
+                conv.setConversation_initiator(this.getPeer(resultSet.getString("CONVERSATION_INITIATOR")));
+                conv.setStarted_date(resultSet.getTimestamp("STARTED_DATE").toLocalDateTime());
                 conv.setTitle(resultSet.getString("CONV_TITLE"));
                 if (resultSet.getString("NEW_RECEIVED_MESSAGES") == "T") {
                     conv.setUnseenMessages(true);
@@ -464,7 +468,7 @@ public class DbHandler {
         ArrayList<Message> messages = new ArrayList<>();
         Message msg;
         try {
-            statement = conn.prepareStatement("select * from MESSAGE where CONVERSATION_ID = ? AND CONVERSATION_INITIATOR =? ORDER BY MESSAGE_ID DESC ");
+            statement = conn.prepareStatement("select * from MESSAGE where CONVERSATION_ID = ? AND CONVERSATION_INITIATOR =? ORDER BY TIME  ");
             statement.setInt(1, conversation_id);
             statement.setString(2, conversation_initiator);
             ResultSet resultSet = statement.executeQuery();
@@ -474,9 +478,9 @@ public class DbHandler {
                 msg.setSent_time(resultSet.getTimestamp("TIME").toLocalDateTime());
                 String sent_received = resultSet.getString("MSG_TYPE");
                 if (sent_received == "S") {
-                    msg.setSent_received("sent");
+                    msg.setSent_received("Sent");
                 } else {
-                    msg.setSent_received("received");
+                    msg.setSent_received("Received");
                 }
                 String status = resultSet.getString("MSG_STATUS");
                 if (sent_received == "S") {
@@ -497,6 +501,7 @@ public class DbHandler {
         return messages;
 
     }
+
     public int getMaxConvID() {
         PreparedStatement statement = null;
         int max_conv_ID = 0;
@@ -504,6 +509,27 @@ public class DbHandler {
 
             statement = conn.prepareStatement("select MAX(CONVERSATION_ID) from APP.CONVERSATION WHERE CONVERSATION_INITIATOR=? GROUP BY CONVERSATION_INITIATOR ");
             statement.setString(1, String.valueOf(Owner.myUsername));
+            ResultSet resultSet = statement.executeQuery();
+            statement.clearParameters();
+            if (resultSet.next()) {
+                max_conv_ID = resultSet.getInt(1);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return max_conv_ID;
+
+
+    }
+
+    public int getMaxMsgId(Conversation conv) {
+        PreparedStatement statement = null;
+        int max_conv_ID = 0;
+        try {
+
+            statement = conn.prepareStatement("select MAX(MESSAGE_ID) from APP.MESSAGE WHERE CONVERSATION_ID=? AND CONVERSATION_INITIATOR=? GROUP BY CONVERSATION_ID,CONVERSATION_INITIATOR ");
+            statement.setInt(1, conv.getConversation_id());
+            statement.setString(2, conv.getConversation_initiator().getUsername());
             ResultSet resultSet = statement.executeQuery();
             statement.clearParameters();
             if (resultSet.next()) {
@@ -526,14 +552,14 @@ public class DbHandler {
             stmt.setString(2, conversation.getConversation_initiator().getUsername());
             stmt.setDate(3, java.sql.Date.valueOf(conversation.getStarted_date().toLocalDate()));
             stmt.setString(4, conversation.getTitle());
-            if(conversation.getUnseenMessage()){
-                stmt.setString(5,"Y");
-            }else{
-                stmt.setString(5,"N");
+            if (conversation.getUnseenMessage()) {
+                stmt.setString(5, "Y");
+            } else {
+                stmt.setString(5, "N");
             }
             stmt.executeUpdate();
 
-            System.out.println("A peer has stored.");
+            System.out.println("A Conv has stored.");
             return true;
         } catch (SQLException ex) {
             System.out.println("ERROR4: " + ex.getMessage());
@@ -541,6 +567,63 @@ public class DbHandler {
         }
 
     }
+
+    public synchronized boolean addChatPartnersToChatTable(int conversation_id, String conversation_initiator, String partner) {
+        try {
+
+            String template = "INSERT INTO APP.CHAT (CONVERSATION_ID,CONVERSATION_INITIATOR,PARTNER) values (?,?,?)";
+            PreparedStatement stmt = conn.prepareStatement(template);
+            stmt.setInt(1, conversation_id);
+            stmt.setString(2, conversation_initiator);
+            stmt.setString(3, partner);
+
+            stmt.executeUpdate();
+
+            System.out.println("Chat table is updated with chat partners.");
+            return true;
+        } catch (SQLException ex) {
+            System.out.println("ERROR8: " + ex.getMessage());
+            return false;
+        }
+
+    }
+
+    public synchronized boolean addAMessage(Message msg) {
+        try {
+
+            String template = "INSERT INTO APP.MESSAGE (CONVERSATION_ID,CONVERSATION_INITIATOR,MESSAGE_ID,MESSAGE_CREATOR,TIME,CONTENT,MSG_TYPE,MSG_STATUS ) values (?,?,?,?,?,?,?,?)";
+            PreparedStatement stmt = conn.prepareStatement(template);
+            stmt.setInt(1, msg.getConversation_id());
+            stmt.setString(2, msg.getConversation_initiator().getUsername());
+            stmt.setInt(3, msg.getMessage_id());
+            stmt.setString(4, msg.getMsg_creator());
+            stmt.setDate(5, java.sql.Date.valueOf(msg.getSent_time().toLocalDate()));
+            stmt.setString(6, msg.getContent());
+            if (msg.getSent_received() == "Sent") {
+                stmt.setString(7, "S");
+            } else {
+                stmt.setString(7, "R");
+            }
+            if (msg.getStatus() == "Delivered") {
+                stmt.setString(8, "D");
+            } else if (msg.getStatus() == "NotDelivered") {
+                stmt.setString(8, "N");
+            } else if (msg.getStatus() == "Seen") {
+                stmt.setString(8, "S");
+            } else {
+                stmt.setString(8, "U");
+            }
+            stmt.executeUpdate();
+
+            System.out.println("Message table is updated with new message.");
+            return true;
+        } catch (SQLException ex) {
+            System.out.println("ERROR8: " + ex.getMessage());
+            return false;
+        }
+
+    }
 }
+
 
 

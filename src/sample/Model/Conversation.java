@@ -38,20 +38,14 @@ public class Conversation implements Serializable {
     }
     private void addPartner(Peer p){
         this.partners.add(p);
+
     }
 
-    public void createMessage(String content){
-        Message msg=new Message(Owner.myUsername,content);
+    public void addMessage(Message msg){
         this.messages.add(msg);
-        this.sentAMessage(msg);
 
     }
-    private void sentAMessage(Message msg){
 
-
-
-
-    }
 
     public static ArrayList<String> selectAllPeerUsernames(){
         DbHandler db=new DbHandler();

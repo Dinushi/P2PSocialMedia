@@ -126,8 +126,8 @@ public class CreateDB{
                     "( CONVERSATION_ID INT NOT  NULL , " +
                     "CONVERSATION_INITIATOR VARCHAR(30) NOT NULL , " +
                     "PARTNER VARCHAR(30) NOT NULL REFERENCES PEER(USERNAME), " +
-                    "CONSTRAINT FK_message FOREIGN KEY (CONVERSATION_ID,CONVERSATION_INITIATOR ) REFERENCES CONVERSATION (CONVERSATION_ID,CONVERSATION_INITIATOR ) ,"+
-                    "CONSTRAINT PK_chat PRIMARY KEY (CONVERSATION_ID,PARTNER))");
+                    "CONSTRAINT FK_chat FOREIGN KEY (CONVERSATION_ID,CONVERSATION_INITIATOR ) REFERENCES CONVERSATION (CONVERSATION_ID,CONVERSATION_INITIATOR ) ,"+
+                    "CONSTRAINT PK_chat PRIMARY KEY (CONVERSATION_ID,CONVERSATION_INITIATOR,PARTNER))");
 
             System.out.println("CHAT table created.");
         } catch (SQLException ex) {
@@ -141,13 +141,13 @@ public class CreateDB{
                     "( CONVERSATION_ID INT NOT  NULL, " +
                     "CONVERSATION_INITIATOR VARCHAR(30) NOT NULL , " +
                     "  MESSAGE_ID INT NOT NULL ," +
-                    "  MESSAGE_CREATOR VARCHAR(30) NOT NULL REFERENCES CHAT(PARTNER) ," +
+                    "  MESSAGE_CREATOR VARCHAR(30) NOT NULL ," +
                     "  TIME DATE ," +
                     "  CONTENT VARCHAR(300)," +
                     "  MSG_TYPE VARCHAR(1)," +//sent_> S or Received -> R
                     "  MSG_STATUS VARCHAR(1)," + //S---> D(Delivered),N(Not Deliverd)  R-------> S(Seen)/U(unseen)
-                    "  CONSTRAINT FK_message FOREIGN KEY (CONVERSATION_ID,CONVERSATION_INITIATOR ) REFERENCES CONVERSATION (CONVERSATION_ID,CONVERSATION_INITIATOR ) ,"+                  "  CONSTRAINT FK_message FOREIGN KEY (CONVERSATION_ID,CONVERSATION_INITIATOR) REFERENCES CONVERSATION(CONVERSATION_ID,CONVERSATION_INITIATOR) ,"+
-                    "  CONSTRAINT PK_message PRIMARY KEY (CONVERSATION_ID,CONVERSATION_INITIATOR,MESSAGE_ID ))");
+                    "  CONSTRAINT FK_message FOREIGN KEY (CONVERSATION_ID,CONVERSATION_INITIATOR ) REFERENCES CONVERSATION (CONVERSATION_ID,CONVERSATION_INITIATOR ) ,"+
+                    "  CONSTRAINT PK_message PRIMARY KEY (CONVERSATION_ID,CONVERSATION_INITIATOR,MESSAGE_ID,MESSAGE_CREATOR ))");
             System.out.println("MESSAGE table created.");
         } catch (SQLException ex) {
             System.out.println("ERROR: " + ex.getMessage());

@@ -24,6 +24,7 @@ import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import javafx.stage.WindowEvent;
 import sample.DBHandler.DbHandler;
 import sample.EventHandler.PostHandler;
 import sample.Model.Conversation;
@@ -380,18 +381,40 @@ public class HomeController{
         //PostHandler.gotAPost(new Post("Chin","Hii all come here plz"));
        // System.out.println("Coversations are opening");
         //Parent root = FXMLLoader.load(getClass().getResource("../View/Register.fxml"));
+        if(ChatController.chatController==null){
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource("../View/Chats.fxml"));
+                Stage stage = new Stage();
+                stage.setTitle("My Conversations");
+                stage.setScene(new Scene(root, 369.0, 465.0));
 
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("../View/Chats.fxml"));
-            Stage stage = new Stage();
-            stage.setTitle("My Conversations");
-            stage.setScene(new Scene(root, 369.0, 465.0));
-            stage.show();
-            // Hide this current window (if this is what you want)
-            //((Node) (event.getSource())).getScene().getWindow().hide();
-        } catch (IOException e) {
-            e.printStackTrace();
+                // Hide this current window (if this is what you want)
+                //((Node) (event.getSource())).getScene().getWindow().hide();
+
+                stage.setOnHiding(new EventHandler<WindowEvent>() {
+
+                    @Override
+                    public void handle(WindowEvent event) {
+                        Platform.runLater(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                System.out.println("Conversation application is closed by closed button");
+                                ChatController.chatController=null;
+
+                            }
+                        });
+                    }
+                });
+                stage.show();
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
         }
+
+
     }
 
 }
