@@ -54,7 +54,7 @@ public class NewRequestController {
         rejectedPeers = new ArrayList<>();
 
         ScrollPane s1 = new ScrollPane();
-        s1.setPrefSize(238, 366);
+        s1.setPrefSize(264, 352);
 
         ListView<Pane> list = new ListView<Pane>();
         ObservableList<Pane> panes = FXCollections.observableArrayList();

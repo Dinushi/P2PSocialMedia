@@ -26,31 +26,41 @@ public class ReceivedPacketHandler extends Thread {
             Post post = (Post) receivedObject;
             PostHandler.gotAPost(post);
             //post.notifyController();
+
         }else if (receivedObject instanceof Reply) {
             System.out.println("Packet handler got reply ");
             Reply reply=(Reply) receivedObject;
             PostHandler.gotAReply(reply);
             //post.notifyController();
-        }else if(receivedObject instanceof Message){
-            System.out.println("Packet handler got Meaasge");
-            Message msg=(Message)receivedObject;
+
+        }else if(receivedObject instanceof Message) {
+            System.out.println("Packet handler got a Message object");
+            Message msg = (Message) receivedObject;
+            ConversationHandler.gotAMessage(msg);
+
         }else if(receivedObject instanceof DiscoverdPeer) {
             System.out.println("Packet handler got Dis_peer");
-            DiscoverdPeer Req = (DiscoverdPeer) receivedObject;
-            //NewPeerListner.gotAPeerJoinRequest(Req);
+            DiscoverdPeer d_peer = (DiscoverdPeer) receivedObject;
+           NewPeerListner.gotADiscoveredPeer(d_peer);
+
         }else if(receivedObject instanceof Peer){
             System.out.println("Packet handler got Peer");
             Peer peer = (Peer) receivedObject;
             NewPeerListner.gotAPeer(peer);
+
         }else if(receivedObject instanceof String){
             System.out.println("Packet handler got a string object");
-            System.out.println(((String)receivedObject));
+            String str=(String)receivedObject;
+            if(str=="SendMeSomePeers"){
+                NewPeerListner.gotAPeerRequestForMorePeers(this.sender_ip,this.sender_port);
+            }
+
         }else if(receivedObject instanceof Conversation){
             System.out.println("Packet handler got a Conversation object");
             Conversation conv = (Conversation)receivedObject;
             ConversationHandler.gotAInitialConversation(conv);
+        }
 
-    }
 
 
             //}else(req=""){

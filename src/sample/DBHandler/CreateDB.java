@@ -44,8 +44,8 @@ public class CreateDB{
                         "  BIRTHDAY DATE ," +
                         "  GENDER VARCHAR(1)," +
                         "  HOMETOWN VARCHAR(100)," +
-                        //PROF+PIC
-                        " JOINED_STATUS CHAR(1) )");
+                        "  PROF_PIC BLOB(16M)," +
+                        "  JOINED_STATUS CHAR(1) )");
 
                 System.out.println("Peer table created.");
             } catch (SQLException ex) {
@@ -76,7 +76,7 @@ public class CreateDB{
                     "( USERNAME VARCHAR(30) NOT NULL REFERENCES PEER(USERNAME), " +
                     "  POST_ID INT NOT NULL," +
                     "  CONTENT VARCHAR(500)," +
-                    "  CREATED_DATE DATE ," +
+                    "  CREATED_DATE TIMESTAMP ," +
                     "  IMAGE BLOB(16M)," +
                     "  CONSTRAINT PK_Post PRIMARY KEY (USERNAME,POST_ID))");
 
@@ -93,7 +93,7 @@ public class CreateDB{
                     "  POST_ID INT  NOT NULL ," +
                     "  REPLY_ID INT NOT NULL ," +
                     "  CONTENT VARCHAR(300)," +
-                    "  CREATED_DATE DATE,"+
+                    "  CREATED_DATE TIMESTAMP,"+
                     "  CONSTRAINT FK_reply FOREIGN KEY (USERNAME,POST_ID) REFERENCES POST(USERNAME,POST_ID) ,"+
                     "  CONSTRAINT PK_reply PRIMARY KEY (USERNAME,POST_ID,REPLY_ID))");
 
@@ -109,7 +109,7 @@ public class CreateDB{
             stmt.execute("CREATE TABLE CONVERSATION " +
                     "( CONVERSATION_ID INT NOT NULL , " +
                     "CONVERSATION_INITIATOR VARCHAR(30) NOT NULL  REFERENCES PEER(USERNAME) , " +
-                    "STARTED_DATE DATE ,"+
+                    "STARTED_DATE TIMESTAMP ,"+
                     "CONV_TITLE VARCHAR(50),"+
                     "NEW_RECEIVED_MESSAGES VARCHAR(1),"+
                     " CONSTRAINT PK_CONV PRIMARY KEY (CONVERSATION_ID,CONVERSATION_INITIATOR))");
@@ -142,7 +142,7 @@ public class CreateDB{
                     "CONVERSATION_INITIATOR VARCHAR(30) NOT NULL , " +
                     "  MESSAGE_ID INT NOT NULL ," +
                     "  MESSAGE_CREATOR VARCHAR(30) NOT NULL ," +
-                    "  TIME DATE ," +
+                    "  TIME TIMESTAMP ," +
                     "  CONTENT VARCHAR(300)," +
                     "  MSG_TYPE VARCHAR(1)," +//sent_> S or Received -> R
                     "  MSG_STATUS VARCHAR(1)," + //S---> D(Delivered),N(Not Deliverd)  R-------> S(Seen)/U(unseen)

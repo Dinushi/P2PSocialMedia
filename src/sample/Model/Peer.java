@@ -22,6 +22,7 @@ public class Peer implements Serializable {
     private  boolean isJoined;
     private LocalDateTime joinedDate;
     private boolean onlineStatus;
+    private byte[] prof_pic;
 
 
     public Peer(String username,InetAddress ip,int port,boolean isJoined) {
@@ -153,6 +154,12 @@ public class Peer implements Serializable {
         db.closeConnection();
         return result;
     }
+    public boolean updateprofiledata(){
+        DbHandler db=new DbHandler();
+        boolean result= db.updatePeerDataChanges(this);
+        db.closeConnection();
+        return result;
+    }
     public static Peer retrieveAPeer(String username){
         DbHandler db=new DbHandler();
         Peer peer= db.getPeer(username);
@@ -160,4 +167,11 @@ public class Peer implements Serializable {
         return peer;
     }
 
+    public byte[] getProf_pic() {
+        return prof_pic;
+    }
+
+    public void setProf_pic(byte[] prof_pic) {
+        this.prof_pic = prof_pic;
+    }
 }

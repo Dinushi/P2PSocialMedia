@@ -26,6 +26,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import javafx.stage.WindowEvent;
 import sample.DBHandler.DbHandler;
+import sample.EventHandler.NewPeerListner;
 import sample.EventHandler.PostHandler;
 import sample.Model.Conversation;
 import sample.Model.Owner;
@@ -35,6 +36,7 @@ import sample.Model.Reply;
 import java.io.IOException;
 import java.lang.reflect.AnnotatedArrayType;
 import java.util.ArrayList;
+import java.util.Optional;
 
 public class HomeController{
     public static HomeController homeController;
@@ -353,7 +355,7 @@ public class HomeController{
             Parent root = FXMLLoader.load(getClass().getResource("../View/PeerRequest.fxml"));
             Stage stage = new Stage();
             stage.setTitle("New Peer Requests");
-            stage.setScene(new Scene(root, 369.0, 465.0));
+            stage.setScene(new Scene(root, 335.0, 470.0));
             stage.show();
         }catch(IOException e) {
             e.printStackTrace();
@@ -363,17 +365,59 @@ public class HomeController{
     public void pressMyProfile(ActionEvent event){
         System.out.println("MyProfile is opening");
         //Parent root = FXMLLoader.load(getClass().getResource("../View/Register.fxml"));
+        if(MyProfileController.myProfileController==null) {
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource("../View/MyProfile.fxml"));
+                Stage stage = new Stage();
+                stage.setTitle("My Profile");
+                stage.setScene(new Scene(root, 650.0, 574.0));
 
-        try {
-            Parent root = FXMLLoader.load(getClass().getResource("../View/MyProfile.fxml"));
-            Stage stage = new Stage();
-            stage.setTitle("My Profile");
-            stage.setScene(new Scene(root, 369.0, 465.0));
-            stage.show();
-            // Hide this current window (if this is what you want)
-            //((Node) (event.getSource())).getScene().getWindow().hide();
-        } catch (IOException e) {
-            e.printStackTrace();
+                stage.setOnHiding(new EventHandler<WindowEvent>() {
+
+                    @Override
+                    public void handle(WindowEvent event) {
+                        Platform.runLater(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                System.out.println("closing the edit profile");
+                                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                                alert.setTitle("Confirmation Dialog");
+                                alert.setHeaderText("Closing edit Profile");
+                                alert.setContentText("Do you want to save all changes?");
+
+                                Optional<ButtonType> result = alert.showAndWait();
+                                if (result.get() == ButtonType.OK && MyProfileController.hasEdited) {
+                                    Validator.thisPeer = MyProfileController.myProfileController.edited_peer;
+
+                                   //A seperate thread is assigned to save these data to the database
+                                    Runnable run = new Runnable() {
+                                        public void run() {
+                                                System.out.println("Try to work using another thread");
+                                                Validator.thisPeer.updateprofiledata();
+                                                NewPeerListner.sendPeerProfileChanges();
+                                        }
+                                    };
+                                    new Thread(run).start();
+
+
+                                    //also send these changes to a all connected Peers
+                                //} else {
+                                    // ... user chose CANCEL or closed the dialog
+                                }
+                                MyProfileController.myProfileController=null;
+
+
+                            }
+                        });
+                    }
+                });
+                stage.show();
+                // Hide this current window (if this is what you want)
+                //((Node) (event.getSource())).getScene().getWindow().hide();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
     }
@@ -416,5 +460,74 @@ public class HomeController{
 
 
     }
+    public void pressViewDiscoverdPeers(ActionEvent event) {
+        System.out.println("Discoverd Peers are opening");
+        //Parent root = FXMLLoader.load(getClass().getResource("../View/Register.fxml"));
+        if (DiscoveredPeerViewController.discoveredPeerViewController== null) {
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource("../View/DiscoveredPeerView.fxml"));
+                Stage stage = new Stage();
+                stage.setTitle("All Discoverd Peers");
+                stage.setScene(new Scene(root, 343.0, 515.0));
+
+                stage.setOnHiding(new EventHandler<WindowEvent>() {
+
+                    @Override
+                    public void handle(WindowEvent event) {
+                        Platform.runLater(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                System.out.println("Closing the edit peerList");
+                                DiscoveredPeerViewController.discoveredPeerViewController=null;
+
+                            }
+                        });
+                    }
+                });
+                stage.show();
+                // Hide this current window (if this is what you want)
+                //((Node) (event.getSource())).getScene().getWindow().hide();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+    public void pressViewPeerProfile(ActionEvent event) {
+        System.out.println("peer Profiles is opening");
+        //Parent root = FXMLLoader.load(getClass().getResource("../View/Register.fxml"));
+        if (ConnectedPeerListController.connectedPeerListController == null) {
+            try {
+                Parent root = FXMLLoader.load(getClass().getResource("../View/ViewPeerProfileList.fxml"));
+                Stage stage = new Stage();
+                stage.setTitle("All Connected Peers");
+                stage.setScene(new Scene(root, 313.0, 544.0));
+
+                stage.setOnHiding(new EventHandler<WindowEvent>() {
+
+                    @Override
+                    public void handle(WindowEvent event) {
+                        Platform.runLater(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                System.out.println("Closing the edit peerList");
+                                ConnectedPeerListController.connectedPeerListController=null;
+
+                            }
+                        });
+                    }
+                });
+                stage.show();
+                // Hide this current window (if this is what you want)
+                //((Node) (event.getSource())).getScene().getWindow().hide();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+
+        }
+    }
+
 
 }

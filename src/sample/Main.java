@@ -7,9 +7,12 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import sample.DBHandler.DbHandler;
 import sample.Model.DiscoverdPeer;
+import sample.Model.Message;
+import sample.Model.Peer;
 import test.NewRequests.TestRequests;
 
 import java.net.InetAddress;
+import java.util.ArrayList;
 
 public class Main extends Application {
 
@@ -33,7 +36,6 @@ public class Main extends Application {
 
 */
 
-        new TestRequests().addANewPeerRequest();
         Parent root = FXMLLoader.load(getClass().getResource("View/Login.fxml"));
         primaryStage.setTitle("Login P2P social media");
         Scene scene=new Scene(root, 400, 300);

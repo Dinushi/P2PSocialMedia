@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="527.0" prefWidth="323.0" style="-fx-background-color: #a9a9a9;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.SelectPeers">
+    <children>
+        <Pane fx:id="peerPane" layoutX="30.0" layoutY="96.0" prefHeight="359.0" prefWidth="258.0" style="-fx-background-color: #B0C4DE;" />
+        <Label layoutX="70.0" layoutY="28.0" text="Select A Peer to Request" textFill="#0d0808">
+            <font>
+                <Font name="System Bold" size="16.0" />
+            </font>
+        </Label>
+        <Button fx:id="btn_OK" layoutX="91.0" layoutY="469.0" mnemonicParsing="false" onAction="#pressOk" style="-fx-background-color: #c0c0c0;" text="  OK   " />
+        <Button fx:id="btn_newChatCancel" layoutX="173.0" layoutY="469.0" mnemonicParsing="false" style="-fx-background-color: #c0c0c0;" text="Cancel" />
+      <Label layoutX="48.0" layoutY="61.0" text="Select some peers to ask about more peers" />
+    </children>
+</AnchorPane>

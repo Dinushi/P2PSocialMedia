@@ -17,6 +17,7 @@ public class Post implements Serializable {
     private ArrayList<Reply> replies;
     private int post_id;
     private static final long serialVersionUID = 1L;
+    private byte[] post_image;
     //images are not yet included
 
     public Post(String username,String content,int post_id ){
@@ -87,7 +88,7 @@ public class Post implements Serializable {
     public static ArrayList<Post> selectAllPosts(){
         DbHandler db=new DbHandler();
 
-        ArrayList<Post> allPosts=db.getPosts();
+        ArrayList<Post> allPosts=db.getPosts(false,null);
         db.closeConnection();
         return allPosts;
 
@@ -138,5 +139,13 @@ public class Post implements Serializable {
     public void sendReply(Reply reply){
         System.out.println("At post.Ready to call post Handler to sent the reply");
         PostHandler.sendReplyToPeersIntersted(reply);
+    }
+
+    public byte[] getPost_image() {
+        return post_image;
+    }
+
+    public void setPost_image(byte[] post_image) {
+        this.post_image = post_image;
     }
 }

@@ -38,7 +38,8 @@ public class ChatController {
     public static ChatController chatController;
 
     @FXML
-    private TabPane tabPane;//this is the pane which hold all tabs
+    public TabPane tabPane;//this is the pane which hold all tabs
+    private ArrayList<Tab> allAddedTabs=new ArrayList<>();
     //ListView<Pane> list;
     //ObservableList<Pane> panes ;
 
@@ -147,7 +148,8 @@ public class ChatController {
         ///ObservableList<Pane> panes = FXCollections.observableArrayList();
         ObservableList<Pane> panes = FXCollections.observableArrayList();
 
-        for (int i = 0; i < all_conversations.size(); i++) {
+        for (int i = all_conversations.size()-1; i>=0 ; i--) {
+        //for (int i = 0; i < all_conversations.size(); i++) {
             // StackPane p1= new StackPane();
             //p1.setAlignment(Pos.CENTER);
 
@@ -244,8 +246,26 @@ public class ChatController {
 
 
     }
-    public  void createNewConversationTab(Conversation conv,boolean isNewConveration ){
+    public  void createNewConversationTab(Conversation conv,boolean isNewConversation ){
+        boolean go=true;
+        Tab simillar_tab_t=null;
+        for(Tab t: allAddedTabs){
+            if(t.getId()!=conv.getTitle()){
+                go=true;
+            }else{
+                go=false;
+                simillar_tab_t=t;
+                return;
+            }
+        }
+        if(!go){
+           tabPane.getTabs().remove(simillar_tab_t);
+        }
+
         Tab tab1 = new Tab(conv.getTitle());
+        tab1.setId(conv.getTitle());
+        tab1.setId(conv.getTitle());
+
 
         FlowPane flow = new FlowPane(Orientation.VERTICAL);
         flow.setColumnHalignment(HPos.LEFT); // align labels on left
@@ -289,12 +309,16 @@ public class ChatController {
                 img1.setPreserveRatio(true);
 
                 label5 = new Label(msg.getContent(), img1);
-                label5.setTextFill(Color.web("##87CEFA"));
+                label5.setTextFill(Color.web("#87CEFA"));
                 label5.setFont(Font.font("Cambria", 12));
             }else{
-                Image image = new Image(getClass().getResourceAsStream("labels.jpg"));
-                label5 = new Label(msg.getContent());
-                label5.setGraphic(new ImageView(image));
+                Image image2 = new Image(getClass().getResourceAsStream("dinu.jpg"));//modify code to get the image from database
+                ImageView img2 = new ImageView(image2);
+                img2.setFitHeight(25);
+                img2.setFitWidth(25);
+                img2.setPreserveRatio(true);
+
+                label5 = new Label(msg.getContent(), img2);
 
                 label5.setTextFill(Color.web("#20B2AA"));
                 label5.setFont(Font.font("Cambria", 12));
@@ -319,28 +343,80 @@ public class ChatController {
         Button b2=new Button();
         b2.setText("Send");
         b2.setAlignment(Pos.BOTTOM_RIGHT);
+
+
+
         b2.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
+
+
                 String msg_content=textField2.getText();
                 Message msg=new Message(Owner.myUsername,msg_content);
                 msg.setConversation_id(conv.getConversation_id());
                 msg.setConversation_initiator(conv.getConversation_initiator());
-                if(isNewConveration){
-                    msg.setMessage_id(1);
+
+                DbHandler db=new DbHandler();
+                if(isNewConversation){
+                    Conversation conv2=db.getAConversation(conv.getConversation_id(),conv.getConversation_initiator().getUsername());
+                    if(conv2!=null){
+                        msg.setMessage_id(db.getMaxMsgId(conv)+1);
+                    }else{
+                        msg.setMessage_id(1);
+                    }
                 }else{
-                    DbHandler db=new DbHandler();
                     msg.setMessage_id(db.getMaxMsgId(conv)+1);
                 }
+                db.closeConnection();
                 msg.setSent_received("Sent");
                 msg.setStatus("NotDelivered");
                 System.out.println("New message is created");
                 conv.addMessage(msg);
-                if(isNewConveration){
+                if(isNewConversation){
                     ConversationHandler.sendTheInitialConversation(conv);//at the conv creation conv is send together with 1st message
+                    textField2.setText("");
                 }else{
                     ConversationHandler.sendMessageToPartners(conv,msg);
+                    textField2.setText("");
                 }
+                ListView<Pane> list_inner1 = new ListView<Pane>();
+                ObservableList<Pane> panes_inner1  = FXCollections.observableArrayList();
+                ArrayList<Message> chatMessages1=conv.getMessages();
+                for(Message msg2:chatMessages1){
+                    FlowPane p4=new FlowPane();
+
+                    Label label6;
+                    if(msg2.getMsg_creator()!=Owner.myUsername){
+                        System.out.println("A message from a partner");
+                        Image image2 = new Image(getClass().getResourceAsStream("dinu.jpg"));//modify code to get the image from database
+                        ImageView img2 = new ImageView(image2);
+                        img2.setFitHeight(25);
+                        img2.setFitWidth(25);
+                        img2.setPreserveRatio(true);
+
+                        label6 = new Label(msg2.getContent(), img2);
+                        label6.setTextFill(Color.web("#87CEFA"));
+                        label6.setFont(Font.font("Cambria", 12));
+                    }else{
+                        System.out.println("This is a my message");
+                        Image image2 = new Image(getClass().getResourceAsStream("dinu.jpg"));//modify code to get the image from database
+                        ImageView img2 = new ImageView(image2);
+                        img2.setFitHeight(25);
+                        img2.setFitWidth(25);
+                        img2.setPreserveRatio(true);
+
+                        label6 = new Label(msg2.getContent(), img2);
+                        label6.setTextFill(Color.web("#20B2AA"));
+                        label6.setFont(Font.font("Cambria", 12));
+
+                    }
+
+                    p4.getChildren().add(label6);
+                    panes_inner1.add(p4);
+                }
+                list_inner1.setItems(panes_inner1);
+                s1.setContent(list_inner1);
+
             }
         });
 
@@ -350,6 +426,7 @@ public class ChatController {
 
         tab1.setContent(flow);
         tabPane.getTabs().add(tab1);
+        allAddedTabs.add(tab1);
 
     }
 
@@ -373,7 +450,7 @@ public class ChatController {
             Parent root = FXMLLoader.load(getClass().getResource("../View/addPartner.fxml"));
             Stage stage2 = new Stage();
             stage2.setTitle("New Conversation");
-            stage2.setScene(new Scene(root, 282, 466));
+            stage2.setScene(new Scene(root, 315, 566));
             stage2.show();
             Conversation conv=new Conversation();
 

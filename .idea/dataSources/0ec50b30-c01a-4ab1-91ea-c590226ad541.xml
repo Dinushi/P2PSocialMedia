@@ -38,7 +38,7 @@
       <DataType>VARCHAR(30)|12</DataType>
       <NotNull>1</NotNull>
     </column>
-    <index id="23" parent="13" name="SQL180420103659850">
+    <index id="23" parent="13" name="SQL180421130225550">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>CONVERSATION_ID
 CONVERSATION_INITIATOR</ColNames>
@@ -55,12 +55,12 @@ PARTNER</ColNames>
       <RefTableName>CONVERSATION</RefTableName>
       <RefColNames>CONVERSATION_INITIATOR</RefColNames>
     </foreign-key>
-    <foreign-key id="26" parent="13" name="SQL180420103659840">
+    <foreign-key id="26" parent="13" name="SQL180421130225540">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>PARTNER</ColNames>
       <RefSchemaName>APP</RefSchemaName>
       <RefTableName>PEER</RefTableName>
-      <RefKeyName>SQL180420103658550</RefKeyName>
+      <RefKeyName>SQL180421130221110</RefKeyName>
       <RefColNames>USERNAME</RefColNames>
     </foreign-key>
     <column id="27" parent="14" name="CONVERSATION_ID">
@@ -75,7 +75,7 @@ PARTNER</ColNames>
     </column>
     <column id="29" parent="14" name="STARTED_DATE">
       <Position>3</Position>
-      <DataType>DATE(10)|91</DataType>
+      <DataType>TIMESTAMP(29,9)|93</DataType>
     </column>
     <column id="30" parent="14" name="CONV_TITLE">
       <Position>4</Position>
@@ -90,12 +90,12 @@ PARTNER</ColNames>
 CONVERSATION_INITIATOR</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="33" parent="14" name="SQL180420103659410">
+    <foreign-key id="33" parent="14" name="SQL180421130224830">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>CONVERSATION_INITIATOR</ColNames>
       <RefSchemaName>APP</RefSchemaName>
       <RefTableName>PEER</RefTableName>
-      <RefKeyName>SQL180420103658550</RefKeyName>
+      <RefKeyName>SQL180421130221110</RefKeyName>
       <RefColNames>USERNAME</RefColNames>
     </foreign-key>
     <column id="34" parent="15" name="USERNAME">
@@ -118,7 +118,7 @@ CONVERSATION_INITIATOR</ColNames>
       <DataType>CHAR(1)|1</DataType>
       <NotNull>1</NotNull>
     </column>
-    <key id="38" parent="15" name="SQL180420103700620">
+    <key id="38" parent="15" name="SQL180421130227070">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>USERNAME</ColNames>
       <Primary>1</Primary>
@@ -145,7 +145,7 @@ CONVERSATION_INITIATOR</ColNames>
     </column>
     <column id="43" parent="16" name="TIME">
       <Position>5</Position>
-      <DataType>DATE(10)|91</DataType>
+      <DataType>TIMESTAMP(29,9)|93</DataType>
     </column>
     <column id="44" parent="16" name="CONTENT">
       <Position>6</Position>
@@ -159,7 +159,7 @@ CONVERSATION_INITIATOR</ColNames>
       <Position>8</Position>
       <DataType>VARCHAR(1)|12</DataType>
     </column>
-    <index id="47" parent="16" name="SQL180420103700210">
+    <index id="47" parent="16" name="SQL180421130226660">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>CONVERSATION_ID
 CONVERSATION_INITIATOR</ColNames>
@@ -216,7 +216,7 @@ MESSAGE_CREATOR</ColNames>
       <Position>9</Position>
       <DataType>CHAR(1)|1</DataType>
     </column>
-    <key id="59" parent="17" name="SQL180420103658550">
+    <key id="59" parent="17" name="SQL180421130221110">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>USERNAME</ColNames>
       <Primary>1</Primary>
@@ -237,7 +237,7 @@ MESSAGE_CREATOR</ColNames>
     </column>
     <column id="63" parent="18" name="CREATED_DATE">
       <Position>4</Position>
-      <DataType>DATE(10)|91</DataType>
+      <DataType>TIMESTAMP(29,9)|93</DataType>
     </column>
     <column id="64" parent="18" name="IMAGE">
       <Position>5</Position>
@@ -248,12 +248,12 @@ MESSAGE_CREATOR</ColNames>
 POST_ID</ColNames>
       <Primary>1</Primary>
     </key>
-    <foreign-key id="66" parent="18" name="SQL180420103658730">
+    <foreign-key id="66" parent="18" name="SQL180421130221640">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>USERNAME</ColNames>
       <RefSchemaName>APP</RefSchemaName>
       <RefTableName>PEER</RefTableName>
-      <RefKeyName>SQL180420103658550</RefKeyName>
+      <RefKeyName>SQL180421130221110</RefKeyName>
       <RefColNames>USERNAME</RefColNames>
     </foreign-key>
     <column id="67" parent="19" name="USERNAME">
@@ -277,9 +277,9 @@ POST_ID</ColNames>
     </column>
     <column id="71" parent="19" name="CREATED_DATE">
       <Position>5</Position>
-      <DataType>DATE(10)|91</DataType>
+      <DataType>TIMESTAMP(29,9)|93</DataType>
     </column>
-    <index id="72" parent="19" name="SQL180420103659040">
+    <index id="72" parent="19" name="SQL180421130224190">
       <NameSurrogate>1</NameSurrogate>
       <ColNames>USERNAME
 POST_ID</ColNames>

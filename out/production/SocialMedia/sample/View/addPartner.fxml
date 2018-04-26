@@ -9,15 +9,15 @@
 
 <AnchorPane prefHeight="566.0" prefWidth="315.0" style="-fx-background-color: #a9a9a9;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.AddPartnerController">
    <children>
-      <Pane fx:id="peerPane" layoutX="39.0" layoutY="88.0" prefHeight="359.0" prefWidth="238.0" style="-fx-background-color: #B0C4DE;" />
+      <Pane fx:id="peerPane" layoutX="39.0" layoutY="88.0" prefHeight="343.0" prefWidth="238.0" style="-fx-background-color: #B0C4DE;" />
       <Label layoutX="95.0" layoutY="14.0" text="Select chat Partners" textFill="#0d0808">
          <font>
             <Font name="System Bold" size="16.0" />
          </font>
       </Label>
       <TextField layoutX="56.0" layoutY="47.0" prefHeight="19.0" prefWidth="205.0" promptText="Search" style="-fx-background-color: #c0c0c0; -fx-border-width: 0.004cm; -fx-border-color: #000000;" />
-      <Button fx:id="btn_newChatOK" layoutX="95.0" layoutY="456.0" mnemonicParsing="false" onAction="#pressOk" style="-fx-background-color: #c0c0c0;" text="  OK   " />
-      <Button fx:id="btn_newChatCancel" layoutX="170.0" layoutY="456.0" mnemonicParsing="false" style="-fx-background-color: #c0c0c0;" text="Cancel" />
-      <Pane fx:id="paneTitle" layoutX="25.0" layoutY="494.0" prefHeight="58.0" prefWidth="268.0" />
+      <Button fx:id="btn_newChatOK" layoutX="95.0" layoutY="457.0" mnemonicParsing="false" onAction="#pressOk" style="-fx-background-color: #c0c0c0;" text="  OK   " />
+      <Button fx:id="btn_newChatCancel" layoutX="170.0" layoutY="457.0" mnemonicParsing="false" style="-fx-background-color: #c0c0c0;" text="Cancel" />
+      <Pane fx:id="paneTitle" layoutX="25.0" layoutY="489.0" prefHeight="71.0" prefWidth="268.0" />
    </children>
 </AnchorPane>

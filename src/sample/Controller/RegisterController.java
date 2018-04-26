@@ -22,6 +22,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Serializable;
+import java.net.ConnectException;
 import java.sql.Date;
 
 import static sample.Controller.Validator.thisPeer;
@@ -70,6 +71,7 @@ public class RegisterController {
 
         //sent username,ip,port to bootstrap server
         this.connectToServer();
+
         //create the database
         CreateDB dbCreator=new CreateDB();
         //create the thisUser

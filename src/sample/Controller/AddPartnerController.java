@@ -49,7 +49,6 @@ public class AddPartnerController {
         ListView<Pane> list = new ListView<Pane>();
         ObservableList<Pane> panes = FXCollections.observableArrayList();
 
-        Tab tab = new Tab("All Conversations");
 
         for (int i = 0; i < allPeerUsernames.size(); i++) {
 

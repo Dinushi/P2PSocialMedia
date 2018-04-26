@@ -5,6 +5,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 
+<?import java.net.URL?>
 <BorderPane prefHeight="369.0" prefWidth="465.0" style="-fx-background-color: #696969;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.ChatController">
     <center>
         <TabPane fx:id="tabPane" />
@@ -15,4 +16,7 @@
             <Button onAction="#listTabs" prefHeight="25.0" prefWidth="66.0" text="Delete" />
         </HBox>
     </bottom>
+    <stylesheets>
+        <URL value="@../CSS/Conv.css" />
+    </stylesheets>
 </BorderPane>

@@ -55,6 +55,7 @@ public class Validator {
                     Owner.myUsername = username;
                     Owner.myIP = myself.getIp();
                     Owner.myPort = myself.getPort();
+                    db.closeConnection();
 
 
                     return 0;

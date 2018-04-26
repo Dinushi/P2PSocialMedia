@@ -33,6 +33,13 @@
     -fx-background-repeat: no-repeat;
     -fx-background-position:left;
 }
+#btn_viewPeerProfile{
+    -fx-base:	#1E90FF;
+    -fx-background-image: url("../images/ViewPeer.png");
+    -fx-background-size: 18 18;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:left;
+}
 #separator1{
     -fx-background-color: #e79423;
     -fx-background-radius: 2;
