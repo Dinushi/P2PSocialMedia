@@ -1,11 +1,15 @@
 package sample.CommunicationHandler;
 
 import sample.EventHandler.ConversationHandler;
+import sample.EventHandler.HeartBeatHandler;
 import sample.EventHandler.NewPeerListner;
 import sample.EventHandler.PostHandler;
 import sample.Model.*;
 
+import java.lang.reflect.Array;
 import java.net.InetAddress;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 public class ReceivedPacketHandler extends Thread {
     Object receivedObject=null;
@@ -30,12 +34,17 @@ public class ReceivedPacketHandler extends Thread {
         }else if (receivedObject instanceof Reply) {
             System.out.println("Packet handler got reply ");
             Reply reply=(Reply) receivedObject;
-            PostHandler.gotAReply(reply);
+            PostHandler.gotAReply(reply,sender_ip,sender_port);
             //post.notifyController();
 
         }else if(receivedObject instanceof Message) {
             System.out.println("Packet handler got a Message object");
             Message msg = (Message) receivedObject;
+
+            ArrayList<ReceivingPeer> receiver=new ArrayList<>();
+            receiver.add(new ReceivingPeer(sender_ip,sender_port));
+            PeerConnection.getPeerConnection().sendViaSocket("MSGACK".concat(String.valueOf(msg.getUDPSeqNum())),receiver);
+
             ConversationHandler.gotAMessage(msg);
 
         }else if(receivedObject instanceof DiscoverdPeer) {
@@ -54,12 +63,53 @@ public class ReceivedPacketHandler extends Thread {
             if(str=="SendMeSomePeers"){
                 NewPeerListner.gotAPeerRequestForMorePeers(this.sender_ip,this.sender_port);
             }
+            /*
+            else if(str=="AreYouON"){
+                ArrayList<ReceivingPeer> receiver=new ArrayList<>();
+                receiver.add(new ReceivingPeer(sender_ip,sender_port));
+                PeerConnection.getPeerConnection().sendViaSocket("Yes",receiver);
+                HeartBeatHandler.gotPeerACK(sender_ip,sender_port);//Now also I know that this requested peer is online
+            }
+            */
+            else if(str=="Yes"){
+                System.out.println("got to know a peer online presence");
+                HeartBeatHandler.gotAPeerACK(sender_ip,sender_port);
+            }else if(str.startsWith("MSGACK")){
+                System.out.println("Got a ACK for msg");
+                String seq_num=str.substring(6);
+
+                ArrayList<ReceivingPeer> msgreceiver=new ArrayList<>();
+                msgreceiver.add(new ReceivingPeer(sender_ip,sender_port));
+
+                MessageRetransmitter.getMessageRetransmitter().gotAAckForaMessage(seq_num,msgreceiver);
+
+            }else if(str.startsWith("CONVACK")) {
+                System.out.println("Got a ACK for conv");
+                String seq_num = str.substring(6);
+
+                ArrayList<ReceivingPeer> convreceiver = new ArrayList<>();
+                convreceiver.add(new ReceivingPeer(sender_ip, sender_port));
+                ConversationRetransmitter.getConversationRetransmitter().gotAAckForaConversation(seq_num, convreceiver);
+            }
 
         }else if(receivedObject instanceof Conversation){
             System.out.println("Packet handler got a Conversation object");
             Conversation conv = (Conversation)receivedObject;
             ConversationHandler.gotAInitialConversation(conv);
-        }
+
+            //sending back the ACK for conversation
+            ArrayList<ReceivingPeer> receiver=new ArrayList<>();
+            receiver.add(new ReceivingPeer(sender_ip,sender_port));
+            PeerConnection.getPeerConnection().sendViaSocket("CONVACK".concat(String.valueOf(conv.getUDPSeqNum())),receiver);
+
+        } else if(receivedObject instanceof LocalDateTime){
+            System.out.println("Packet handler got a LocaldateTime Object");
+            LocalDateTime last_logged_time = (LocalDateTime) receivedObject;
+            ArrayList<ReceivingPeer> receiver=new ArrayList<>();
+            receiver.add(new ReceivingPeer(sender_ip,sender_port));
+            PeerConnection.getPeerConnection().sendViaSocket("Yes",receiver);
+            HeartBeatHandler.gotPeerLoginAlert(sender_ip,sender_port,last_logged_time);//Now also I know that this requested peer
+    }
 
 
 

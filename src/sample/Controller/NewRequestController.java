@@ -22,6 +22,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import sample.EventHandler.HeartBeatHandler;
 import sample.EventHandler.NewPeerListner;
 import sample.Model.Conversation;
 import sample.Model.DiscoverdPeer;
@@ -54,7 +55,7 @@ public class NewRequestController {
         rejectedPeers = new ArrayList<>();
 
         ScrollPane s1 = new ScrollPane();
-        s1.setPrefSize(264, 352);
+        s1.setPrefSize(284, 352);
 
         ListView<Pane> list = new ListView<Pane>();
         ObservableList<Pane> panes = FXCollections.observableArrayList();
@@ -65,7 +66,7 @@ public class NewRequestController {
 
             FlowPane p1 = new FlowPane();
             p1.setVgap(6);
-            p1.setHgap(60);
+            p1.setHgap(40);
             p1.setPrefWrapLength(200);
             Image image = new Image(getClass().getResourceAsStream("dinu.jpg"));//modify code to get the image from database
             ImageView img = new ImageView(image);
@@ -133,6 +134,7 @@ public class NewRequestController {
         public void run(){
             NewPeerListner.sendTheConfirmation(selectedPeers,rejectedPeers);
         }
+     
 
     }
     //try to use a anoynemous inner cass to assign this task to a thrad

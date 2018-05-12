@@ -13,6 +13,8 @@ import java.lang.reflect.Array;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 
 public class Validator {
@@ -23,6 +25,7 @@ public class Validator {
     private InetAddress myIp;
     private int myPort;
     public static String username;
+    public static LocalDateTime last_logOuttime;
 
     public int validateUser(String username_entered,String password_entered){
 
@@ -31,6 +34,10 @@ public class Validator {
 
         String username_stored=userCredentials[0];
         String password_stored=userCredentials[3];
+        //String Strlast_logout_time=userCredentials[4];
+
+        //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        //last_logOuttime = LocalDateTime.parse(Strlast_logout_time, formatter);
 
         //password_stored="123";
         try {
@@ -101,6 +108,7 @@ public class Validator {
                 i++;
             }
             bufferedReader.close();
+            fileReader.close();
         }
         catch(FileNotFoundException ex) {
             System.out.println(

@@ -33,7 +33,7 @@ public class Peer implements Serializable {
         if(isJoined){
             this.setJoinedDate();
         }
-        this.onlineStatus=true;
+        this.onlineStatus=false;
         // this.onlineStatus=this.checkOnlineStatus(ip,port);
     }
 

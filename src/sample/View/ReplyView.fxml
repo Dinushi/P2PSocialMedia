@@ -3,11 +3,14 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="253.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.ReplyController">
+<AnchorPane prefHeight="425.0" prefWidth="327.0" style="-fx-background-color: #8487e0; -fx-border-style: solid;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Pane fx:id="ReplyPane" layoutX="19.0" layoutY="29.0" prefHeight="357.0" prefWidth="215.0" />
-      <Label layoutX="99.0" layoutY="6.0" text="Replies" />
+      <Pane fx:id="ReplyPane" layoutX="36.0" layoutY="71.0" prefHeight="319.0" prefWidth="256.0" />
+      <Label layoutX="116.0" layoutY="14.0" text="Replies" textFill="#04052f">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font></Label>
    </children>
 </AnchorPane>

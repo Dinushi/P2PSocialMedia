@@ -6,20 +6,29 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="515.0" prefWidth="343.0" style="-fx-background-color: #a9a9a9;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.DiscoveredPeerViewController">
+<AnchorPane prefHeight="515.0" prefWidth="343.0" style="-fx-background-color: #8c7bee; -fx-border-style: solid; -fx-border-width: 2.0;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.DiscoveredPeerViewController">
     <children>
-        <Pane fx:id="peerPane" layoutX="53.0" layoutY="90.0" prefHeight="359.0" prefWidth="238.0" style="-fx-background-color: #B0C4DE;" />
-        <Label layoutX="112.0" layoutY="27.0" text="Discoverd peers" textFill="#0d0808">
+        <Pane fx:id="peerPane" layoutX="53.0" layoutY="90.0" prefHeight="359.0" prefWidth="238.0" style="-fx-background-color: #778696;" />
+        <Label layoutX="87.0" prefHeight="54.0" prefWidth="219.0" text="Discoverd peers" textFill="#1c1a1a">
             <font>
-                <Font name="System Bold" size="16.0" />
+                <Font name="Chiller" size="37.0" />
             </font>
         </Label>
         <Pane fx:id="paneTitle" layoutX="38.0" layoutY="463.0" prefHeight="38.0" prefWidth="268.0">
          <children>
-              <Button fx:id="btn_connect" layoutX="38.0" layoutY="-2.0" mnemonicParsing="false" onAction="#pressOk" style="-fx-background-color: #c0c0c0;" text="  OK   " />
-              <Button fx:id="btn_newChatCancel" layoutX="108.0" layoutY="-2.0" mnemonicParsing="false" style="-fx-background-color: #c0c0c0;" text="Cancel" />
-            <Button layoutX="184.0" layoutY="-2.0" mnemonicParsing="false" onAction="#pressDiscoverMore" text="Discover More" />
+              <Button fx:id="btn_connect" layoutX="38.0" layoutY="-2.0" mnemonicParsing="false" onAction="#pressOk" style="-fx-background-color: #2929bc;" text="  OK   ">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+              <Button fx:id="btn_newChatCancel" layoutX="108.0" layoutY="-2.0" mnemonicParsing="false" style="-fx-background-color: #2929bc;" text="Cancel">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Button layoutX="184.0" layoutY="-2.0" mnemonicParsing="false" onAction="#pressDiscoverMore" style="-fx-background-color: #6666ff;" text="Discover More" />
          </children></Pane>
-        <Label layoutX="4.0" layoutY="58.0" text="You can send request to connect with these new peers received" />
+        <Label layoutX="8.0" layoutY="54.0" text="You can send request to connect with these new peers received" textFill="#0f242f">
+         <font>
+            <Font name="French Script MT" size="19.0" />
+         </font></Label>
     </children>
 </AnchorPane>

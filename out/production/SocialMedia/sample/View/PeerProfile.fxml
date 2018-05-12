@@ -9,22 +9,25 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="574.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" >
+<AnchorPane prefHeight="559.0" prefWidth="644.0" style="-fx-background-color: #E6E6FA; -fx-border-style: solid;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Pane layoutY="165.0" prefHeight="401.0" prefWidth="213.0" style="-fx-background-color: #b3b3ff;">
+        <Pane layoutY="165.0" prefHeight="401.0" prefWidth="212.0" style="-fx-background-color: #b3b3ff;">
             <children>
-                <Label layoutX="23.0" layoutY="14.0" prefHeight="17.0" prefWidth="65.0" text="About Peer" />
-                <Label layoutX="8.0" layoutY="77.0" text="Gender" />
-                <Label layoutX="9.0" layoutY="51.0" text="Full Name:" />
-                <Label layoutX="6.0" layoutY="125.0" text="HomeTown:" />
-                <Label layoutX="6.0" layoutY="102.0" text="Birthday" />
-                <Label fx:id="lbl_birthday" layoutX="89.0" layoutY="102.0" text="19994.06.02" />
-                <Label layoutX="89.0" layoutY="77.0" text="Female" />
-                <Label fx:id="lbl_fullName" layoutX="89.0" layoutY="51.0" text="Thilini Dinushika" />
-                <Label fx:id="lbl_hometown" layoutX="89.0" layoutY="125.0" text="Akuressa" />
+                <Label layoutX="26.0" layoutY="14.0" prefHeight="25.0" prefWidth="126.0" text="About Peer" textFill="#111111">
+               <font>
+                  <Font name="Chiller" size="23.0" />
+               </font></Label>
+                <Label layoutX="8.0" layoutY="77.0" text="Gender" textFill="#612626" />
+                <Label layoutX="9.0" layoutY="51.0" text="Full Name:" textFill="#612626" />
+                <Label layoutX="6.0" layoutY="125.0" text="HomeTown:" textFill="#612626" />
+                <Label layoutX="6.0" layoutY="102.0" text="Birthday" textFill="#612626" />
+                <Label fx:id="lbl_birthday" layoutX="89.0" layoutY="102.0" text="19994.06.02" textFill="#805a5a" />
+                <Label layoutX="89.0" layoutY="77.0" text="Female" textFill="#805a5a" />
+                <Label fx:id="lbl_fullName" layoutX="89.0" layoutY="51.0" text="Thilini Dinushika" textFill="#805a5a" />
+                <Label fx:id="lbl_hometown" layoutX="89.0" layoutY="125.0" text="Akuressa" textFill="#805a5a" />
                 <Pane fx:id="editPane" layoutX="7.0" layoutY="183.0" prefHeight="217.0" prefWidth="201.0" />
             </children></Pane>
-        <Pane fx:id="ProfPicPane" layoutY="-4.0" prefHeight="169.0" prefWidth="135.0">
+        <Pane fx:id="ProfPicPane" layoutY="-4.0" prefHeight="169.0" prefWidth="135.0" style="-fx-background-color: #2F4F4F;">
             <children>
                 <ImageView fx:id="profPic" fitHeight="142.0" fitWidth="116.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                     <image>
@@ -33,23 +36,23 @@
                 </ImageView>
             </children>
         </Pane>
-        <Pane layoutX="138.0" prefHeight="129.0" prefWidth="486.0">
+        <Pane layoutX="136.0" prefHeight="129.0" prefWidth="508.0" style="-fx-background-color: #B0C4DE; -fx-region-border: solid;">
             <children>
-                <Label fx:id="lbl_myUername" layoutX="21.0" layoutY="14.0" prefHeight="49.0" prefWidth="286.0" text="Thilini Dinushika">
+                <Label fx:id="lbl_myUername" layoutX="21.0" layoutY="14.0" prefHeight="49.0" prefWidth="286.0" text="Thilini Dinushika" textFill="#2909c9">
                     <font>
-                        <Font size="33.0" />
+                        <Font name="System Bold" size="33.0" />
                     </font>
                 </Label>
-                <Label fx:id="lbl_status" layoutX="21.0" layoutY="68.0" prefHeight="17.0" prefWidth="363.0" text="Just  to  ">
+                <Label fx:id="lbl_status" layoutX="21.0" layoutY="68.0" prefHeight="17.0" prefWidth="363.0" text="Just  to  " textFill="#2c57bc">
                <font>
-                  <Font size="16.0" />
+                  <Font name="Courier New Bold" size="16.0" />
                </font></Label>
-                <Line endX="100.0" layoutX="115.0" layoutY="109.0" startX="-100.0" strokeLineJoin="ROUND" strokeMiterLimit="20.0" />
+                <Line endX="100.0" layoutX="115.0" layoutY="109.0" startX="-100.0" stroke="#0c0a2c" strokeLineJoin="ROUND" strokeMiterLimit="20.0" />
             </children></Pane>
-        <Pane fx:id="post_pane" layoutX="218.0" layoutY="165.0" prefHeight="401.0" prefWidth="426.0" />
-        <Label layoutX="352.0" layoutY="129.0" prefHeight="17.0" prefWidth="113.0" text="Recent Posts">
+        <Pane fx:id="post_pane" layoutX="204.0" layoutY="165.0" prefHeight="401.0" prefWidth="440.0" style="-fx-background-color: #e9eefc; -fx-border-style: solid; -fx-border-color: #00008B;" />
+        <Label layoutX="212.0" layoutY="129.0" prefHeight="17.0" prefWidth="113.0" text="Recent Posts" textFill="#7c5d5d">
          <font>
-            <Font size="15.0" />
+            <Font name="Chiller" size="21.0" />
          </font></Label>
     </children>
     <stylesheets>

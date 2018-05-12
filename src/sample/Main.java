@@ -1,18 +1,21 @@
 package sample;
 
 import javafx.application.Application;
+import javafx.application.Platform;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import sample.DBHandler.DbHandler;
-import sample.Model.DiscoverdPeer;
-import sample.Model.Message;
-import sample.Model.Peer;
-import test.NewRequests.TestRequests;
 
-import java.net.InetAddress;
-import java.util.ArrayList;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+
 
 public class Main extends Application {
 
@@ -43,6 +46,9 @@ public class Main extends Application {
         scene.getStylesheets().add(getClass().getResource("CSS/Login.css").toString());
         primaryStage.show();
 
+
+
+
     }
 
 /*
@@ -69,6 +75,21 @@ public class Main extends Application {
     public static void main(String[] args) throws Exception {
 
         launch(args);
+        /*
+        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+
+            public void run() {
+                try {
+                    BufferedWriter writer= new BufferedWriter(new FileWriter("ThisUser.txt", true));
+                    LocalDateTime log_out_time=LocalDateTime.now();
+                    writer.write(String.valueOf(log_out_time));
+                    writer.newLine();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }));
+        */
         //CreateDB db=new CreateDB();
 
         //PeerConnection we=new PeerConnection();

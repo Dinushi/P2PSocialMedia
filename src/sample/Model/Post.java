@@ -1,6 +1,7 @@
 package sample.Model;
 
 import sample.Controller.HomeController;
+import sample.Controller.Validator;
 import sample.DBHandler.DbHandler;
 import sample.EventHandler.PostHandler;
 
@@ -138,7 +139,14 @@ public class Post implements Serializable {
     }
     public void sendReply(Reply reply){
         System.out.println("At post.Ready to call post Handler to sent the reply");
-        PostHandler.sendReplyToPeersIntersted(reply);
+        if(this.getUsername().equalsIgnoreCase(Validator.username)){
+            //here the Reply is for a post created by this peer.So sent the reply to all my peers
+            PostHandler.sendReplyToPeersIntersted(reply);
+        }else{
+            //Here the reply is for a post created by a nother peer.send reply to him(Owner of the post).he will send to all other peers
+            PostHandler.sendTheReplyToThePostOwner(reply,this.getUsername());
+        }
+
     }
 
     public byte[] getPost_image() {

@@ -1,5 +1,6 @@
 package sample.CommunicationHandler;
 
+import sample.Controller.RegisterController;
 import sample.EventHandler.NewPeerListner;
 import sample.Model.DiscoverdPeer;
 
@@ -10,8 +11,11 @@ import java.net.Socket;
 // A simple Client Server Protocol ..
 
 public class ClientConnection {
+    private int resultFromBs;//hold the state of reply from Bs
+
     private InetAddress bs_address=null;
     static  final int bs_port_no=55554;
+    //private static final String SERVER_IP = "10.0.0.22";
     private Socket socket=null;
 
     private InetAddress local_address;
@@ -29,8 +33,10 @@ public class ClientConnection {
 
     public ClientConnection(String username){//create  a singleton client class in any case of user name error ame client object can be used
         try {
-            this.bs_address=InetAddress.getLocalHost();
+           this.bs_address=InetAddress.getLocalHost();
+            //this.bs_address=InetAddress.getByName("192.168.137.223");
             this.socket=new Socket(bs_address, bs_port_no);//find a way to set bs address,and port in the program input
+           // this.socket=new Socket("192.168.137.223", 55554);
             this.local_address=socket.getLocalAddress();
             this.local_port = socket.getLocalPort();
 
@@ -43,15 +49,13 @@ public class ClientConnection {
             this.is1 = socket.getInputStream();//********
             this.ois = new ObjectInputStream(is1);//************
 
-
-
-
             //br= new BufferedReader(new InputStreamReader(System.in));
             //is=new BufferedReader(new InputStreamReader(s1.getInputStream()));
             //os= new PrintWriter(s1.getOutputStream());
 
             SendToBS(username);
-            receiveFromBs();
+            resultFromBs=receiveFromBs();
+
 
             //createTheUserCredentials(username);
             System.out.println("Server Connection closed");
@@ -68,14 +72,16 @@ public class ClientConnection {
             System.err.print("IO Exception");
         }
     }
-    private void receiveFromBs(){
+    public int receiveFromBs(){//int
             try {
                 String reply=(String)this.ois.readObject();
                 System.out.println("Reply"+reply);
 
                 if(reply.contentEquals("UserName Exists")) {
+                    return 0;
                     //ask to enter a new username
                 }else if(reply.contentEquals("IP Port Already Used")){
+                    return 1;
                     //system must automatically change the port
                 }else if(reply.substring(0,reply.length()-1).contentEquals("Success")) {
                     int i=0;
@@ -89,30 +95,37 @@ public class ClientConnection {
                                // return;
                             //}
                         }
+                        return 2;
                 }
             } catch (IOException e) {
                 e.printStackTrace();
+                return 4;
             } catch (ClassNotFoundException e) {
                 e.printStackTrace();
+                return 4;
             }
+            return 5;
     }
-    private void SendToBS(String username){
+
+    public void SendToBS(String username){
         try {
             DiscoverdPeer peer=new DiscoverdPeer("new join request",username,local_address,local_port);
             //DiscoverdPeer peer1=(DiscoverdPeer)this.ois.readObject();//**************8//read objects from client
 
             this.oos.writeObject(peer);
             this.oos.flush();
-            System.out.println("Mytry at the moment");
+            System.out.println("My try at the moment");
 
             //System.out.println(this.ois.readObject());
             //this.oos.writeObject(new String("another object from the client"));
 
             System.out.println("Client Address : " + this.bs_address);
+
             //os.println(this.username);
             //os.flush();
             //this.response = is.readLine();
             //System.out.println("Server Response : " + response);
+
         } catch(IOException e) {
             e.printStackTrace();
             System.out.println("Socket read Error");
@@ -168,5 +181,8 @@ public class ClientConnection {
 
     }
 
+    public int getResultFromBs() {
+        return resultFromBs;
+    }
 }
 

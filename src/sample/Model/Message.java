@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.time.LocalDateTime;
 
 public class Message implements Serializable {
+    private String UDPSeqNum;
     private int conversation_id;
     private Peer conversation_initiator;
     private int message_id;
@@ -12,6 +13,7 @@ public class Message implements Serializable {
     private String sent_received;//sent/received
     private String status;//delivered/notDelivered/seen/unseen
     private LocalDateTime sent_time;
+    private long sentTimeInMillis;
 
     public Message(String msg_creator,String content){
         this.msg_creator=msg_creator;
@@ -71,5 +73,21 @@ public class Message implements Serializable {
 
     public void setMessage_id(int message_id) {
         this.message_id = message_id;
+    }
+
+    //this used for re transmission purposes of message data packets
+    public void setUDPSeqNum(String num){
+        this.UDPSeqNum=num;
+    }
+    public String getUDPSeqNum(){
+        return UDPSeqNum;
+    }
+
+    public long getSentTimeInMillis() {
+        return sentTimeInMillis;
+    }
+
+    public void setSentTimeInMillis(long sentTimeInMillis) {
+        this.sentTimeInMillis = sentTimeInMillis;
     }
 }

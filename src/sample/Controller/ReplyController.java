@@ -2,6 +2,7 @@ package sample.Controller;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.geometry.HPos;
@@ -16,9 +17,14 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import sample.DBHandler.DbHandler;
 import sample.Model.Post;
 import sample.Model.Reply;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
@@ -32,8 +38,12 @@ public class ReplyController implements Initializable {
     ListView<Pane> list ;
     ObservableList<Pane> panes;
     ScrollPane s1;
-
     private Post post;
+
+    public ReplyController(Post post) {
+        this.post=post;
+    }
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         all_replies= post.getReplies();
@@ -43,7 +53,7 @@ public class ReplyController implements Initializable {
         s1 = new ScrollPane();
         s1.setFitToHeight(true);
         s1.setFitToWidth(true);
-        s1.setPrefSize(400, 422);
+        s1.setPrefSize(256, 329);
 
         list = new ListView<Pane>();
         panes = FXCollections.observableArrayList();
@@ -53,13 +63,33 @@ public class ReplyController implements Initializable {
             FlowPane p3 = new FlowPane();
             p3.setVgap(6);
             p3.setHgap(60);
-            p3.setPrefWrapLength(200);
+            p3.setPrefWrapLength(100);
 
-            Image image = new Image(getClass().getResourceAsStream("dinu.jpg"));//modify code to get the image from database
-            ImageView img = new ImageView(image);
-            img.setFitHeight(25);
-            img.setFitWidth(25);
-            img.setPreserveRatio(true);
+            DbHandler db=new DbHandler();
+            ImageView img;
+            byte[] prof_pic=db.getPeer(all_replies.get(i).getUsername()).getProf_pic();
+            db.closeConnection();
+            if(prof_pic!=null){
+                ByteArrayInputStream in = new ByteArrayInputStream(prof_pic);
+                BufferedImage read = null;
+                try {
+                    read = ImageIO.read(in);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                //Image image = new Image(getClass().getResourceAsStream("dinu.jpg"));//modify code to get the image from database
+                img = new ImageView();
+                img.setFitHeight(25);
+                img.setFitWidth(25);
+                img.setPreserveRatio(true);
+                img.setImage(SwingFXUtils.toFXImage(read, null));
+            }else{
+                Image image2 = new Image(getClass().getResourceAsStream("default.png"));//modify code to get the image from database
+                img = new ImageView(image2);
+                img.setFitHeight(25);
+                img.setFitWidth(25);
+                img.setPreserveRatio(true);
+            }
 
             Label label5 = new Label(all_replies.get(i).getUsername(), img);
             label5.setTextFill(Color.web("#0076a3"));
@@ -80,13 +110,11 @@ public class ReplyController implements Initializable {
         }
         list.setItems(panes);
         s1.setContent(list);
+        s1.setOpacity(0.7);
         ReplyPane.getChildren().add(s1);
 
     }
 
-    void initData(Post post) {
-        this.post=post;
-    }
 
 
 

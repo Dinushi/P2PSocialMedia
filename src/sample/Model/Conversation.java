@@ -17,6 +17,8 @@ public class Conversation implements Serializable {
     private int conversation_id;
     private boolean unseenMessages;
     private String title;
+    private String UDPSeqNum;
+    private long sentTimeOfConversationinMillis;
 
 
     public Conversation(){
@@ -36,13 +38,17 @@ public class Conversation implements Serializable {
         db.closeConnection();
 
     }
-    private void addPartner(Peer p){
+    public void addPartner(Peer p){
         this.partners.add(p);
 
     }
 
     public void addMessage(Message msg){
         this.messages.add(msg);
+
+    }
+    public void removePartner(int index){
+        this.messages.remove(index);
 
     }
 
@@ -109,5 +115,21 @@ public class Conversation implements Serializable {
     }
     public ArrayList<Message> getMessages(){
         return messages;
+    }
+
+    public String getUDPSeqNum() {
+        return UDPSeqNum;
+    }
+
+    public void setUDPSeqNum(String UDPSeqNum) {
+        this.UDPSeqNum = UDPSeqNum;
+    }
+
+    public long getSentTimeOfConversationinMillis() {
+        return sentTimeOfConversationinMillis;
+    }
+
+    public void setSentTimeOfConversationinMillis(long sentTimeOfConversationinMillis) {
+        this.sentTimeOfConversationinMillis = sentTimeOfConversationinMillis;
     }
 }

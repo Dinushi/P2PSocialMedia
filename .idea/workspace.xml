@@ -1,20 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="SocialMedia:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="cdb932d9-7e58-4d94-93a9-e7b232ef17da" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/sample/CSS/Chat.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/sample/Controller/ConnectedPeerListController.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/sample/Controller/DiscoveredPeerViewController.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/sample/Controller/PeerProfileController.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/sample/Controller/SelectPeers.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/sample/EventHandler/HeartBeatHandler.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/sample/View/DiscoveredPeerView.fxml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/sample/View/PeerProfile.fxml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/sample/View/SelectPeers.fxml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/sample/View/ViewPeerProfileList.fxml" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.local.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.local.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources.xml" afterPath="$PROJECT_DIR$/.idea/dataSources.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/a050ff1a-c14e-42f9-9b3b-61b613222c87.xml" afterPath="" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Test/sample/CommunicationHandler/ConversationRetransmitterTest.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Test/sample/CommunicationHandler/MessageRetransmitterTest.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Test/sample/Controller/RegisterControllerTest.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Test/sample/Controller/ValidatorTest.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Test/sample/DBHandler/CreateDBTest.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Test/sample/DBHandler/DbHandlerTest.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/Test/sample/EventHandler/ConversationHandlerTest.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/sample/CSS/Reply.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/sample/CSS/Request.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/sample/CommunicationHandler/ConversationRetransmitter.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/sample/CommunicationHandler/MessageRetransmitter.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/sample/Controller/LoginConfirmationController.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/sample/Controller/OnlinePeerController.java" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/tests/sample/MainTest.java" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/MyDB/README_DO_NOT_TOUCH_FILES.txt" afterPath="" />
       <change beforePath="$PROJECT_DIR$/MyDB/db.lck" afterPath="" />
@@ -116,8 +122,15 @@
       <change beforePath="$PROJECT_DIR$/MyDB/seg0/ce1.dat" afterPath="" />
       <change beforePath="$PROJECT_DIR$/MyDB/seg0/cf0.dat" afterPath="" />
       <change beforePath="$PROJECT_DIR$/MyDB/service.properties" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/SocialMedia.iml" afterPath="$PROJECT_DIR$/SocialMedia.iml" />
       <change beforePath="$PROJECT_DIR$/ThisUser.txt" afterPath="$PROJECT_DIR$/ThisUser.txt" />
       <change beforePath="$PROJECT_DIR$/derby.log" afterPath="$PROJECT_DIR$/derby.log" />
+      <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/CSS/Conv.css" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/CSS/Conv.css" />
+      <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/CSS/Home.css" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/CSS/Home.css" />
+      <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/CSS/MyProfile.css" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/CSS/MyProfile.css" />
+      <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/CommunicationHandler/ClientConnection.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/CommunicationHandler/ClientConnection.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/CommunicationHandler/PeerConnection.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/CommunicationHandler/PeerConnection.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/CommunicationHandler/ReaderThread.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/CommunicationHandler/ReaderThread.class" />
       <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/CommunicationHandler/ReceivedPacketHandler.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/CommunicationHandler/ReceivedPacketHandler.class" />
       <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/AddPartnerController$1.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/AddPartnerController$1.class" />
       <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/AddPartnerController$2.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/AddPartnerController$2.class" />
@@ -127,50 +140,104 @@
       <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/ChatController$3.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/ChatController$3.class" />
       <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/ChatController$4.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/ChatController$4.class" />
       <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/ChatController.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/ChatController.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/ConnectedPeerListController$1.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/ConnectedPeerListController$1.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/ConnectedPeerListController.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/ConnectedPeerListController.class" />
       <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/HomeController$1.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/HomeController$1.class" />
       <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/HomeController$2.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/HomeController$2.class" />
       <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/HomeController$3.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/HomeController$3.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/HomeController$4$1.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/HomeController$4$1.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/HomeController$4$1$1.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/HomeController$4$1.class" afterPath="" />
       <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/HomeController$4.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/HomeController$4.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/HomeController$5$1.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/HomeController$5$1.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/HomeController$5.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/HomeController$5.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/HomeController$6$1.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/HomeController$6$1.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/HomeController$6.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/HomeController$6.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/HomeController$7$1.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/HomeController$7$1.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/HomeController$7.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/HomeController$7.class" />
       <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/HomeController.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/HomeController.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/LoginController.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/LoginController.class" />
       <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/MyProfileController$1.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/MyProfileController$1.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/MyProfileController$2.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/MyProfileController$2.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/MyProfileController$3.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/MyProfileController$3.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/MyProfileController$4.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/MyProfileController$4.class" />
       <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/MyProfileController.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/MyProfileController.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/NewRequestController$1.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/NewRequestController$1.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/NewRequestController$2.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/NewRequestController$2.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/NewRequestController$Worker.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/NewRequestController$Worker.class" />
       <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/NewRequestController.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/NewRequestController.class" />
       <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/RegisterController.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/RegisterController.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/ReplyController.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/ReplyController.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/Validator.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/Controller/Validator.class" />
       <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/DBHandler/CreateDB.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/DBHandler/CreateDB.class" />
       <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/DBHandler/DbHandler.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/DBHandler/DbHandler.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/EventHandler/ConversationHandler$1.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/EventHandler/ConversationHandler$1.class" />
       <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/EventHandler/ConversationHandler.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/EventHandler/ConversationHandler.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/EventHandler/NewPeerListner.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/EventHandler/NewPeerListner.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/EventHandler/PostHandler.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/EventHandler/PostHandler.class" />
       <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/Main.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/Main.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/Model/Authenticate.class" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/Model/Conversation.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/Model/Conversation.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/Model/Message.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/Model/Message.class" />
       <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/Model/Peer.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/Model/Peer.class" />
       <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/Model/Post.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/Model/Post.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/Model/Reply.class" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/Model/Reply.class" />
       <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/View/AppHome.fxml" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/View/AppHome.fxml" />
-      <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/View/Chats.fxml" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/View/Chats.fxml" />
+      <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/View/DiscoveredPeerView.fxml" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/View/DiscoveredPeerView.fxml" />
+      <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/View/Login.fxml" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/View/Login.fxml" />
       <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/View/MyProfile.fxml" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/View/MyProfile.fxml" />
+      <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/View/PeerProfile.fxml" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/View/PeerProfile.fxml" />
       <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/View/PeerRequest.fxml" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/View/PeerRequest.fxml" />
+      <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/View/RegConfirmation.fxml" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/View/RegConfirmation.fxml" />
+      <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/View/Register.fxml" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/View/Register.fxml" />
+      <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/View/ReplyView.fxml" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/View/ReplyView.fxml" />
+      <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/View/SelectPeers.fxml" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/View/SelectPeers.fxml" />
+      <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/View/ViewOnlinePeers.fxml" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/View/ViewPeerProfileList.fxml" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/View/ViewPeerProfileList.fxml" />
       <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/sample/View/addPartner.fxml" afterPath="$PROJECT_DIR$/out/production/SocialMedia/sample/View/addPartner.fxml" />
+      <change beforePath="$PROJECT_DIR$/out/production/SocialMedia/test/NewRequests/TestRequests.class" afterPath="" />
       <change beforePath="$PROJECT_DIR$/src/sample/CSS/Conv.css" afterPath="$PROJECT_DIR$/src/sample/CSS/Conv.css" />
+      <change beforePath="$PROJECT_DIR$/src/sample/CSS/Home.css" afterPath="$PROJECT_DIR$/src/sample/CSS/Home.css" />
+      <change beforePath="$PROJECT_DIR$/src/sample/CSS/MyProfile.css" afterPath="$PROJECT_DIR$/src/sample/CSS/MyProfile.css" />
+      <change beforePath="$PROJECT_DIR$/src/sample/CommunicationHandler/ClientConnection.java" afterPath="$PROJECT_DIR$/src/sample/CommunicationHandler/ClientConnection.java" />
+      <change beforePath="$PROJECT_DIR$/src/sample/CommunicationHandler/PeerConnection.java" afterPath="$PROJECT_DIR$/src/sample/CommunicationHandler/PeerConnection.java" />
       <change beforePath="$PROJECT_DIR$/src/sample/CommunicationHandler/ReaderThread.java" afterPath="$PROJECT_DIR$/src/sample/CommunicationHandler/ReaderThread.java" />
       <change beforePath="$PROJECT_DIR$/src/sample/CommunicationHandler/ReceivedPacketHandler.java" afterPath="$PROJECT_DIR$/src/sample/CommunicationHandler/ReceivedPacketHandler.java" />
       <change beforePath="$PROJECT_DIR$/src/sample/Controller/AddPartnerController.java" afterPath="$PROJECT_DIR$/src/sample/Controller/AddPartnerController.java" />
       <change beforePath="$PROJECT_DIR$/src/sample/Controller/ChatController.java" afterPath="$PROJECT_DIR$/src/sample/Controller/ChatController.java" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Controller/ConnectedPeerListController.java" afterPath="$PROJECT_DIR$/src/sample/Controller/ConnectedPeerListController.java" />
       <change beforePath="$PROJECT_DIR$/src/sample/Controller/HomeController.java" afterPath="$PROJECT_DIR$/src/sample/Controller/HomeController.java" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Controller/LoginController.java" afterPath="$PROJECT_DIR$/src/sample/Controller/LoginController.java" />
       <change beforePath="$PROJECT_DIR$/src/sample/Controller/MyProfileController.java" afterPath="$PROJECT_DIR$/src/sample/Controller/MyProfileController.java" />
       <change beforePath="$PROJECT_DIR$/src/sample/Controller/NewRequestController.java" afterPath="$PROJECT_DIR$/src/sample/Controller/NewRequestController.java" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Controller/PeerProfileController.java" afterPath="$PROJECT_DIR$/src/sample/Controller/PeerProfileController.java" />
       <change beforePath="$PROJECT_DIR$/src/sample/Controller/RegisterController.java" afterPath="$PROJECT_DIR$/src/sample/Controller/RegisterController.java" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Controller/ReplyController.java" afterPath="$PROJECT_DIR$/src/sample/Controller/ReplyController.java" />
       <change beforePath="$PROJECT_DIR$/src/sample/Controller/Validator.java" afterPath="$PROJECT_DIR$/src/sample/Controller/Validator.java" />
       <change beforePath="$PROJECT_DIR$/src/sample/DBHandler/CreateDB.java" afterPath="$PROJECT_DIR$/src/sample/DBHandler/CreateDB.java" />
       <change beforePath="$PROJECT_DIR$/src/sample/DBHandler/DbHandler.java" afterPath="$PROJECT_DIR$/src/sample/DBHandler/DbHandler.java" />
       <change beforePath="$PROJECT_DIR$/src/sample/EventHandler/ConversationHandler.java" afterPath="$PROJECT_DIR$/src/sample/EventHandler/ConversationHandler.java" />
-      <change beforePath="$PROJECT_DIR$/src/sample/EventHandler/NewPeerListner.java" afterPath="$PROJECT_DIR$/src/sample/EventHandler/NewPeerListner.java" />
+      <change beforePath="$PROJECT_DIR$/src/sample/EventHandler/HeartBeatHandler.java" afterPath="$PROJECT_DIR$/src/sample/EventHandler/HeartBeatHandler.java" />
+      <change beforePath="$PROJECT_DIR$/src/sample/EventHandler/PostHandler.java" afterPath="$PROJECT_DIR$/src/sample/EventHandler/PostHandler.java" />
       <change beforePath="$PROJECT_DIR$/src/sample/Main.java" afterPath="$PROJECT_DIR$/src/sample/Main.java" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Model/Authenticate.java" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Model/Conversation.java" afterPath="$PROJECT_DIR$/src/sample/Model/Conversation.java" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Model/Message.java" afterPath="$PROJECT_DIR$/src/sample/Model/Message.java" />
       <change beforePath="$PROJECT_DIR$/src/sample/Model/Peer.java" afterPath="$PROJECT_DIR$/src/sample/Model/Peer.java" />
       <change beforePath="$PROJECT_DIR$/src/sample/Model/Post.java" afterPath="$PROJECT_DIR$/src/sample/Model/Post.java" />
+      <change beforePath="$PROJECT_DIR$/src/sample/Model/Reply.java" afterPath="$PROJECT_DIR$/src/sample/Model/Reply.java" />
       <change beforePath="$PROJECT_DIR$/src/sample/View/AppHome.fxml" afterPath="$PROJECT_DIR$/src/sample/View/AppHome.fxml" />
-      <change beforePath="$PROJECT_DIR$/src/sample/View/Chats.fxml" afterPath="$PROJECT_DIR$/src/sample/View/Chats.fxml" />
+      <change beforePath="$PROJECT_DIR$/src/sample/View/DiscoveredPeerView.fxml" afterPath="$PROJECT_DIR$/src/sample/View/DiscoveredPeerView.fxml" />
+      <change beforePath="$PROJECT_DIR$/src/sample/View/Login.fxml" afterPath="$PROJECT_DIR$/src/sample/View/Login.fxml" />
       <change beforePath="$PROJECT_DIR$/src/sample/View/MyProfile.fxml" afterPath="$PROJECT_DIR$/src/sample/View/MyProfile.fxml" />
+      <change beforePath="$PROJECT_DIR$/src/sample/View/PeerProfile.fxml" afterPath="$PROJECT_DIR$/src/sample/View/PeerProfile.fxml" />
       <change beforePath="$PROJECT_DIR$/src/sample/View/PeerRequest.fxml" afterPath="$PROJECT_DIR$/src/sample/View/PeerRequest.fxml" />
+      <change beforePath="$PROJECT_DIR$/src/sample/View/RegConfirmation.fxml" afterPath="$PROJECT_DIR$/src/sample/View/RegConfirmation.fxml" />
+      <change beforePath="$PROJECT_DIR$/src/sample/View/Register.fxml" afterPath="$PROJECT_DIR$/src/sample/View/Register.fxml" />
+      <change beforePath="$PROJECT_DIR$/src/sample/View/ReplyView.fxml" afterPath="$PROJECT_DIR$/src/sample/View/ReplyView.fxml" />
+      <change beforePath="$PROJECT_DIR$/src/sample/View/SelectPeers.fxml" afterPath="$PROJECT_DIR$/src/sample/View/SelectPeers.fxml" />
+      <change beforePath="$PROJECT_DIR$/src/sample/View/ViewOnlinePeers.fxml" afterPath="$PROJECT_DIR$/src/sample/View/OnlinePeers.fxml" />
+      <change beforePath="$PROJECT_DIR$/src/sample/View/ViewPeerProfileList.fxml" afterPath="$PROJECT_DIR$/src/sample/View/ViewPeerProfileList.fxml" />
       <change beforePath="$PROJECT_DIR$/src/sample/View/addPartner.fxml" afterPath="$PROJECT_DIR$/src/sample/View/addPartner.fxml" />
+      <change beforePath="$PROJECT_DIR$/src/test/NewRequests/TestRequests.java" afterPath="" />
     </list>
     <ignored path="JavaFxApplication.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -183,7 +250,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/P2PSocialMedia$Main.coverage" NAME="Main Coverage Results" MODIFIED="1523948501699" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+    <SUITE FILE_PATH="coverage/P2PSocialMedia$Main.coverage" NAME="Main Coverage Results" MODIFIED="1525949959055" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
       <FILTER>sample.*</FILTER>
     </SUITE>
   </component>
@@ -250,140 +317,156 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DbHandler.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/DBHandler/DbHandler.java">
+      <file leaf-file-name="HomeController.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/sample/Controller/HomeController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-6438">
-              <caret line="345" column="91" lean-forward="false" selection-start-line="345" selection-start-column="91" selection-end-line="345" selection-end-column="91" />
+            <state relative-caret-position="17">
+              <caret line="314" column="0" lean-forward="false" selection-start-line="314" selection-start-column="0" selection-end-line="314" selection-end-column="0" />
               <folding>
-                <marker date="1524730146402" expanded="true" signature="1246:1374" ph="INSERT INTO PEER... " />
-                <marker date="1524730146402" expanded="true" signature="2567:2604" ph="select * fro... PEER" />
-                <marker date="1524730146402" expanded="true" signature="3981:4010" ph="UPDATE PEER... " />
-                <marker date="1524730146402" expanded="true" signature="3981:4031" ph="UPDATE PEER... " />
-                <marker date="1524730146402" expanded="true" signature="4519:4557" ph="delete from APP.PEER... " />
-                <marker date="1524730146402" expanded="true" signature="5046:5088" ph="select * fro... PEER" />
-                <marker date="1524730146402" expanded="true" signature="5046:5106" ph="select * fro... PEER" />
-                <marker date="1524730146402" expanded="true" signature="6659:6722" ph="select USERN... PEER" />
-                <marker date="1524730146402" expanded="true" signature="7541:7571" ph="select * fro... CONVERSATION" />
-                <marker date="1524730146402" expanded="true" signature="8330:8389" ph="select * fro... POST" />
-                <marker date="1524730146402" expanded="true" signature="8529:8569" ph="select * fro... POST" />
-                <marker date="1524730146402" expanded="true" signature="8732:8750" ph="select * fro... POST" />
-                <marker date="1524730146402" expanded="true" signature="9509:9586" ph="INSERT INTO APP.POST... " />
-                <marker date="1524730146402" expanded="true" signature="10438:10484" ph="select MAX P... POST" />
-                <marker date="1524730146402" expanded="true" signature="10438:10502" ph="select MAX(P... POST" />
-                <marker date="1524730146402" expanded="true" signature="11162:11210" ph="select IP,PO... PEER" />
-                <marker date="1524730146402" expanded="true" signature="12251:12327" ph="INSERT INTO APP.DISCOVERD_PEERS... " />
-                <marker date="1524730146402" expanded="true" signature="13052:13109" ph="UPDATE DISCOVERD_PEERS... " />
-                <marker date="1524730146402" expanded="true" signature="13688:13750" ph="select USERN... PEER" />
-                <marker date="1524730146402" expanded="true" signature="14920:14969" ph="delete from APP.PEER_DATA... " />
-                <marker date="1524730146402" expanded="true" signature="15417:15506" ph="INSERT INTO APP.REPLY... " />
-                <marker date="1524730146402" expanded="true" signature="16428:16494" ph="select MAX(R... REPLY" />
-                <marker date="1524730146402" expanded="true" signature="16428:16520" ph="select MAX(R... REPLY" />
-                <marker date="1524730146402" expanded="true" signature="17204:17241" ph="select * fro... REPLY" />
-                <marker date="1524730146402" expanded="true" signature="18202:18228" ph="select * fro... CONVERSATION" />
-                <marker date="1524730146402" expanded="true" signature="19869:19895" ph="select * fro... CONVERSATION" />
-                <marker date="1524730146402" expanded="true" signature="19869:19948" ph="select * fro... CONVERSATION" />
-                <marker date="1524730146402" expanded="true" signature="21500:21574" ph="select * fro... CHAT" />
-                <marker date="1524730146402" expanded="true" signature="22457:22548" ph="select * fro... MESSAGE" />
-                <marker date="1524730146402" expanded="true" signature="22457:22549" ph="select * fro... MESSAGE" />
-                <marker date="1524730146402" expanded="true" signature="24335:24447" ph="select MAX(C... CONVERSATION" />
-                <marker date="1524730146402" expanded="true" signature="25022:25162" ph="select MAX(C... CONVERSATION" />
-                <marker date="1524730146402" expanded="true" signature="25746:25880" ph="INSERT INTO APP.CONVERSATION... " />
-                <marker date="1524730146402" expanded="true" signature="27115:27199" ph="INSERT INTO APP.CHAT... " />
-                <marker date="1524730146402" expanded="true" signature="27797:27947" ph="INSERT INTO APP.CHAT... " />
-                <marker date="1524730146402" expanded="true" signature="29607:29686" ph="select * fro... CONVERSATION" />
-                <marker date="1524730146402" expanded="true" signature="30285:30381" ph="UPDATE PEER... " />
+                <element signature="e#15040#15041#0" expanded="true" />
+                <element signature="e#15076#15077#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SelectPeers.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/Controller/SelectPeers.java">
+      <file leaf-file-name="Home.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sample/CSS/Home.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1201">
-              <caret line="101" column="68" lean-forward="false" selection-start-line="101" selection-start-column="68" selection-end-line="101" selection-end-column="68" />
+            <state relative-caret-position="1530">
+              <caret line="90" column="0" lean-forward="false" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PeerConnection.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/CommunicationHandler/PeerConnection.java">
+      <file leaf-file-name="Conv.css" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sample/CSS/Conv.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-886">
-              <caret line="38" column="26" lean-forward="false" selection-start-line="38" selection-start-column="26" selection-end-line="38" selection-end-column="26" />
+            <state relative-caret-position="0">
+              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ReceivedPacketHandler.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/CommunicationHandler/ReceivedPacketHandler.java">
+      <file leaf-file-name="PostHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sample/EventHandler/PostHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="394">
-              <caret line="43" column="44" lean-forward="false" selection-start-line="43" selection-start-column="44" selection-end-line="43" selection-end-column="44" />
+            <state relative-caret-position="476">
+              <caret line="37" column="34" lean-forward="false" selection-start-line="37" selection-start-column="34" selection-end-line="37" selection-end-column="34" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ReaderThread.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/CommunicationHandler/ReaderThread.java">
+      <file leaf-file-name="DbHandler.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sample/DBHandler/DbHandler.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="197">
-              <caret line="31" column="47" lean-forward="false" selection-start-line="31" selection-start-column="47" selection-end-line="31" selection-end-column="47" />
+            <state relative-caret-position="8296">
+              <caret line="503" column="66" lean-forward="false" selection-start-line="503" selection-start-column="66" selection-end-line="503" selection-end-column="66" />
+              <folding>
+                <marker date="1526051081377" expanded="true" signature="1282:1410" ph="INSERT INTO PEER... " />
+                <marker date="1526051081377" expanded="true" signature="2603:2640" ph="select * fro... PEER" />
+                <marker date="1526051081377" expanded="true" signature="4017:4067" ph="UPDATE PEER... " />
+                <marker date="1526051081377" expanded="true" signature="4555:4593" ph="delete from APP.PEER... " />
+                <marker date="1526051081377" expanded="true" signature="5082:5142" ph="select * fro... PEER" />
+                <marker date="1526051081377" expanded="true" signature="6635:6682" ph="select USERN... PEER" />
+                <marker date="1526051081377" expanded="true" signature="7363:7426" ph="select USERN... PEER" />
+                <marker date="1526051081377" expanded="true" signature="8245:8275" ph="select * fro... CONVERSATION" />
+                <marker date="1526051081377" expanded="true" signature="9013:9069" ph="select * fro... POST" />
+                <marker date="1526051081377" expanded="true" signature="10302:10361" ph="select * fro... POST" />
+                <marker date="1526051081377" expanded="true" signature="10501:10541" ph="select * fro... POST" />
+                <marker date="1526051081377" expanded="true" signature="11598:11649" ph="select * fro... POST" />
+                <marker date="1526051081377" expanded="true" signature="11598:11650" ph="select * fro... POST" />
+                <marker date="1526051081377" expanded="true" signature="12412:12489" ph="INSERT INTO APP.POST... " />
+                <marker date="1526051081377" expanded="true" signature="13341:13405" ph="select MAX(P... POST" />
+                <marker date="1526051081377" expanded="true" signature="14057:14105" ph="select IP,PO... PEER" />
+                <marker date="1526051081377" expanded="true" signature="15146:15222" ph="INSERT INTO APP.DISCOVERD_PEERS... " />
+                <marker date="1526051081377" expanded="true" signature="15947:16004" ph="UPDATE DISCOVERD_PEERS... " />
+                <marker date="1526051081377" expanded="true" signature="16583:16645" ph="select USERN... DISCOVERD_PEERS" />
+                <marker date="1526051081377" expanded="true" signature="17816:17865" ph="delete from APP.DISCOVERD_PEERS... " />
+                <marker date="1526051081377" expanded="true" signature="18313:18418" ph="INSERT INTO APP.REPLY... " />
+                <marker date="1526051081377" expanded="true" signature="19397:19489" ph="select MAX(R... REPLY" />
+                <marker date="1526051081377" expanded="true" signature="20173:20210" ph="select * fro... REPLY" />
+                <marker date="1526051081377" expanded="true" signature="21396:21505" ph="select * fro... CONVERSATION" />
+                <marker date="1526051081377" expanded="true" signature="21864:21944" ph="select * fro... CONVERSATION" />
+                <marker date="1526051081377" expanded="true" signature="23773:23799" ph="select * fro... CONVERSATION" />
+                <marker date="1526051081377" expanded="true" signature="25451:25530" ph="select * fro... CONVERSATION" />
+                <marker date="1526051081377" expanded="true" signature="27094:27168" ph="select * fro... CHAT" />
+                <marker date="1526051081377" expanded="true" signature="28156:28280" ph="select * fro... MESSAGE" />
+                <marker date="1526051081377" expanded="true" signature="28671:28762" ph="select * fro... MESSAGE" />
+                <marker date="1526051081377" expanded="true" signature="30572:30684" ph="select MAX(C... CONVERSATION" />
+                <marker date="1526051081377" expanded="true" signature="31259:31399" ph="select MAX(M... MESSAGE" />
+                <marker date="1526051081377" expanded="true" signature="31983:32117" ph="INSERT INTO APP.CONVERSATION... " />
+                <marker date="1526051081377" expanded="true" signature="33414:33495" ph="delete from APP.CONVERSATION... " />
+                <marker date="1526051081377" expanded="true" signature="34101:34174" ph="delete from APP.CHAT... " />
+                <marker date="1526051081377" expanded="true" signature="34776:34852" ph="delete from APP.MESSAGE... " />
+                <marker date="1526051081377" expanded="true" signature="35468:35552" ph="INSERT INTO APP.CHAT... " />
+                <marker date="1526051081377" expanded="true" signature="36150:36300" ph="INSERT INTO APP.MESSAGE... " />
+                <marker date="1526051081377" expanded="true" signature="37960:38039" ph="select * fro... CONVERSATION" />
+                <marker date="1526051081377" expanded="true" signature="38638:38734" ph="UPDATE PEER... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ClientConnection.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sample/CommunicationHandler/ClientConnection.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="493">
+              <caret line="35" column="11" lean-forward="false" selection-start-line="35" selection-start-column="11" selection-end-line="35" selection-end-column="11" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MyProfileController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/Controller/MyProfileController.java">
+      <file leaf-file-name="OnlinePeerController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sample/Controller/OnlinePeerController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="227" column="0" lean-forward="false" selection-start-line="227" selection-start-column="0" selection-end-line="227" selection-end-column="0" />
+            <state relative-caret-position="68">
+              <caret line="22" column="13" lean-forward="false" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HeartBeatHandler.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/sample/EventHandler/HeartBeatHandler.java">
+      <file leaf-file-name="MainTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/tests/sample/MainTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="34">
-              <caret line="2" column="29" lean-forward="false" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
-              <folding />
+            <state relative-caret-position="1054">
+              <caret line="88" column="18" lean-forward="false" selection-start-line="88" selection-start-column="18" selection-end-line="88" selection-end-column="18" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HomeController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/Controller/HomeController.java">
+      <file leaf-file-name="DbHandlerTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Test/sample/DBHandler/DbHandlerTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="39">
-              <caret line="377" column="59" lean-forward="false" selection-start-line="377" selection-start-column="59" selection-end-line="377" selection-end-column="59" />
-              <folding />
+            <state relative-caret-position="68">
+              <caret line="21" column="28" lean-forward="false" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="28" />
+              <folding>
+                <element signature="e#652#653#0" expanded="true" />
+                <element signature="e#686#687#0" expanded="true" />
+                <element signature="e#2717#2718#0" expanded="true" />
+                <element signature="e#2792#2793#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LoginController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/Controller/LoginController.java">
+      <file leaf-file-name="CreateDBTest.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Test/sample/DBHandler/CreateDBTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="139">
-              <caret line="60" column="30" lean-forward="false" selection-start-line="60" selection-start-column="30" selection-end-line="60" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Validator.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sample/Controller/Validator.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="423">
-              <caret line="94" column="41" lean-forward="false" selection-start-line="94" selection-start-column="41" selection-end-line="94" selection-end-column="41" />
-              <folding />
+            <state relative-caret-position="391">
+              <caret line="37" column="33" lean-forward="false" selection-start-line="37" selection-start-column="33" selection-end-line="37" selection-end-column="33" />
+              <folding>
+                <element signature="e#635#636#0" expanded="true" />
+                <element signature="e#675#676#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -394,9 +477,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="JavaFXApplication" />
-        <option value="CSS File" />
         <option value="FxmlFile" />
+        <option value="CSS File" />
         <option value="Class" />
+        <option value="JUnit4 Test Class" />
       </list>
     </option>
   </component>
@@ -520,57 +604,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/sample/CSS/MyProfile.css" />
-        <option value="$PROJECT_DIR$/src/sample/Model/Owner.java" />
-        <option value="$PROJECT_DIR$/src/sample/View/peerRequests.fxml" />
-        <option value="$PROJECT_DIR$/src/sample/View/Register.fxml" />
-        <option value="$PROJECT_DIR$/src/sample/Model/ThisPeer.java" />
-        <option value="$PROJECT_DIR$/src/test/NewRequests/TestRequests.java" />
-        <option value="$PROJECT_DIR$/src/sample/CommunicationHandler/ClientConnection.java" />
+        <option value="$PROJECT_DIR$/src/sample/Controller/PeerProfileController.java" />
+        <option value="$PROJECT_DIR$/src/sample/CSS/Reply.css" />
+        <option value="$PROJECT_DIR$/src/sample/Controller/MyProfileController.java" />
+        <option value="$PROJECT_DIR$/src/sample/Main.java" />
+        <option value="$PROJECT_DIR$/src/sample/Controller/Validator.java" />
+        <option value="$PROJECT_DIR$/src/sample/Controller/UsernameValidator.java" />
+        <option value="$PROJECT_DIR$/Test/sample/Controller/RegisterControllerTest.java" />
+        <option value="$PROJECT_DIR$/src/sample/Model/Object.java" />
+        <option value="$PROJECT_DIR$/src/sample/Model/Peer.java" />
+        <option value="$PROJECT_DIR$/Test/sample/EventHandler/ConversationHandlerTest.java" />
+        <option value="$PROJECT_DIR$/src/sample/EventHandler/ConversationHandler.java" />
         <option value="$PROJECT_DIR$/src/sample/View/ReplyView.fxml" />
-        <option value="$PROJECT_DIR$/src/sample/Controller/ReplyController.java" />
-        <option value="$PROJECT_DIR$/src/sample/Model/Reply.java" />
-        <option value="$PROJECT_DIR$/src/sample/CSS/Home.css" />
-        <option value="$PROJECT_DIR$/src/sample/EventHandler/PostHandler.java" />
-        <option value="$PROJECT_DIR$/src/sample/DBHandler/DbHandler2.java" />
-        <option value="$PROJECT_DIR$/src/sample/View/RequestChatTitle.fxml" />
+        <option value="$PROJECT_DIR$/src/sample/View/ViewPeerProfileList.fxml" />
+        <option value="$PROJECT_DIR$/src/sample/View/SelectPeers.fxml" />
+        <option value="$PROJECT_DIR$/src/sample/View/PeerRequest.fxml" />
+        <option value="$PROJECT_DIR$/src/sample/View/DiscoveredPeerView.fxml" />
+        <option value="$PROJECT_DIR$/src/sample/View/OnlinePeers.fxml" />
+        <option value="$PROJECT_DIR$/src/sample/View/MyProfile.fxml" />
+        <option value="$PROJECT_DIR$/Test/sample/Controller/ValidatorTest.java" />
+        <option value="$PROJECT_DIR$/src/sample/EventHandler/HeartBeatHandler.java" />
         <option value="$PROJECT_DIR$/src/sample/Model/Message.java" />
         <option value="$PROJECT_DIR$/src/sample/Model/Conversation.java" />
-        <option value="$PROJECT_DIR$/src/sample/Controller/LoginController.java" />
-        <option value="$PROJECT_DIR$/src/sample/View/Chats.fxml" />
-        <option value="$PROJECT_DIR$/src/sample/CSS/Chat.css" />
-        <option value="$PROJECT_DIR$/src/sample/EventHandler/ConversationHandler.java" />
         <option value="$PROJECT_DIR$/src/sample/CommunicationHandler/PeerConnection.java" />
-        <option value="$PROJECT_DIR$/src/sample/Controller/AddPartnerController.java" />
-        <option value="$PROJECT_DIR$/src/sample/CommunicationHandler/ReceivedPacketHandler.java" />
-        <option value="$PROJECT_DIR$/src/sample/Controller/FileChooserSample.java" />
-        <option value="$PROJECT_DIR$/src/sample/Model/Peer.java" />
-        <option value="$PROJECT_DIR$/src/sample/Model/Post.java" />
-        <option value="$PROJECT_DIR$/src/sample/Main.java" />
-        <option value="$PROJECT_DIR$/src/sample/Controller/RegisterController.java" />
-        <option value="$PROJECT_DIR$/src/sample/View/MyProfile.fxml" />
-        <option value="$PROJECT_DIR$/src/sample/DBHandler/CreateDB.java" />
-        <option value="$PROJECT_DIR$/src/sample/View/ViewPeerProfileList.fxml" />
+        <option value="$PROJECT_DIR$/src/sample/CommunicationHandler/MessageRetransmitter.java" />
+        <option value="$PROJECT_DIR$/Test/sample/CommunicationHandler/MessageRetransmitterTest.java" />
+        <option value="$PROJECT_DIR$/Test/sample/CommunicationHandler/ConversationRetransmitterTest.java" />
+        <option value="$PROJECT_DIR$/src/sample/CommunicationHandler/ConversationRetransmitter.java" />
+        <option value="$PROJECT_DIR$/src/sample/View/Register.fxml" />
+        <option value="$PROJECT_DIR$/src/sample/View/RegConfirmation.fxml" />
+        <option value="$PROJECT_DIR$/src/sample/Controller/LoginConfirmationController.java" />
         <option value="$PROJECT_DIR$/src/sample/View/AppHome.fxml" />
-        <option value="$PROJECT_DIR$/src/sample/Controller/SelectPeersToRequestController.java" />
-        <option value="$PROJECT_DIR$/src/sample/View/SelectPeers.fxml" />
-        <option value="$PROJECT_DIR$/src/sample/EventHandler/NewPeerListner.java" />
-        <option value="$PROJECT_DIR$/src/sample/Controller/DiscoveredPeerViewController.java" />
-        <option value="$PROJECT_DIR$/src/sample/View/DiscoveredPeerView.fxml" />
+        <option value="$PROJECT_DIR$/src/sample/View/PeerProfile.fxml" />
+        <option value="$PROJECT_DIR$/src/sample/Controller/LoginController.java" />
+        <option value="$PROJECT_DIR$/src/sample/Controller/RegisterController.java" />
+        <option value="$PROJECT_DIR$/src/sample/Controller/ReplyController.java" />
         <option value="$PROJECT_DIR$/src/sample/Controller/ChatController.java" />
         <option value="$PROJECT_DIR$/src/sample/Controller/NewRequestController.java" />
-        <option value="$PROJECT_DIR$/src/sample/View/PeerRequest.fxml" />
-        <option value="$PROJECT_DIR$/src/sample/View/addPartner.fxml" />
-        <option value="$PROJECT_DIR$/src/sample/CSS/Conv.css" />
-        <option value="$PROJECT_DIR$/src/sample/View/PeerProfile.fxml" />
-        <option value="$PROJECT_DIR$/src/sample/Controller/PeerProfileController.java" />
-        <option value="$PROJECT_DIR$/src/sample/Controller/ConnectedPeerListController.java" />
+        <option value="$PROJECT_DIR$/src/sample/Model/Reply.java" />
+        <option value="$PROJECT_DIR$/src/sample/Model/Post.java" />
+        <option value="$PROJECT_DIR$/src/sample/DBHandler/CreateDB.java" />
         <option value="$PROJECT_DIR$/src/sample/DBHandler/DbHandler.java" />
-        <option value="$PROJECT_DIR$/src/sample/Controller/SelectPeers.java" />
-        <option value="$PROJECT_DIR$/src/sample/CommunicationHandler/ReaderThread.java" />
-        <option value="$PROJECT_DIR$/src/sample/Controller/Validator.java" />
+        <option value="$PROJECT_DIR$/src/sample/EventHandler/PostHandler.java" />
+        <option value="$PROJECT_DIR$/src/sample/View/Login.fxml" />
+        <option value="$PROJECT_DIR$/src/sample/CommunicationHandler/ReceivedPacketHandler.java" />
+        <option value="$PROJECT_DIR$/tests/sample/Controller/LoginControllerTest.java" />
+        <option value="$PROJECT_DIR$/tests/sample/MainTest.java" />
+        <option value="$PROJECT_DIR$/Test/sample/DBHandler/CreateDBTest.java" />
+        <option value="$PROJECT_DIR$/Test/sample/DBHandler/DbHandlerTest.java" />
+        <option value="$PROJECT_DIR$/src/sample/CommunicationHandler/ClientConnection.java" />
+        <option value="$PROJECT_DIR$/src/sample/CSS/Home.css" />
         <option value="$PROJECT_DIR$/src/sample/Controller/HomeController.java" />
-        <option value="$PROJECT_DIR$/src/sample/Controller/MyProfileController.java" />
       </list>
     </option>
   </component>
@@ -588,10 +672,10 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds" extendedState="7">
-    <option name="x" value="43" />
-    <option name="y" value="7" />
-    <option name="width" value="1378" />
-    <option name="height" value="780" />
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1386" />
+    <option name="height" value="788" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectReloadState">
@@ -623,7 +707,7 @@
             <path>
               <item name="P2PSocialMedia" type="b2602c69:ProjectViewProjectNode" />
               <item name="P2PSocialMedia" type="462c0819:PsiDirectoryNode" />
-              <item name="pics" type="462c0819:PsiDirectoryNode" />
+              <item name="out" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="P2PSocialMedia" type="b2602c69:ProjectViewProjectNode" />
@@ -676,13 +760,6 @@
               <item name="P2PSocialMedia" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
               <item name="sample" type="462c0819:PsiDirectoryNode" />
-              <item name="Images" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="P2PSocialMedia" type="b2602c69:ProjectViewProjectNode" />
-              <item name="P2PSocialMedia" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="sample" type="462c0819:PsiDirectoryNode" />
               <item name="Model" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -695,15 +772,59 @@
             <path>
               <item name="P2PSocialMedia" type="b2602c69:ProjectViewProjectNode" />
               <item name="P2PSocialMedia" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="NewRequests" type="462c0819:PsiDirectoryNode" />
+              <item name="Test" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="P2PSocialMedia" type="b2602c69:ProjectViewProjectNode" />
+              <item name="P2PSocialMedia" type="462c0819:PsiDirectoryNode" />
+              <item name="Test" type="462c0819:PsiDirectoryNode" />
+              <item name="sample" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="P2PSocialMedia" type="b2602c69:ProjectViewProjectNode" />
+              <item name="P2PSocialMedia" type="462c0819:PsiDirectoryNode" />
+              <item name="Test" type="462c0819:PsiDirectoryNode" />
+              <item name="sample" type="462c0819:PsiDirectoryNode" />
+              <item name="CommunicationHandler" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="P2PSocialMedia" type="b2602c69:ProjectViewProjectNode" />
+              <item name="P2PSocialMedia" type="462c0819:PsiDirectoryNode" />
+              <item name="Test" type="462c0819:PsiDirectoryNode" />
+              <item name="sample" type="462c0819:PsiDirectoryNode" />
+              <item name="Controller" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="P2PSocialMedia" type="b2602c69:ProjectViewProjectNode" />
+              <item name="P2PSocialMedia" type="462c0819:PsiDirectoryNode" />
+              <item name="Test" type="462c0819:PsiDirectoryNode" />
+              <item name="sample" type="462c0819:PsiDirectoryNode" />
+              <item name="DBHandler" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="P2PSocialMedia" type="b2602c69:ProjectViewProjectNode" />
+              <item name="P2PSocialMedia" type="462c0819:PsiDirectoryNode" />
+              <item name="Test" type="462c0819:PsiDirectoryNode" />
+              <item name="sample" type="462c0819:PsiDirectoryNode" />
+              <item name="EventHandler" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="P2PSocialMedia" type="b2602c69:ProjectViewProjectNode" />
+              <item name="P2PSocialMedia" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="P2PSocialMedia" type="b2602c69:ProjectViewProjectNode" />
+              <item name="P2PSocialMedia" type="462c0819:PsiDirectoryNode" />
+              <item name="tests" type="462c0819:PsiDirectoryNode" />
+              <item name="sample" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
-      <pane id="PackagesPane" />
       <pane id="AndroidView" />
+      <pane id="PackagesPane" />
       <pane id="Scratches" />
     </panes>
   </component>
@@ -719,13 +840,30 @@
     <property name="dynamic.classpath" value="false" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../chinApp" />
-    <property name="project.structure.last.edited" value="Modules" />
-    <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../BSServer" />
+    <property name="project.structure.last.edited" value="Libraries" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
     <property name="com.intellij.database.dataSource.DataSourceTemplate" value="Derby (Embedded)" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
+    <property name="Downloaded.Files.Path.Enabled" value="false" />
+    <property name="Repository.Attach.JavaDocs" value="false" />
+    <property name="Repository.Attach.Sources" value="false" />
+    <property name="last_directory_selection" value="$PROJECT_DIR$/tests/sample" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="sample.Controller" />
+      <recent name="sample" />
+      <recent name="sample.DBHandler" />
+      <recent name="sample.CommunicationHandler" />
+      <recent name="sample.EventHandler" />
+    </key>
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -739,7 +877,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Main">
     <configuration default="true" type="Applet" factoryName="Applet">
       <module />
       <option name="HTML_USED" value="false" />
@@ -782,6 +920,131 @@
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="" />
       <envs />
+    </configuration>
+    <configuration name="CreateDBTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="sample.DBHandler.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="SocialMedia" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="sample.DBHandler" />
+      <option name="MAIN_CLASS_NAME" value="sample.DBHandler.CreateDBTest" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
+    <configuration name="DbHandlerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="sample.DBHandler.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="SocialMedia" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="sample.DBHandler" />
+      <option name="MAIN_CLASS_NAME" value="sample.DBHandler.DbHandlerTest" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
+    <configuration name="DbHandlerTest.addMe" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="sample.DBHandler.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="SocialMedia" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="sample.DBHandler" />
+      <option name="MAIN_CLASS_NAME" value="sample.DBHandler.DbHandlerTest" />
+      <option name="METHOD_NAME" value="addMe" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
+    <configuration name="MainTest.testCancelButtion" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="sample.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="SocialMedia" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="sample" />
+      <option name="MAIN_CLASS_NAME" value="sample.MainTest" />
+      <option name="METHOD_NAME" value="testCancelButtion" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
+    <configuration name="MainTest.testCorrectInput" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
+          <option name="PATTERN" value="sample.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <module name="SocialMedia" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" value="sample" />
+      <option name="MAIN_CLASS_NAME" value="sample.MainTest" />
+      <option name="METHOD_NAME" value="testCorrectInput" />
+      <option name="TEST_OBJECT" value="method" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="moduleWithDependencies" />
+      </option>
+      <envs />
+      <patterns />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
@@ -855,6 +1118,23 @@
       <Host>localhost</Host>
       <Port>5050</Port>
     </configuration>
+    <list size="6">
+      <item index="0" class="java.lang.String" itemvalue="Application.Main" />
+      <item index="1" class="java.lang.String" itemvalue="JUnit.CreateDBTest" />
+      <item index="2" class="java.lang.String" itemvalue="JUnit.MainTest.testCorrectInput" />
+      <item index="3" class="java.lang.String" itemvalue="JUnit.MainTest.testCancelButtion" />
+      <item index="4" class="java.lang.String" itemvalue="JUnit.DbHandlerTest" />
+      <item index="5" class="java.lang.String" itemvalue="JUnit.DbHandlerTest.addMe" />
+    </list>
+    <recent_temporary>
+      <list size="5">
+        <item index="0" class="java.lang.String" itemvalue="JUnit.DbHandlerTest.addMe" />
+        <item index="1" class="java.lang.String" itemvalue="JUnit.DbHandlerTest" />
+        <item index="2" class="java.lang.String" itemvalue="JUnit.CreateDBTest" />
+        <item index="3" class="java.lang.String" itemvalue="JUnit.MainTest.testCorrectInput" />
+        <item index="4" class="java.lang.String" itemvalue="JUnit.MainTest.testCancelButtion" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
@@ -969,51 +1249,161 @@
       <workItem from="1524644180061" duration="11275000" />
       <workItem from="1524665194551" duration="11605000" />
       <workItem from="1524703984338" duration="4601000" />
-      <workItem from="1524718853492" duration="13483000" />
+      <workItem from="1524718853492" duration="15343000" />
+      <workItem from="1524743598637" duration="601000" />
+      <workItem from="1524747522992" duration="20666000" />
+      <workItem from="1524792610967" duration="2228000" />
+      <workItem from="1524807210882" duration="3920000" />
+      <workItem from="1524815832946" duration="9154000" />
+      <workItem from="1524834760000" duration="1084000" />
+      <workItem from="1524835970037" duration="5551000" />
+      <workItem from="1525018702084" duration="2440000" />
+      <workItem from="1525101226864" duration="9821000" />
+      <workItem from="1525144133676" duration="17562000" />
+      <workItem from="1525171062976" duration="8739000" />
+      <workItem from="1525248216574" duration="5230000" />
+      <workItem from="1525267669410" duration="688000" />
+      <workItem from="1525349166385" duration="15114000" />
+      <workItem from="1525451305932" duration="1602000" />
+      <workItem from="1525480569006" duration="17745000" />
+      <workItem from="1525502844886" duration="14594000" />
+      <workItem from="1525539623492" duration="7681000" />
+      <workItem from="1525787621026" duration="14997000" />
+      <workItem from="1525834675417" duration="3968000" />
+      <workItem from="1525855694960" duration="694000" />
+      <workItem from="1525858588409" duration="2576000" />
+      <workItem from="1525879390003" duration="7063000" />
+      <workItem from="1525921493955" duration="6115000" />
+      <workItem from="1525938368331" duration="14715000" />
+      <workItem from="1525964454630" duration="6476000" />
+      <workItem from="1526015905330" duration="1600000" />
+      <workItem from="1526031405046" duration="4489000" />
+      <workItem from="1526048110923" duration="7857000" />
+      <workItem from="1526056208955" duration="36000" />
+      <workItem from="1526085366554" duration="125000" />
+      <workItem from="1526089298417" duration="27627000" />
+      <workItem from="1526139513749" duration="594000" />
     </task>
     <servers />
   </component>
+  <component name="TestHistory">
+    <history-entry file="CreateDBTest - 2018.05.12 at 15h 29m 51s.xml">
+      <configuration name="CreateDBTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="DbHandlerTest - 2018.05.12 at 15h 30m 54s.xml">
+      <configuration name="DbHandlerTest" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="DbHandlerTest_addMe - 2018.05.12 at 15h 35m 26s.xml">
+      <configuration name="DbHandlerTest.addMe" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="DbHandlerTest_addMe - 2018.05.12 at 16h 00m 35s.xml">
+      <configuration name="DbHandlerTest.addMe" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MainTest_testCancelButtion - 2018.05.12 at 10h 19m 38s.xml">
+      <configuration name="MainTest.testCancelButtion" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MainTest_testCancelButtion - 2018.05.12 at 13h 04m 07s.xml">
+      <configuration name="MainTest.testCancelButtion" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MainTest_testCorrectInput - 2018.05.12 at 11h 54m 54s.xml">
+      <configuration name="MainTest.testCorrectInput" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MainTest_testCorrectInput - 2018.05.12 at 13h 01m 48s.xml">
+      <configuration name="MainTest.testCorrectInput" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MainTest_testCorrectInput - 2018.05.12 at 13h 03m 22s.xml">
+      <configuration name="MainTest.testCorrectInput" configurationId="JUnit" />
+    </history-entry>
+    <history-entry file="MainTest_testCorrectInput - 2018.05.12 at 13h 04m 41s.xml">
+      <configuration name="MainTest.testCorrectInput" configurationId="JUnit" />
+    </history-entry>
+  </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="751606000" />
+    <option name="totallyTimeSpent" value="996818000" />
+  </component>
+  <component name="TodoView">
+    <todo-panel id="selected-file">
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
+    <todo-panel id="all">
+      <are-packages-shown value="true" />
+      <is-autoscroll-to-source value="true" />
+    </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="754" extended-state="7" />
+    <frame x="-8" y="-8" width="1386" height="788" extended-state="7" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.19224556" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22617124" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.52459013" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.017397882" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.52342486" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.012927757" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14054927" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.38933763" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19062027" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.07663126" sideWeight="0.49348232" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.20437406" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13800906" sideWeight="0.44071147" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24961832" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24886535" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.11793215" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32885906" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="SQL Generator" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.017160686" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
-      <window_info id="Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17490494" sideWeight="0.5074627" order="9" side_tool="true" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.019011406" sideWeight="0.55928856" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.5945073" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17540984" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
+    <layout-to-restore>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.52342486" sideWeight="0.5" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.012927757" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="SQL Generator" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.017160686" sideWeight="0.5" order="15" side_tool="false" content_ui="tabs" />
+      <window_info id="Profiler" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.019667171" sideWeight="0.4858156" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24886535" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.11793215" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22617124" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.0" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26065573" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32956383" sideWeight="0.5" order="14" side_tool="false" content_ui="tabs" />
+      <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.11270802" sideWeight="0.5141844" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="13" side_tool="false" content_ui="tabs" />
+      <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22737643" sideWeight="0.6703755" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Problems" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.5945073" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32885906" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="1" />
@@ -1029,31 +1419,13 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/sample/DBHandler/DbHandler.java</url>
-          <line>309</line>
+          <url>file://$PROJECT_DIR$/src/sample/Main.java</url>
+          <line>51</line>
           <properties />
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/sample/DBHandler/DbHandler.java</url>
-          <line>64</line>
-          <properties />
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/sample/DBHandler/DbHandler.java</url>
-          <line>65</line>
-          <properties />
-          <option name="timeStamp" value="7" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/sample/DBHandler/DbHandler.java</url>
-          <line>22</line>
-          <properties />
-          <option name="timeStamp" value="11" />
+          <option name="timeStamp" value="12" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="12" />
+      <option name="time" value="15" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1062,479 +1434,439 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="das://table:/31cc62b8/a050ff1a-c14e-42f9-9b3b-61b613222c87/APP.CONVERSATION" />
-    <entry file="file://$PROJECT_DIR$/src/sample/CSS/Chat.css">
+    <entry file="file://$PROJECT_DIR$/src/sample/CSS/Request.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="5" column="1" lean-forward="false" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Model/Reply.java">
+    <entry file="file://$PROJECT_DIR$/Test/sample/Controller/ValidatorTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="13" lean-forward="false" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="13" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+        <state relative-caret-position="816">
+          <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/CSS/Reply.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Model/Message.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="254">
-          <caret line="43" column="5" lean-forward="false" selection-start-line="43" selection-start-column="5" selection-end-line="43" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/bcafe366-1875-43a9-a262-41eac0f15a13/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://table:/31cc62b8/a050ff1a-c14e-42f9-9b3b-61b613222c87/APP.MESSAGE" />
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/1f5428dc-1ab0-47ea-9644-d1dd723986e1/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$APPLICATION_CONFIG_DIR$/consoles/db/0ec50b30-c01a-4ab1-91ea-c590226ad541/console.sql">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="867">
+          <caret line="78" column="35" lean-forward="false" selection-start-line="78" selection-start-column="35" selection-end-line="78" selection-end-column="35" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Model/Conversation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="22" column="16" lean-forward="false" selection-start-line="22" selection-start-column="16" selection-end-line="22" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="false" />
-          </folding>
+        <state relative-caret-position="1513">
+          <caret line="123" column="35" lean-forward="false" selection-start-line="123" selection-start-column="35" selection-end-line="123" selection-end-column="35" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/EventHandler/ConversationHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/sample/CommunicationHandler/MessageRetransmitter.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-238">
-          <caret line="82" column="5" lean-forward="false" selection-start-line="82" selection-start-column="5" selection-end-line="82" selection-end-column="5" />
-          <folding />
+        <state relative-caret-position="17">
+          <caret line="37" column="45" lean-forward="false" selection-start-line="37" selection-start-column="45" selection-end-line="37" selection-end-column="45" />
         </state>
       </provider>
     </entry>
-    <entry file="das://table:/31cc62b8/0ec50b30-c01a-4ab1-91ea-c590226ad541/APP.CONVERSATION">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="das://table:/31cc62b8/0ec50b30-c01a-4ab1-91ea-c590226ad541/APP.MESSAGE">
-      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
-        <state>
-          <filtering enabled="true" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/View/ReplyView.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
+    <entry file="file://$PROJECT_DIR$/Test/sample/CommunicationHandler/MessageRetransmitterTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="748">
+          <caret line="53" column="8" lean-forward="false" selection-start-line="53" selection-start-column="8" selection-end-line="53" selection-end-column="8" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/View/Chats.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
+    <entry file="file://$PROJECT_DIR$/Test/sample/CommunicationHandler/ConversationRetransmitterTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        <state relative-caret-position="323">
+          <caret line="27" column="5" lean-forward="false" selection-start-line="27" selection-start-column="5" selection-end-line="27" selection-end-column="5" />
         </state>
       </provider>
     </entry>
-    <entry file="jar://C:/Program Files/Java/jdk/javafx-src.zip!/com/sun/glass/ui/win/WinApplication.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="217">
-          <caret line="210" column="0" lean-forward="false" selection-start-line="210" selection-start-column="0" selection-end-line="210" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/EventHandler/PostHandler.java">
+    <entry file="file://$PROJECT_DIR$/src/sample/CommunicationHandler/ReceivingPeer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
-          <caret line="25" column="27" lean-forward="false" selection-start-line="25" selection-start-column="27" selection-end-line="25" selection-end-column="27" />
+          <caret line="17" column="0" lean-forward="false" selection-start-line="17" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/View/Register.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="37" column="107" lean-forward="false" selection-start-line="37" selection-start-column="107" selection-end-line="37" selection-end-column="118" />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk/javafx-src.zip!/javafx/fxml/FXMLLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="9506">
+          <caret line="1781" column="0" lean-forward="false" selection-start-line="1781" selection-start-column="0" selection-end-line="1781" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Controller/LoginConfirmationController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="59">
+          <caret line="15" column="0" lean-forward="false" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/View/RegConfirmation.fxml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="258">
+          <caret line="20" column="107" lean-forward="false" selection-start-line="20" selection-start-column="107" selection-end-line="20" selection-end-column="107" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/View/AppHome.fxml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Model/Peer.java">
+    <entry file="file://$PROJECT_DIR$/src/sample/View/PeerProfile.fxml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="11" column="110" lean-forward="false" selection-start-line="11" selection-start-column="110" selection-end-line="11" selection-end-column="110" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Model/Authenticate.java" />
+    <entry file="file://$PROJECT_DIR$/src/sample/EventHandler/HeartBeatHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="24" column="4" lean-forward="false" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="28" />
-          <folding>
-            <element signature="e#3934#3935#0" expanded="false" />
-            <element signature="e#3965#3966#0" expanded="false" />
-            <element signature="e#4013#4014#0" expanded="false" />
-            <element signature="e#4053#4054#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="306">
+          <caret line="30" column="87" lean-forward="false" selection-start-line="30" selection-start-column="87" selection-end-line="30" selection-end-column="87" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Model/Post.java">
+    <entry file="jar://C:/Program Files/Java/jdk/javafx-src.zip!/com/sun/javafx/collections/VetoableListDecorator.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1426">
-          <caret line="18" column="52" lean-forward="true" selection-start-line="18" selection-start-column="52" selection-end-line="18" selection-end-column="52" />
-          <folding>
-            <element signature="e#4023#4024#0" expanded="false" />
-            <element signature="e#4056#4057#0" expanded="false" />
-            <element signature="e#4108#4109#0" expanded="false" />
-            <element signature="e#4152#4153#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="36" column="2" lean-forward="false" selection-start-line="36" selection-start-column="2" selection-end-line="36" selection-end-column="2" />
-          <folding />
+        <state relative-caret-position="106">
+          <caret line="305" column="0" lean-forward="false" selection-start-line="305" selection-start-column="0" selection-end-line="305" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Controller/RegisterController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="17">
-          <caret line="53" column="30" lean-forward="true" selection-start-line="53" selection-start-column="30" selection-end-line="53" selection-end-column="30" />
+        <state relative-caret-position="451">
+          <caret line="254" column="30" lean-forward="false" selection-start-line="254" selection-start-column="30" selection-end-line="254" selection-end-column="30" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/CSS/MyProfile.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/View/Chats.fxml">
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Controller/ReplyController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="65" column="34" lean-forward="false" selection-start-line="65" selection-start-column="34" selection-end-line="65" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Controller/NewRequestController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="850">
+          <caret line="80" column="66" lean-forward="false" selection-start-line="80" selection-start-column="66" selection-end-line="80" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="das://table:/31cc62b8/0ec50b30-c01a-4ab1-91ea-c590226ad541/APP.POST">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/CommunicationHandler/ConversationRetransmitter.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="731">
+          <caret line="48" column="47" lean-forward="false" selection-start-line="48" selection-start-column="47" selection-end-line="48" selection-end-column="47" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Model/Reply.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="238">
+          <caret line="18" column="75" lean-forward="false" selection-start-line="18" selection-start-column="75" selection-end-line="18" selection-end-column="75" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/Model/Post.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2125">
+          <caret line="145" column="103" lean-forward="false" selection-start-line="145" selection-start-column="103" selection-end-line="145" selection-end-column="103" />
           <folding>
             <element signature="imports" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Controller/FileChooserSample.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="53" column="28" lean-forward="false" selection-start-line="53" selection-start-column="28" selection-end-line="56" selection-end-column="82" />
-          <folding />
+    <entry file="das://table:/31cc62b8/0ec50b30-c01a-4ab1-91ea-c590226ad541/APP.REPLY">
+      <provider selected="true" editor-type-id="com.intellij.database.editor.DatabaseTableFileEditorProvider">
+        <state>
+          <filtering enabled="true" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/View/MyProfile.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
+    <entry file="file://$PROJECT_DIR$/src/sample/CommunicationHandler/PeerConnection.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="23" column="20" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Controller/ConversationController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="24" column="1" lean-forward="false" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/View/ViewPeerProfileList.fxml">
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="7" column="186" lean-forward="false" selection-start-line="7" selection-start-column="186" selection-end-line="7" selection-end-column="186" />
-          <folding />
+        <state relative-caret-position="17">
+          <caret line="97" column="67" lean-forward="false" selection-start-line="97" selection-start-column="67" selection-end-line="97" selection-end-column="67" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/DBHandler/CreateDB.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="969">
-          <caret line="61" column="23" lean-forward="false" selection-start-line="61" selection-start-column="23" selection-end-line="63" selection-end-column="32" />
-          <folding>
-            <marker date="1524666477459" expanded="true" signature="1185:1683" ph="CREATE TABLE... PEER" />
-            <marker date="1524666477459" expanded="true" signature="1185:1737" ph="CREATE TABLE... PEER" />
-            <marker date="1524666477459" expanded="true" signature="2049:2299" ph="CREATE TABLE... DISCOVERD_PEERS" />
-            <marker date="1524666477459" expanded="true" signature="2594:2963" ph="CREATE TABLE... POST" />
-            <marker date="1524666477459" expanded="true" signature="3251:3725" ph="CREATE TABLE... REPLY" />
-            <marker date="1524666477459" expanded="true" signature="4023:4455" ph="CREATE TABLE... CONVERSATION" />
-            <marker date="1524666477459" expanded="true" signature="4746:5244" ph="CREATE TABLE... CHAT" />
-            <marker date="1524666477459" expanded="true" signature="5530:6376" ph="CREATE TABLE... MESSAGE" />
-          </folding>
+        <state relative-caret-position="68">
+          <caret line="8" column="16" lean-forward="false" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Controller/SelectPeersToRequestController.java" />
-    <entry file="file://$PROJECT_DIR$/src/sample/View/SelectPeers.fxml">
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="33" lean-forward="false" selection-start-line="6" selection-start-column="33" selection-end-line="6" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/EventHandler/NewPeerListner.java">
+    <entry file="file://$PROJECT_DIR$/src/sample/Controller/ChatController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2125">
-          <caret line="134" column="16" lean-forward="false" selection-start-line="134" selection-start-column="16" selection-end-line="134" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/View/DiscoveredPeerView.fxml">
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="136">
-          <caret line="8" column="226" lean-forward="false" selection-start-line="8" selection-start-column="226" selection-end-line="8" selection-end-column="226" />
+        <state relative-caret-position="0">
+          <caret line="244" column="61" lean-forward="false" selection-start-line="244" selection-start-column="61" selection-end-line="244" selection-end-column="61" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Controller/AddPartnerController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1088">
-          <caret line="64" column="67" lean-forward="false" selection-start-line="64" selection-start-column="67" selection-end-line="64" selection-end-column="67" />
-          <folding />
+        <state relative-caret-position="629">
+          <caret line="68" column="0" lean-forward="false" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Controller/ChatController.java">
+    <entry file="file://$PROJECT_DIR$/src/sample/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7684">
-          <caret line="452" column="45" lean-forward="false" selection-start-line="452" selection-start-column="45" selection-end-line="452" selection-end-column="45" />
+        <state relative-caret-position="459">
+          <caret line="41" column="62" lean-forward="false" selection-start-line="41" selection-start-column="62" selection-end-line="41" selection-end-column="77" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Controller/NewRequestController.java">
+    <entry file="file://$PROJECT_DIR$/Test/sample/EventHandler/ConversationHandlerTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="56" column="33" lean-forward="false" selection-start-line="56" selection-start-column="33" selection-end-line="56" selection-end-column="33" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/View/addPartner.fxml">
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="14" lean-forward="false" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/View/PeerRequest.fxml">
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/View/AppHome.fxml">
-      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider editor-type-id="text-editor">
         <state relative-caret-position="68">
-          <caret line="46" column="1" lean-forward="false" selection-start-line="46" selection-start-column="1" selection-end-line="46" selection-end-column="1" />
-          <folding />
+          <caret line="12" column="38" lean-forward="false" selection-start-line="12" selection-start-column="38" selection-end-line="12" selection-end-column="38" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/CSS/Home.css">
+    <entry file="file://$PROJECT_DIR$/src/sample/CommunicationHandler/ReceivedPacketHandler.java">
       <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="284">
+          <caret line="36" column="61" lean-forward="false" selection-start-line="36" selection-start-column="61" selection-end-line="36" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/View/Login.fxml">
+      <provider editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
+      <provider selected="true" editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/CSS/Conv.css">
+    <entry file="file://$PROJECT_DIR$/src/sample/Controller/LoginController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="308">
-          <caret line="33" column="33" lean-forward="false" selection-start-line="33" selection-start-column="33" selection-end-line="33" selection-end-column="33" />
+        <state relative-caret-position="19">
+          <caret line="37" column="22" lean-forward="false" selection-start-line="37" selection-start-column="22" selection-end-line="37" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/tests/sample/Controller/LoginControllerTest.java" />
     <entry file="file://$PROJECT_DIR$/src/sample/Controller/PeerProfileController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="263" column="0" lean-forward="false" selection-start-line="263" selection-start-column="0" selection-end-line="263" selection-end-column="0" />
-          <folding>
-            <element signature="e#1602#1603#0" expanded="false" />
-            <element signature="e#1632#1633#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/View/PeerProfile.fxml">
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="357">
-          <caret line="21" column="34" lean-forward="false" selection-start-line="21" selection-start-column="34" selection-end-line="21" selection-end-column="34" />
+        <state relative-caret-position="68">
+          <caret line="37" column="13" lean-forward="false" selection-start-line="37" selection-start-column="13" selection-end-line="37" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Controller/ConnectedPeerListController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1250">
-          <caret line="111" column="41" lean-forward="false" selection-start-line="111" selection-start-column="41" selection-end-line="111" selection-end-column="41" />
+        <state relative-caret-position="34">
+          <caret line="95" column="0" lean-forward="false" selection-start-line="95" selection-start-column="0" selection-end-line="115" selection-end-column="25" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Controller/DiscoveredPeerViewController.java">
+    <entry file="file://$PROJECT_DIR$/src/sample/EventHandler/ConversationHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="340">
-          <caret line="43" column="58" lean-forward="false" selection-start-line="43" selection-start-column="58" selection-end-line="43" selection-end-column="58" />
+        <state relative-caret-position="62">
+          <caret line="14" column="13" lean-forward="false" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/EventHandler/PostHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="37" column="34" lean-forward="false" selection-start-line="37" selection-start-column="34" selection-end-line="37" selection-end-column="34" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Controller/SelectPeers.java">
+    <entry file="file://$PROJECT_DIR$/Test/sample/DBHandler/DbHandlerTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1201">
-          <caret line="101" column="68" lean-forward="false" selection-start-line="101" selection-start-column="68" selection-end-line="101" selection-end-column="68" />
-          <folding />
+        <state relative-caret-position="68">
+          <caret line="21" column="28" lean-forward="false" selection-start-line="21" selection-start-column="28" selection-end-line="21" selection-end-column="28" />
+          <folding>
+            <element signature="e#652#653#0" expanded="true" />
+            <element signature="e#686#687#0" expanded="true" />
+            <element signature="e#2717#2718#0" expanded="true" />
+            <element signature="e#2792#2793#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/CommunicationHandler/PeerConnection.java">
+    <entry file="file://$PROJECT_DIR$/Test/sample/DBHandler/CreateDBTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-886">
-          <caret line="38" column="26" lean-forward="false" selection-start-line="38" selection-start-column="26" selection-end-line="38" selection-end-column="26" />
-          <folding />
+        <state relative-caret-position="391">
+          <caret line="37" column="33" lean-forward="false" selection-start-line="37" selection-start-column="33" selection-end-line="37" selection-end-column="33" />
+          <folding>
+            <element signature="e#635#636#0" expanded="true" />
+            <element signature="e#675#676#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/CommunicationHandler/ReceivedPacketHandler.java">
+    <entry file="file://$PROJECT_DIR$/tests/sample/MainTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="394">
-          <caret line="43" column="44" lean-forward="false" selection-start-line="43" selection-start-column="44" selection-end-line="43" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/CommunicationHandler/ReaderThread.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="31" column="47" lean-forward="false" selection-start-line="31" selection-start-column="47" selection-end-line="31" selection-end-column="47" />
-          <folding />
+        <state relative-caret-position="1054">
+          <caret line="88" column="18" lean-forward="false" selection-start-line="88" selection-start-column="18" selection-end-line="88" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/DBHandler/DbHandler.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-6438">
-          <caret line="345" column="91" lean-forward="false" selection-start-line="345" selection-start-column="91" selection-end-line="345" selection-end-column="91" />
+        <state relative-caret-position="8296">
+          <caret line="503" column="66" lean-forward="false" selection-start-line="503" selection-start-column="66" selection-end-line="503" selection-end-column="66" />
           <folding>
-            <marker date="1524730146402" expanded="true" signature="1246:1374" ph="INSERT INTO PEER... " />
-            <marker date="1524730146402" expanded="true" signature="2567:2604" ph="select * fro... PEER" />
-            <marker date="1524730146402" expanded="true" signature="3981:4010" ph="UPDATE PEER... " />
-            <marker date="1524730146402" expanded="true" signature="3981:4031" ph="UPDATE PEER... " />
-            <marker date="1524730146402" expanded="true" signature="4519:4557" ph="delete from APP.PEER... " />
-            <marker date="1524730146402" expanded="true" signature="5046:5088" ph="select * fro... PEER" />
-            <marker date="1524730146402" expanded="true" signature="5046:5106" ph="select * fro... PEER" />
-            <marker date="1524730146402" expanded="true" signature="6659:6722" ph="select USERN... PEER" />
-            <marker date="1524730146402" expanded="true" signature="7541:7571" ph="select * fro... CONVERSATION" />
-            <marker date="1524730146402" expanded="true" signature="8330:8389" ph="select * fro... POST" />
-            <marker date="1524730146402" expanded="true" signature="8529:8569" ph="select * fro... POST" />
-            <marker date="1524730146402" expanded="true" signature="8732:8750" ph="select * fro... POST" />
-            <marker date="1524730146402" expanded="true" signature="9509:9586" ph="INSERT INTO APP.POST... " />
-            <marker date="1524730146402" expanded="true" signature="10438:10484" ph="select MAX P... POST" />
-            <marker date="1524730146402" expanded="true" signature="10438:10502" ph="select MAX(P... POST" />
-            <marker date="1524730146402" expanded="true" signature="11162:11210" ph="select IP,PO... PEER" />
-            <marker date="1524730146402" expanded="true" signature="12251:12327" ph="INSERT INTO APP.DISCOVERD_PEERS... " />
-            <marker date="1524730146402" expanded="true" signature="13052:13109" ph="UPDATE DISCOVERD_PEERS... " />
-            <marker date="1524730146402" expanded="true" signature="13688:13750" ph="select USERN... PEER" />
-            <marker date="1524730146402" expanded="true" signature="14920:14969" ph="delete from APP.PEER_DATA... " />
-            <marker date="1524730146402" expanded="true" signature="15417:15506" ph="INSERT INTO APP.REPLY... " />
-            <marker date="1524730146402" expanded="true" signature="16428:16494" ph="select MAX(R... REPLY" />
-            <marker date="1524730146402" expanded="true" signature="16428:16520" ph="select MAX(R... REPLY" />
-            <marker date="1524730146402" expanded="true" signature="17204:17241" ph="select * fro... REPLY" />
-            <marker date="1524730146402" expanded="true" signature="18202:18228" ph="select * fro... CONVERSATION" />
-            <marker date="1524730146402" expanded="true" signature="19869:19895" ph="select * fro... CONVERSATION" />
-            <marker date="1524730146402" expanded="true" signature="19869:19948" ph="select * fro... CONVERSATION" />
-            <marker date="1524730146402" expanded="true" signature="21500:21574" ph="select * fro... CHAT" />
-            <marker date="1524730146402" expanded="true" signature="22457:22548" ph="select * fro... MESSAGE" />
-            <marker date="1524730146402" expanded="true" signature="22457:22549" ph="select * fro... MESSAGE" />
-            <marker date="1524730146402" expanded="true" signature="24335:24447" ph="select MAX(C... CONVERSATION" />
-            <marker date="1524730146402" expanded="true" signature="25022:25162" ph="select MAX(C... CONVERSATION" />
-            <marker date="1524730146402" expanded="true" signature="25746:25880" ph="INSERT INTO APP.CONVERSATION... " />
-            <marker date="1524730146402" expanded="true" signature="27115:27199" ph="INSERT INTO APP.CHAT... " />
-            <marker date="1524730146402" expanded="true" signature="27797:27947" ph="INSERT INTO APP.CHAT... " />
-            <marker date="1524730146402" expanded="true" signature="29607:29686" ph="select * fro... CONVERSATION" />
-            <marker date="1524730146402" expanded="true" signature="30285:30381" ph="UPDATE PEER... " />
+            <marker date="1526051081377" expanded="true" signature="1282:1410" ph="INSERT INTO PEER... " />
+            <marker date="1526051081377" expanded="true" signature="2603:2640" ph="select * fro... PEER" />
+            <marker date="1526051081377" expanded="true" signature="4017:4067" ph="UPDATE PEER... " />
+            <marker date="1526051081377" expanded="true" signature="4555:4593" ph="delete from APP.PEER... " />
+            <marker date="1526051081377" expanded="true" signature="5082:5142" ph="select * fro... PEER" />
+            <marker date="1526051081377" expanded="true" signature="6635:6682" ph="select USERN... PEER" />
+            <marker date="1526051081377" expanded="true" signature="7363:7426" ph="select USERN... PEER" />
+            <marker date="1526051081377" expanded="true" signature="8245:8275" ph="select * fro... CONVERSATION" />
+            <marker date="1526051081377" expanded="true" signature="9013:9069" ph="select * fro... POST" />
+            <marker date="1526051081377" expanded="true" signature="10302:10361" ph="select * fro... POST" />
+            <marker date="1526051081377" expanded="true" signature="10501:10541" ph="select * fro... POST" />
+            <marker date="1526051081377" expanded="true" signature="11598:11649" ph="select * fro... POST" />
+            <marker date="1526051081377" expanded="true" signature="11598:11650" ph="select * fro... POST" />
+            <marker date="1526051081377" expanded="true" signature="12412:12489" ph="INSERT INTO APP.POST... " />
+            <marker date="1526051081377" expanded="true" signature="13341:13405" ph="select MAX(P... POST" />
+            <marker date="1526051081377" expanded="true" signature="14057:14105" ph="select IP,PO... PEER" />
+            <marker date="1526051081377" expanded="true" signature="15146:15222" ph="INSERT INTO APP.DISCOVERD_PEERS... " />
+            <marker date="1526051081377" expanded="true" signature="15947:16004" ph="UPDATE DISCOVERD_PEERS... " />
+            <marker date="1526051081377" expanded="true" signature="16583:16645" ph="select USERN... DISCOVERD_PEERS" />
+            <marker date="1526051081377" expanded="true" signature="17816:17865" ph="delete from APP.DISCOVERD_PEERS... " />
+            <marker date="1526051081377" expanded="true" signature="18313:18418" ph="INSERT INTO APP.REPLY... " />
+            <marker date="1526051081377" expanded="true" signature="19397:19489" ph="select MAX(R... REPLY" />
+            <marker date="1526051081377" expanded="true" signature="20173:20210" ph="select * fro... REPLY" />
+            <marker date="1526051081377" expanded="true" signature="21396:21505" ph="select * fro... CONVERSATION" />
+            <marker date="1526051081377" expanded="true" signature="21864:21944" ph="select * fro... CONVERSATION" />
+            <marker date="1526051081377" expanded="true" signature="23773:23799" ph="select * fro... CONVERSATION" />
+            <marker date="1526051081377" expanded="true" signature="25451:25530" ph="select * fro... CONVERSATION" />
+            <marker date="1526051081377" expanded="true" signature="27094:27168" ph="select * fro... CHAT" />
+            <marker date="1526051081377" expanded="true" signature="28156:28280" ph="select * fro... MESSAGE" />
+            <marker date="1526051081377" expanded="true" signature="28671:28762" ph="select * fro... MESSAGE" />
+            <marker date="1526051081377" expanded="true" signature="30572:30684" ph="select MAX(C... CONVERSATION" />
+            <marker date="1526051081377" expanded="true" signature="31259:31399" ph="select MAX(M... MESSAGE" />
+            <marker date="1526051081377" expanded="true" signature="31983:32117" ph="INSERT INTO APP.CONVERSATION... " />
+            <marker date="1526051081377" expanded="true" signature="33414:33495" ph="delete from APP.CONVERSATION... " />
+            <marker date="1526051081377" expanded="true" signature="34101:34174" ph="delete from APP.CHAT... " />
+            <marker date="1526051081377" expanded="true" signature="34776:34852" ph="delete from APP.MESSAGE... " />
+            <marker date="1526051081377" expanded="true" signature="35468:35552" ph="INSERT INTO APP.CHAT... " />
+            <marker date="1526051081377" expanded="true" signature="36150:36300" ph="INSERT INTO APP.MESSAGE... " />
+            <marker date="1526051081377" expanded="true" signature="37960:38039" ph="select * fro... CONVERSATION" />
+            <marker date="1526051081377" expanded="true" signature="38638:38734" ph="UPDATE PEER... " />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Controller/LoginController.java">
+    <entry file="file://$PROJECT_DIR$/src/sample/CommunicationHandler/ClientConnection.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="139">
-          <caret line="60" column="30" lean-forward="false" selection-start-line="60" selection-start-column="30" selection-end-line="60" selection-end-column="30" />
+        <state relative-caret-position="493">
+          <caret line="35" column="11" lean-forward="false" selection-start-line="35" selection-start-column="11" selection-end-line="35" selection-end-column="11" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Controller/Validator.java">
+    <entry file="file://$PROJECT_DIR$/src/sample/Controller/OnlinePeerController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="423">
-          <caret line="94" column="41" lean-forward="false" selection-start-line="94" selection-start-column="41" selection-end-line="94" selection-end-column="41" />
+        <state relative-caret-position="68">
+          <caret line="22" column="13" lean-forward="false" selection-start-line="22" selection-start-column="13" selection-end-line="22" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/CSS/Conv.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sample/CSS/Home.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1530">
+          <caret line="90" column="0" lean-forward="false" selection-start-line="90" selection-start-column="0" selection-end-line="90" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sample/Controller/HomeController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="39">
-          <caret line="377" column="59" lean-forward="false" selection-start-line="377" selection-start-column="59" selection-end-line="377" selection-end-column="59" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/Controller/MyProfileController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="227" column="0" lean-forward="false" selection-start-line="227" selection-start-column="0" selection-end-line="227" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sample/EventHandler/HeartBeatHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="34">
-          <caret line="2" column="29" lean-forward="false" selection-start-line="2" selection-start-column="29" selection-end-line="2" selection-end-column="29" />
-          <folding />
+        <state relative-caret-position="17">
+          <caret line="314" column="0" lean-forward="false" selection-start-line="314" selection-start-column="0" selection-end-line="314" selection-end-column="0" />
+          <folding>
+            <element signature="e#15040#15041#0" expanded="true" />
+            <element signature="e#15076#15077#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -1544,11 +1876,12 @@
       <state key="ArtifactsStructureConfigurable.UI">
         <settings>
           <artifact-editor />
-          <last-edited>JavaFXApp</last-edited>
+          <last-edited>SocialMedia:jar</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
                 <option value="0.2" />
+                <option value="0.5" />
               </list>
             </option>
           </splitter-proportions>
@@ -1603,6 +1936,7 @@
       </state>
       <state key="ProjectLibrariesConfigurable.UI">
         <settings>
+          <last-edited>com.google.guava:guava:14.0.1</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>

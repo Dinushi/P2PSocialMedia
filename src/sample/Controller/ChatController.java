@@ -5,6 +5,7 @@ import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -30,16 +31,22 @@ import sample.Model.Message;
 import sample.Model.Owner;
 import sample.Model.Peer;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class ChatController {
     public static ChatController chatController;
 
     @FXML
     public TabPane tabPane;//this is the pane which hold all tabs
-    private ArrayList<Tab> allAddedTabs=new ArrayList<>();
+    //private ArrayList<Tab> allAddedTabs=new ArrayList<>();----------------------
+    private ArrayList<String> allAddedTabs;
     //ListView<Pane> list;
     //ObservableList<Pane> panes ;
 
@@ -48,89 +55,13 @@ public class ChatController {
 
     public ChatController(){
         chatController=this;
+        allAddedTabs=new ArrayList<>();
     }
 
     public void initialize() {
         allConversations=ConversationHandler.getAllConversations();
         this.showConversations(allConversations);
-/*
-        Tab tab = new Tab("All Conversations");
-        // Rectangle rect = new Rectangle(200, 200, Color.RED);
-        //VBox v=new VBox();
-        ///ListView<Pane> list = new ListView<Pane>();
-        list = new ListView<Pane>();
-        ///ObservableList<Pane> panes = FXCollections.observableArrayList();
-        panes = FXCollections.observableArrayList();
 
-        for (int i = 0; i < 5; i++) {
-            // StackPane p1= new StackPane();
-            //p1.setAlignment(Pos.CENTER);
-
-            FlowPane p1 = new FlowPane();
-            p1.setVgap(8);
-            p1.setHgap(4);
-            p1.setPrefWrapLength(300);
-            Image image = new Image(getClass().getResourceAsStream("dinu.jpg"));
-            ImageView img = new ImageView(image);
-            img.setFitHeight(50);
-            img.setFitWidth(50);
-            img.setPreserveRatio(true);
-
-            Label label3 = new Label("Dinushi1234", img);
-            label3.setTextFill(Color.web("#0076a3"));
-            label3.setFont(Font.font("Cambria", 15));
-
-
-            Label label4 = new Label("Please come to the University tomorrow.I want to talk to to you");
-            label4.setFont(Font.font("Arial", 12));
-            label4.setWrapText(true);
-            Button b1 = new Button("View");
-
-            b1.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent e) {
-                    int numTabs = tabPane.getTabs().size();
-                    Tab tab = new Tab("Tab " + (numTabs + 1));
-                    tabPane.getTabs().add(tab);
-                }
-            });
-            b1.setStyle("-fx-font: 10 arial; -fx-base: #b6e7c9;");
-            p1.getChildren().addAll(label3, label4, b1);
-
-            panes.add(p1);
-            //v.getChildren().setAll(p1);
-            //tab.setContent(v);
-        }
-        list.setItems(panes);
-        tab.setContent(list);
-        tabPane.getTabs().add(tab);
-
-        //A label with the text element
-        //Label label2 = new Label("Dinushi1234");
-        //A label with the text element and graphical icon
-
-        //Label label1 = new Label("Dinushi1234");
-        //Label label3 = new Label("Dinushi1234", img);
-        //label3.setMinWidth(50);
-        //label3.setMinHeight(50);
-        //p1.getChildren().addAll(label1,label3 );
-        //v.getChildren().setAll(p1);
-        //tab.setContent(v);
-
-        //ListView<Pane> list = new ListView<Pane>();
-        //ObservableList<Pane> panes = FXCollections.observableArrayList (
-        // p1,new Pane());
-
-        ObservableList<String> items = FXCollections.observableArrayList(
-                "Single", "Double", "Suite", "Family App");
-        //list.setItems(panes);
-
-        //ScrollPane s1 = new ScrollPane();
-        //s1.setPrefSize(120, 120);
-        //s1.setContent(rect);
-        //tab.setContent(list);
-        // tabPane.getTabs().add(tab);
-*/
     }
 
     public void showConversations(ArrayList <Conversation> all_conversations){
@@ -149,7 +80,7 @@ public class ChatController {
         ObservableList<Pane> panes = FXCollections.observableArrayList();
 
         for (int i = all_conversations.size()-1; i>=0 ; i--) {
-        //for (int i = 0; i < all_conversations.size(); i++) {
+            //for (int i = 0; i < all_conversations.size(); i++) {
             // StackPane p1= new StackPane();
             //p1.setAlignment(Pos.CENTER);
 
@@ -159,16 +90,37 @@ public class ChatController {
             p1.setPrefWrapLength(300);
 
             Label label3;
-            if(all_conversations.get(i).getChatPartner().size()==1){
-                Image image_user = new Image(getClass().getResourceAsStream("dinu.jpg"));
-                ImageView img = new ImageView(image_user);
-                img.setFitHeight(50);
-                img.setFitWidth(50);
-                img.setPreserveRatio(true);
 
-                label3 = new Label(all_conversations.get(i).getTitle(), img);
+
+            if(all_conversations.get(i).getChatPartner().size()==1){
+                ImageView img2;
+
+                if(all_conversations.get(i).getChatPartner().get(0).getProf_pic()!=null){
+                    ByteArrayInputStream in2 = new ByteArrayInputStream(all_conversations.get(i).getChatPartner().get(0).getProf_pic());
+                    BufferedImage read2 = null;
+                    try {
+                        read2 = ImageIO.read(in2);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    //Image image1 = new Image(getClass().getResourceAsStream("dinu.jpg"));//modify code to get the image from database
+                    img2 = new ImageView();
+                    img2.setFitHeight(35);
+                    img2.setFitWidth(35);
+                    img2.setPreserveRatio(true);
+                    img2.setImage(SwingFXUtils.toFXImage(read2, null));
+                }else{
+                    Image image = new Image(getClass().getResourceAsStream("default.png"));//modify code to get the image from database
+                    img2 = new ImageView(image);
+                    img2.setFitHeight(35);
+                    img2.setFitWidth(35);
+                    img2.setPreserveRatio(true);
+                }
+
+                label3 = new Label(all_conversations.get(i).getTitle(), img2);
+
             }else{
-                Image image_group = new Image(getClass().getResourceAsStream("../Images/chat.jpg"));
+                Image image_group = new Image(getClass().getResourceAsStream("../Images/chat.png"));
                 ImageView img2 = new ImageView(image_group);
                 img2.setFitHeight(50);
                 img2.setFitWidth(50);
@@ -201,7 +153,31 @@ public class ChatController {
                 }
             });
             b1.setStyle("-fx-font: 10 arial; -fx-base: #b6e7c9;");
-            p1.getChildren().addAll(label3, label4, b1);
+
+            Button b2 = new Button("Delete");
+            System.out.println("create a button for delet");
+            b2.setId("del"+String.valueOf(i));
+
+
+            b2.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent e) {
+                    int j =Integer.parseInt(b2.getId().substring(b2.getId().length()-1));
+                    System.out.println(j);
+                    Conversation conv=all_conversations.get(j);
+                    ConversationHandler.deleteConversation(conv);//remove the records from db
+                    showConversations(ConversationHandler.getAllConversations());//load all conversations again
+                    ConversationHandler.informPartnersAboutChatDeletion(conv);//inform the  partners
+                }
+            });
+            b2.setStyle("-fx-font: 10 arial; -fx-base: #b6e7c9;");
+
+            if(all_conversations.get(i).getConversation_initiator().getUsername().equalsIgnoreCase(Validator.thisPeer.getUsername())){
+                p1.getChildren().addAll(label3, label4, b1,b2);
+            }else{
+                p1.getChildren().addAll(label3, label4, b1);
+            }
+            //p1.getChildren().addAll(label3, label4, b1);
 
             panes.add(p1);
             //v.getChildren().setAll(p1);
@@ -246,26 +222,50 @@ public class ChatController {
 
 
     }
-    public  void createNewConversationTab(Conversation conv,boolean isNewConversation ){
-        boolean go=true;
-        Tab simillar_tab_t=null;
-        for(Tab t: allAddedTabs){
-            if(t.getId()!=conv.getTitle()){
-                go=true;
-            }else{
-                go=false;
-                simillar_tab_t=t;
-                return;
+    private int checkAvailabilityOfTab(ArrayList<Tab> availableTabs,Conversation conv){
+        int i=1;
+        System.out.println("Avaialable"+availableTabs.size());
+        while(i<availableTabs.size()){
+            if(availableTabs.get(i).getId().equalsIgnoreCase(conv.getTitle())){
+                System.out.println("founddddddddddddddddddddd a sililllllll r tab"+i);
+                return i;
             }
+            i++;
         }
-        if(!go){
-           tabPane.getTabs().remove(simillar_tab_t);
-        }
-
+        return -1;
+    }
+    public  void createNewConversationTab(Conversation conv,boolean isNewConversation ){
+        System.out.println("Now @ add new Tab method");
         Tab tab1 = new Tab(conv.getTitle());
         tab1.setId(conv.getTitle());
-        tab1.setId(conv.getTitle());
 
+
+        ArrayList<Tab> availableTabs=new ArrayList<>();
+        tabPane.getTabs().forEach(tab -> availableTabs.add(tab));
+        int index=checkAvailabilityOfTab(availableTabs,conv);
+        if(index>0){
+            System.out.println("Going to remove Tabbbbbbbbbbbb");
+            tabPane.getTabs().remove(index);
+        }
+
+        /*
+        int tab=allAddedTabs.indexOf(conv.getTitle());
+        System.out.println("tab index"+tab);
+        tabPane.getTabs().remove(tab);
+        */
+
+
+/*
+        for(Tab t: allAddedTabs){
+            if(t.getId()==conv.getTitle()) {
+                tab1 = t;//This assigment does not happens....checkk.....
+                System.out.println("removed a tab");
+            }
+        }
+        */
+
+        //allAddedTabs.remove(tab1);
+        System.out.println("after tab removal");
 
         FlowPane flow = new FlowPane(Orientation.VERTICAL);
         flow.setColumnHalignment(HPos.LEFT); // align labels on left
@@ -278,11 +278,12 @@ public class ChatController {
         partnerView.setHgap(5);
 
         for(Peer peer:chatPartners){
+            System.out.println("name pf the chat partner"+peer.getUsername());
             Label lbl=new Label(peer.getUsername()+" ");
             lbl.setTextFill(Color.web("#0076a3"));
             lbl.setFont(Font.font("Cambria", 15));
             partnerView.getChildren().add(lbl);
-           // Label label3 = new Label(, img2);if possible add a image of the user
+            // Label label3 = new Label(, img2);if possible add a image of the user
         }
         flow .getChildren().add(partnerView);
 
@@ -292,42 +293,85 @@ public class ChatController {
         ScrollPane s1 = new ScrollPane();
         s1.setFitToHeight(true);
         s1.setFitToWidth(true);
-        s1.setPrefSize(455, 275);
+        s1.setPrefSize(400, 400);
 
-        ListView<Pane> list_inner = new ListView<Pane>();
-        ObservableList<Pane> panes_inner  = FXCollections.observableArrayList();
+        //ListView<Pane> list_inner = new ListView<Pane>();
+        //ObservableList<Pane> panes_inner  = FXCollections.observableArrayList();
+        ListView<Label> list_inner = new ListView<Label>();//------------
+        ObservableList<Label> panes_inner  = FXCollections.observableArrayList();//------
 
         for(Message msg:chatMessages){
-            FlowPane p3=new FlowPane();
+            //FlowPane p3=new FlowPane();
 
             Label label5;
-            if(msg.getMsg_creator()!=Owner.myUsername){
-                Image image1 = new Image(getClass().getResourceAsStream("dinu.jpg"));//modify code to get the image from database
-                ImageView img1 = new ImageView(image1);
-                img1.setFitHeight(25);
-                img1.setFitWidth(25);
-                img1.setPreserveRatio(true);
+            if(msg.getMsg_creator()==Owner.myUsername){
+                ImageView img7;
+                if(Validator.thisPeer.getProf_pic()!=null){
+                    ByteArrayInputStream in2 = new ByteArrayInputStream(Validator.thisPeer.getProf_pic());
+                    BufferedImage read2 = null;
+                    try {
+                        read2 = ImageIO.read(in2);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                    //Image image1 = new Image(getClass().getResourceAsStream("dinu.jpg"));//modify code to get the image from database
+                    img7 = new ImageView();
+                    img7.setFitHeight(25);
+                    img7.setFitWidth(25);
+                    img7.setPreserveRatio(true);
+                    img7.setImage(SwingFXUtils.toFXImage(read2, null));
+                }else{
+                    Image image = new Image(getClass().getResourceAsStream("default.png"));//modify code to get the image from database
+                    img7 = new ImageView(image);
+                    img7.setFitHeight(25);
+                    img7.setFitWidth(25);
+                    img7.setPreserveRatio(true);
+                }
+                System.out.println("My message");
+                //Image image2 = new Image(getClass().getResourceAsStream("dinu.jpg"));//modify code to get the image from database
+                // ImageView img2 = new ImageView(image2);
+                // img2.setFitHeight(25);
+                //img2.setFitWidth(25);
+                //img2.setPreserveRatio(true);
 
-                label5 = new Label(msg.getContent(), img1);
+                label5 = new Label(msg.getContent(), img7);
                 label5.setTextFill(Color.web("#87CEFA"));
                 label5.setFont(Font.font("Cambria", 12));
             }else{
-                Image image2 = new Image(getClass().getResourceAsStream("dinu.jpg"));//modify code to get the image from database
-                ImageView img2 = new ImageView(image2);
-                img2.setFitHeight(25);
-                img2.setFitWidth(25);
-                img2.setPreserveRatio(true);
-
-                label5 = new Label(msg.getContent(), img2);
-
+                DbHandler db4=new DbHandler();
+                Peer peer=db4.getPeer(msg.getMsg_creator());
+                db4.closeConnection();
+                ImageView img8;
+                if(peer.getProf_pic()!=null){
+                    ByteArrayInputStream in2 = new ByteArrayInputStream(peer.getProf_pic());
+                    BufferedImage read2 = null;
+                    try {
+                        read2 = ImageIO.read(in2);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                    //Image image1 = new Image(getClass().getResourceAsStream("dinu.jpg"));//modify code to get the image from database
+                    img8 = new ImageView();
+                    img8.setFitHeight(25);
+                    img8.setFitWidth(25);
+                    img8.setPreserveRatio(true);
+                    img8.setImage(SwingFXUtils.toFXImage(read2, null));
+                }else{
+                    Image image = new Image(getClass().getResourceAsStream("default.png"));//modify code to get the image from database
+                    img8 = new ImageView(image);
+                    img8.setFitHeight(25);
+                    img8.setFitWidth(25);
+                    img8.setPreserveRatio(true);
+                }
+                label5 = new Label(msg.getContent(), img8);
                 label5.setTextFill(Color.web("#20B2AA"));
                 label5.setFont(Font.font("Cambria", 12));
 
             }
 
-            p3.getChildren().add(label5);
-            panes_inner.add(p3);
-        }
+            // p3.getChildren().add(label5);
+            panes_inner.add(label5);
+                 }
         list_inner.setItems(panes_inner);
         s1.setContent(list_inner);
         flow .getChildren().add(s1);
@@ -376,46 +420,40 @@ public class ChatController {
                     ConversationHandler.sendTheInitialConversation(conv);//at the conv creation conv is send together with 1st message
                     textField2.setText("");
                 }else{
+                    System.out.println("sending the message to partner");
                     ConversationHandler.sendMessageToPartners(conv,msg);
                     textField2.setText("");
                 }
-                ListView<Pane> list_inner1 = new ListView<Pane>();
-                ObservableList<Pane> panes_inner1  = FXCollections.observableArrayList();
-                ArrayList<Message> chatMessages1=conv.getMessages();
-                for(Message msg2:chatMessages1){
-                    FlowPane p4=new FlowPane();
-
-                    Label label6;
-                    if(msg2.getMsg_creator()!=Owner.myUsername){
-                        System.out.println("A message from a partner");
-                        Image image2 = new Image(getClass().getResourceAsStream("dinu.jpg"));//modify code to get the image from database
-                        ImageView img2 = new ImageView(image2);
-                        img2.setFitHeight(25);
-                        img2.setFitWidth(25);
-                        img2.setPreserveRatio(true);
-
-                        label6 = new Label(msg2.getContent(), img2);
-                        label6.setTextFill(Color.web("#87CEFA"));
-                        label6.setFont(Font.font("Cambria", 12));
-                    }else{
-                        System.out.println("This is a my message");
-                        Image image2 = new Image(getClass().getResourceAsStream("dinu.jpg"));//modify code to get the image from database
-                        ImageView img2 = new ImageView(image2);
-                        img2.setFitHeight(25);
-                        img2.setFitWidth(25);
-                        img2.setPreserveRatio(true);
-
-                        label6 = new Label(msg2.getContent(), img2);
-                        label6.setTextFill(Color.web("#20B2AA"));
-                        label6.setFont(Font.font("Cambria", 12));
-
+                Label labelnxt;
+                ImageView img3;
+                if(Validator.thisPeer.getProf_pic()!=null){
+                    ByteArrayInputStream in2 = new ByteArrayInputStream(Validator.thisPeer.getProf_pic());
+                    BufferedImage read2 = null;
+                    try {
+                        read2 = ImageIO.read(in2);
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
                     }
-
-                    p4.getChildren().add(label6);
-                    panes_inner1.add(p4);
+                    //Image image1 = new Image(getClass().getResourceAsStream("dinu.jpg"));//modify code to get the image from database
+                    img3 = new ImageView();
+                    img3.setFitHeight(25);
+                    img3.setFitWidth(25);
+                    img3.setPreserveRatio(true);
+                    img3.setImage(SwingFXUtils.toFXImage(read2, null));
+                }else{
+                    Image image = new Image(getClass().getResourceAsStream("default.png"));//modify code to get the image from database
+                    img3 = new ImageView(image);
+                    img3.setFitHeight(25);
+                    img3.setFitWidth(25);
+                    img3.setPreserveRatio(true);
                 }
-                list_inner1.setItems(panes_inner1);
-                s1.setContent(list_inner1);
+                System.out.println("My message");
+
+                labelnxt = new Label(msg.getContent(), img3);
+                labelnxt.setTextFill(Color.web("#87CEFA"));
+                labelnxt.setFont(Font.font("Cambria", 12));
+
+                panes_inner.add(labelnxt);
 
             }
         });
@@ -426,7 +464,8 @@ public class ChatController {
 
         tab1.setContent(flow);
         tabPane.getTabs().add(tab1);
-        allAddedTabs.add(tab1);
+        //allAddedTabs.add(tab1);
+        allAddedTabs.add(conv.getTitle());
 
     }
 
@@ -455,8 +494,8 @@ public class ChatController {
             Conversation conv=new Conversation();
 
 
-            for (String partner : AddPartnerController.selectedPartners) {
-                conv.selectPeer(partner);
+            for (Peer peer : AddPartnerController.selectedPartners) {
+                conv.addPartner(peer);
             }
 
         } catch (IOException e) {

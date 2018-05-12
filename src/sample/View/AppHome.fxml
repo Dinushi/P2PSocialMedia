@@ -13,14 +13,14 @@
 <?import javafx.scene.paint.Stop?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchor_pane" prefHeight="602.0" prefWidth="577.0" style="-fx-background-color:#36394E;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.HomeController">
+<AnchorPane fx:id="anchor_pane" prefHeight="601.0" prefWidth="747.0" style="-fx-background-color:#36394E;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.HomeController">
    <children>
-      <Separator layoutX="176.0" orientation="VERTICAL" prefHeight="589.0" prefWidth="10.0" />
-      <Pane layoutX="-4.0" layoutY="-1.0" prefHeight="589.0" prefWidth="184.0" style="-fx-background-color: #36394E;">
+      <Separator layoutX="176.0" orientation="VERTICAL" prefHeight="601.0" prefWidth="10.0" />
+      <Pane layoutX="-4.0" layoutY="-1.0" prefHeight="602.0" prefWidth="184.0" style="-fx-background-color: #000033;">
          <children>
-            <Label layoutX="20.0" layoutY="83.0" prefHeight="17.0" prefWidth="144.0" text="Dinushi Ranagalage" wrapText="true">
+            <Label fx:id="lbl_username" layoutX="21.0" layoutY="84.0" prefHeight="17.0" prefWidth="144.0" text="Dinushi" textOverrun="WORD_ELLIPSIS" wrapText="true">
                <font>
-                  <Font size="16.0" />
+                  <Font name="Chiller" size="34.0" />
                </font>
                <textFill>
                   <LinearGradient endX="0.04761904761904767" endY="0.1380952380952381">
@@ -31,42 +31,47 @@
                   </LinearGradient>
                </textFill>
             </Label>
-            <Button fx:id="btn_conv" layoutX="33.0" layoutY="331.0" mnemonicParsing="false" onAction="#pressConversation" prefHeight="25.0" prefWidth="118.0" text="Conversations" />
-            <Button fx:id="btn_online" layoutX="33.0" layoutY="411.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="118.0" text="Online Peers" />
+            <Button fx:id="btn_conv" layoutX="34.0" layoutY="331.0" mnemonicParsing="false" onAction="#pressConversation" prefHeight="25.0" prefWidth="118.0" text="Conversations" />
+            <Button fx:id="btn_online" layoutX="33.0" layoutY="411.0" mnemonicParsing="false" onAction="#ViewOnlinePeers" prefHeight="25.0" prefWidth="118.0" text="Online Peers" />
             <Button fx:id="btn_peer_requests" layoutX="33.0" layoutY="450.0" mnemonicParsing="false" onAction="#pressPeerRequests" prefHeight="25.0" prefWidth="118.0" text="Peer Requests" />
             <Button fx:id="btn_discover" layoutX="33.0" layoutY="488.0" mnemonicParsing="false" onAction="#pressViewDiscoverdPeers" prefHeight="25.0" prefWidth="118.0" text="Discover Peers" />
             <Button fx:id="btn_edit" layoutX="33.0" layoutY="526.0" mnemonicParsing="false" onAction="#pressMyProfile" prefHeight="25.0" prefWidth="118.0" text="My Profile" />
-            <ImageView fitHeight="55.0" fitWidth="70.0" layoutX="60.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="55.0" fitWidth="70.0" layoutX="61.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Images/logo.jfif" />
                </image>
             </ImageView>
-            <Pane fx:id="profPic_pane" layoutX="16.0" layoutY="134.0" prefHeight="96.0" prefWidth="144.0" />
+            <Pane fx:id="profPic_pane" layoutX="16.0" layoutY="175.0" prefHeight="55.0" prefWidth="144.0">
+               <children>
+                  <Pane layoutX="8.0" layoutY="-20.0" prefHeight="115.0" prefWidth="115.0" style="-fx-border-style: solid; -fx-border-color: #ffffff;">
+                     <children>
+                        <ImageView fx:id="img" fitHeight="115.0" fitWidth="115.0" pickOnBounds="true" preserveRatio="true" />
+                     </children>
+                  </Pane>
+               </children></Pane>
             <Button fx:id="btn_viewPeerProfile" layoutX="34.0" layoutY="371.0" mnemonicParsing="false" onAction="#pressViewPeerProfile" prefHeight="25.0" prefWidth="118.0" text="View Peer Profiles" />
          </children>
          <stylesheets>
             <URL value="@../CSS/Conv.css" />
          </stylesheets>
       </Pane>
-      <Pane layoutX="182.0" layoutY="48.0" prefHeight="541.0" prefWidth="395.0" style="-fx-background-color: #FFFAF0;">
-         <children>
-            <Separator layoutY="412.0" prefHeight="17.0" prefWidth="395.0" />
-            <Pane layoutY="426.0" prefHeight="122.0" prefWidth="395.0">
-               <children>
-                  <Label layoutX="14.0" layoutY="6.0" prefHeight="17.0" prefWidth="213.0" text="Want to post to your peers?" textFill="#330686">
-                     <font>
-                        <Font name="Bernard MT Condensed" size="13.0" />
-                     </font>
-                  </Label>
-                  <TextArea fx:id="txt_post" layoutX="14.0" layoutY="24.0" prefHeight="74.0" prefWidth="294.0" promptText="Enter your post here." />
-                  <Button fx:id="btn_post_share" layoutX="318.0" layoutY="36.0" mnemonicParsing="false" onAction="#sharePost" prefHeight="25.0" prefWidth="51.0" text="Share" />
-                  <Button fx:id="btn_post_cancel" layoutX="318.0" layoutY="61.0" mnemonicParsing="false" onAction="#pressPostCancel" text="Cancel" />
-               </children>
-            </Pane>
-            <Pane fx:id="wall" layoutX="-3.0" prefHeight="416.0" prefWidth="395.0" />
-         </children></Pane>
-      <Pane layoutX="182.0" prefHeight="25.0" prefWidth="395.0" style="-fx-background-color: #87CEFA;" />
       <Separator layoutY="62.0" prefHeight="25.0" prefWidth="184.0" />
+      <Pane fx:id="wall" layoutX="225.0" layoutY="29.0" prefHeight="433.0" prefWidth="475.0" />
+      <Label layoutX="198.0" layoutY="472.0" prefHeight="17.0" prefWidth="213.0" text="Want to post to your peers?" textFill="#101575">
+         <font>
+            <Font name="Bernard MT Condensed" size="13.0" />
+         </font>
+      </Label>
+      <TextArea fx:id="txt_post" layoutX="217.0" layoutY="508.0" prefHeight="74.0" prefWidth="413.0" promptText="Enter your post here." />
+      <Button fx:id="btn_post_cancel" layoutX="649.0" layoutY="545.0" mnemonicParsing="false" onAction="#pressPostCancel" prefHeight="25.0" prefWidth="51.0" text="Cancel  " />
+      <Button fx:id="btn_post_share" layoutX="649.0" layoutY="508.0" mnemonicParsing="false" onAction="#sharePost" prefHeight="25.0" prefWidth="51.0" text="Share" />
+      <Label layoutX="424.0" layoutY="6.0" prefHeight="17.0" prefWidth="213.0" text="Peer Posts" textFill="#101575">
+         <font>
+            <Font name="Bernard MT Condensed" size="19.0" />
+         </font>
+      </Label>
    </children>
+
+
 
 </AnchorPane>

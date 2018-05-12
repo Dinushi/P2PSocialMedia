@@ -117,7 +117,7 @@ public class MyProfileController{
         s1 = new ScrollPane();
         s1.setFitToHeight(true);
         s1.setFitToWidth(true);
-        s1.setPrefSize(420, 380);
+        s1.setPrefSize(433, 401);
 
         list = new ListView<Pane>();
         panes = FXCollections.observableArrayList();
@@ -131,20 +131,31 @@ public class MyProfileController{
             p1.setPrefWrapLength(400);
 
             //show the image of the post creator
-            ByteArrayInputStream in = new ByteArrayInputStream(db.getPeer(allPosts.get(i).getUsername()).getProf_pic());
-            BufferedImage read = null;
-            try {
-                read = ImageIO.read(in);
-            } catch (IOException e) {
-                e.printStackTrace();
+            ImageView img;
+            byte[] prof_pic=db.getPeer(allPosts.get(i).getUsername()).getProf_pic();
+            if(prof_pic!=null){
+                ByteArrayInputStream in = new ByteArrayInputStream(prof_pic);
+                BufferedImage read = null;
+                try {
+                    read = ImageIO.read(in);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+                profPic.setImage(SwingFXUtils.toFXImage(read, null));
+                //Image image = new Image(getClass().getResourceAsStream("dinu.jpg"));//modify code to get the image from database
+                img = new ImageView();
+                img.setFitHeight(30);
+                img.setFitWidth(30);
+                img.setPreserveRatio(true);
+                img.setImage(SwingFXUtils.toFXImage(read, null));
+            }else{
+                Image image2 = new Image(getClass().getResourceAsStream("default.png"));//modify code to get the image from database
+                img = new ImageView(image2);
+                img.setFitHeight(30);
+                img.setFitWidth(30);
+                img.setPreserveRatio(true);
             }
-            profPic.setImage(SwingFXUtils.toFXImage(read, null));
-            //Image image = new Image(getClass().getResourceAsStream("dinu.jpg"));//modify code to get the image from database
-            ImageView img = new ImageView();
-            img.setFitHeight(30);
-            img.setFitWidth(30);
-            img.setPreserveRatio(true);
-            img.setImage(SwingFXUtils.toFXImage(read, null));
+
 
             Label label3 = new Label(allPosts.get(i).getUsername(), img);
             label3.setTextFill(Color.web("#483D8B"));
@@ -180,20 +191,30 @@ public class MyProfileController{
             if(lst_reply!=null) {
                 //p3 = new FlowPane();
                 //p3.setId("ReplyPane");
-                ByteArrayInputStream in2 = new ByteArrayInputStream(db.getPeer(lst_reply.getUsername()).getProf_pic());
-                BufferedImage read2 = null;
-                try {
-                    read2 = ImageIO.read(in2);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                //Image image1 = new Image(getClass().getResourceAsStream("dinu.jpg"));//modify code to get the image from database
-                ImageView img2 = new ImageView();
-                img2.setFitHeight(25);
-                img2.setFitWidth(25);
-                img2.setPreserveRatio(true);
-                img2.setImage(SwingFXUtils.toFXImage(read2, null));
 
+                ImageView img2;
+                byte[] replier_prof_pic=db.getPeer(lst_reply.getUsername()).getProf_pic();
+                if(prof_pic!=null){
+                    ByteArrayInputStream in = new ByteArrayInputStream(replier_prof_pic);
+                    BufferedImage read = null;
+                    try {
+                        read = ImageIO.read(in);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    //Image image = new Image(getClass().getResourceAsStream("dinu.jpg"));//modify code to get the image from database
+                    img2 = new ImageView();
+                    img2.setFitHeight(25);
+                    img2.setFitWidth(25);
+                    img2.setPreserveRatio(true);
+                    img2.setImage(SwingFXUtils.toFXImage(read, null));
+                }else{
+                    Image image23= new Image(getClass().getResourceAsStream("default.png"));//modify code to get the image from database
+                    img2 = new ImageView(image23);
+                    img2.setFitHeight(25);
+                    img2.setFitWidth(25);
+                    img2.setPreserveRatio(true);
+                }
 
                 Label label5 = new Label(lst_reply.getUsername(), img2);
                 //Label label5 = new Label(allPosts.get(i).getLastReply().getUsername(), img2);
@@ -423,7 +444,7 @@ public class MyProfileController{
                 out.flush();
                 b = out.toByteArray();
             }
-            if(file.length()<16*1024){
+            if(file.length()<20*1024){
                 edited_peer.setProf_pic(b);
                 hasEdited=true;
                 showProfPic(b);

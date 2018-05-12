@@ -92,6 +92,7 @@ public class CreateDB{
                     "( USERNAME VARCHAR(30) NOT NULL , " +
                     "  POST_ID INT  NOT NULL ," +
                     "  REPLY_ID INT NOT NULL ," +
+                    "  REPLY_CREATOR VARCHAR(30) NOT NULL ," +
                     "  CONTENT VARCHAR(300)," +
                     "  CREATED_DATE TIMESTAMP,"+
                     "  CONSTRAINT FK_reply FOREIGN KEY (USERNAME,POST_ID) REFERENCES POST(USERNAME,POST_ID) ,"+

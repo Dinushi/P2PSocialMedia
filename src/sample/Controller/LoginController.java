@@ -1,6 +1,8 @@
 package sample.Controller;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -8,17 +10,25 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.stage.Stage;
 import javafx.scene.control.TextField;
 import javafx.stage.Window;
+import javafx.stage.WindowEvent;
 import sample.CommunicationHandler.PeerConnection;
+import sample.EventHandler.HeartBeatHandler;
 import sample.EventHandler.NewPeerListner;
 import sample.Model.Peer;
 import sample.Model.ThisPeer;
 
 
-import java.io.IOException;
+import java.io.*;
 import java.sql.SQLException;
+import java.sql.Timestamp;
+import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 
 import static sample.Controller.Validator.thisPeer;
 
@@ -45,14 +55,13 @@ public class LoginController {
     public void pressLogin(ActionEvent event){
 
 
-
         Window owner = btn_login.getScene().getWindow();
 
         Validator v=new Validator();
 
-         int result = v.validateUser(userName.getText(), password.getText());
 
 
+        int result = v.validateUser(userName.getText(), password.getText());
 
         if (result==0){
 
@@ -61,13 +70,27 @@ public class LoginController {
                 pc.createTheSocketListner();
                 if(thisPeer==null){
                     thisPeer= Peer.retrieveAPeer(userName.getText());
+                    thisPeer.setOnlineStatus(true);
                 }
+                /*
+                String Strlast_logout_time=readTheUserHistory();
+                DateTimeFormatter f = DateTimeFormatter.ofPattern ( "yyyy-MM-dd HH:mm:ss.SSS" );
+                LocalDateTime localDate = LocalDateTime.parse(Strlast_logout_time,f);
+                System.out.println("My last log outTime"+localDate);
+                Validator.last_logOuttime=localDate;
+                */
+                //DateTimeFormatter f = DateTimeFormatter.ofPattern ( "yyyy-MM-dd HH:mm:ss.SSSX" );
+                //OffsetDateTime odt = OffsetDateTime.parse ( Strlast_logout_time , f );
+                //The time is not read
 
-
+                //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSSX");
+                //Validator.last_logOuttime= LocalDateTime.parse(Strlast_logout_time, formatter);
+                new HeartBeatHandler().start();
             }
 
             //NewPeerListner.sendJoinRequestToDiscoverdPeersFromBs();
             //now only the port is specified to create a peer connection
+
 
             AlertHelper.showAlert(Alert.AlertType.CONFIRMATION, owner, "Login Successful!",
                     "Welcome " + userName.getText());
@@ -76,9 +99,66 @@ public class LoginController {
                 Parent root = FXMLLoader.load(getClass().getResource("../View/AppHome.fxml"));
                 Stage stage = new Stage();
                 stage.setTitle("PeerNet");
-                Scene scene=new Scene(root, 577, 602);
+                Scene scene=new Scene(root, 747, 601);
                 stage.setScene(scene);
                 scene.getStylesheets().add(getClass().getResource("../CSS/Home.css").toString());
+
+                stage.setOnHiding(new EventHandler<WindowEvent>() {
+
+                    @Override
+                    public void handle(WindowEvent event) {
+                        Platform.runLater(new Runnable() {
+
+                            @Override
+                            public void run() {
+                                if(HomeController.notALoginOut){
+                                    System.out.println("closing the Home page");
+                                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                                    alert.setTitle("Confirmation Dialog");
+                                    alert.setHeaderText("Log out");
+                                    alert.setContentText("Do you want to log out?");
+
+                                    Optional<ButtonType> result = alert.showAndWait();
+                                    if (result.get() == ButtonType.OK ) {
+                                        try {
+                                        /*
+                                        System.out.println("Store history of user");
+                                        BufferedWriter writer= new BufferedWriter(new FileWriter("ThisUser.txt", true));
+                                        LocalDateTime log_out_time=LocalDateTime.now();
+                                        writer.write(String.valueOf(log_out_time));
+                                        writer.newLine();
+                                        System.out.println("log out time"+log_out_time);
+                                        */
+
+                                            BufferedWriter writer = new BufferedWriter(new FileWriter("History.txt"));
+                                            LocalDateTime log_out_time=LocalDateTime.now();
+
+
+                                            System.out.println("storing the message created date"+log_out_time.toString());
+                                            writer.write(log_out_time.toString());
+
+                                            //Timestamp timestamp = Timestamp.valueOf(log_out_time);
+                                            //System.out.println("storing the message created date"+timestamp);
+                                            //writer.write(String.valueOf(timestamp));
+                                            System.out.print("History of user is stored");
+                                            writer.close();
+
+                                            System.exit(0);
+                                        } catch (IOException e) {
+                                            e.printStackTrace();
+                                        }
+
+                                    }
+                                    //also send these changes to a all connected Peers
+                                    //} else {
+                                    // ... user chose CANCEL or closed the dialog
+
+                                }
+                                }
+
+                        });
+                    }
+                });
                 stage.show();
                 // Hide this current window (if this is what you want)
                 ((Node) (event.getSource())).getScene().getWindow().hide();
@@ -123,6 +203,45 @@ public class LoginController {
             ((Node) (event.getSource())).getScene().getWindow().hide();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+
+    }
+    private String readTheUserHistory(){
+
+        String last_logged_time;
+        // The name of the file to open.
+        String fileName = "History.txt";
+
+        // This will reference one line at a time
+        String line = null;
+
+        try {
+            // FileReader reads text files in the default encoding.
+            FileReader fileReader =
+                    new FileReader(fileName);
+
+            // Always wrap FileReader in BufferedReader.
+            BufferedReader bufferedReader =
+                    new BufferedReader(fileReader);
+           line = bufferedReader.readLine();
+           last_logged_time=line.replaceAll("[\n\r]", "");
+           bufferedReader.close();
+           fileReader.close();
+           return last_logged_time;
+        }
+        catch(FileNotFoundException ex) {
+            System.out.println(
+                    "Unable to open file '" +
+                            fileName + "'");
+            return "";
+        }
+        catch(IOException ex) {
+            System.out.println(
+                    "Error reading file '"
+                            + fileName + "'");
+            // Or we could just do this:
+            // ex.printStackTrace();
+            return "";
         }
 
     }

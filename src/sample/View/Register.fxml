@@ -34,11 +34,11 @@
               <Label layoutX="24.0" layoutY="306.0" text="Password" />
             <PasswordField fx:id="password" layoutX="89.0" layoutY="302.0" prefHeight="25.0" prefWidth="174.0" />
               <Label layoutX="27.0" layoutY="340.0" text="Re-type Password" />
-            <PasswordField fx:id="Re_passsword" layoutX="89.0" layoutY="364.0" prefHeight="25.0" prefWidth="174.0" />
+            <PasswordField fx:id="re_password" layoutX="89.0" layoutY="364.0" prefHeight="25.0" prefWidth="174.0" />
               <Button fx:id="btn_submit" layoutX="95.0" layoutY="422.0" mnemonicParsing="false" onAction="#pressSubmit" text="Submit" />
-              <Button layoutX="174.0" layoutY="422.0" mnemonicParsing="false" text="Cancel" />
+              <Button layoutX="174.0" layoutY="422.0" mnemonicParsing="false" onAction="#pressCancel" text="Cancel" />
          </children>
       </Pane>
-      <Button layoutX="529.0" layoutY="499.0" mnemonicParsing="false" text="Back to Login" />
+      <Button layoutX="529.0" layoutY="499.0" mnemonicParsing="false" onAction="#pressBackToLogin" text="Back to Login" />
     </children>
 </AnchorPane>

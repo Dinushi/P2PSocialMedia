@@ -11,46 +11,53 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="574.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.MyProfileController">
+<AnchorPane prefHeight="565.0" prefWidth="650.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.MyProfileController">
    <children>
       <Pane layoutY="165.0" prefHeight="401.0" prefWidth="213.0" style="-fx-background-color: #b3b3ff;">
          <children>
-            <Label layoutX="23.0" layoutY="14.0" prefHeight="17.0" prefWidth="65.0" text="About Me" />
-            <Button layoutX="56.0" layoutY="152.0" mnemonicParsing="false" onAction="#pressProfDataEdit" text="Edit" />
-            <Label layoutX="8.0" layoutY="77.0" text="Gender" />
-            <Label layoutX="9.0" layoutY="51.0" text="Full Name:" />
-            <Label layoutX="6.0" layoutY="125.0" text="HomeTown:" />
-            <Label layoutX="6.0" layoutY="102.0" text="Birthday" />
+            <Label layoutX="23.0" layoutY="14.0" prefHeight="31.0" prefWidth="87.0" text="About Me" textFill="#a46521">
+               <font>
+                  <Font name="Chiller" size="21.0" />
+               </font></Label>
+            <Button layoutX="56.0" layoutY="152.0" mnemonicParsing="false" onAction="#pressProfDataEdit" prefHeight="25.0" prefWidth="55.0" style="-fx-background-color: #000033 #0000cd#b3b3ff;" text="Edit" textFill="#ebe7e7" />
+            <Label layoutX="8.0" layoutY="77.0" text="Gender" textFill="#9b4d11" />
+            <Label layoutX="9.0" layoutY="51.0" text="Full Name:" textFill="#9b4d11" />
+            <Label layoutX="6.0" layoutY="125.0" text="HomeTown:" textFill="#9b4d11" />
+            <Label layoutX="6.0" layoutY="102.0" text="Birthday" textFill="#9b4d11" />
             <Label fx:id="lbl_birthday" layoutX="89.0" layoutY="102.0" text="19994.06.02" />
             <Label layoutX="89.0" layoutY="77.0" text="Female" />
             <Label fx:id="lbl_fullName" layoutX="89.0" layoutY="51.0" text="Thilini Dinushika" />
             <Label fx:id="lbl_hometown" layoutX="89.0" layoutY="125.0" text="Akuressa" />
             <Pane fx:id="editPane" layoutX="7.0" layoutY="183.0" prefHeight="217.0" prefWidth="201.0" />
          </children></Pane>
-      <Pane fx:id="ProfPicPane" layoutY="-4.0" prefHeight="169.0" prefWidth="135.0">
+      <Pane fx:id="ProfPicPane" layoutX="7.0" layoutY="9.0" prefHeight="143.0" prefWidth="100.0" style="-fx-background-color: #000033;">
          <children>
-            <ImageView fx:id="profPic" fitHeight="142.0" fitWidth="116.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="profPic" fitHeight="142.0" fitWidth="142.0" layoutX="-3.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Controller/dinu.jpg" />
                </image>
             </ImageView>
-            <Button fx:id="btn_changeProfPic" layoutX="85.0" layoutY="131.0" mnemonicParsing="false" onAction="#pressChangeProfPic" prefHeight="25.0" prefWidth="36.0" />
+            <Button fx:id="btn_changeProfPic" layoutX="68.0" layoutY="117.0" mnemonicParsing="false" onAction="#pressChangeProfPic" prefHeight="25.0" prefWidth="36.0" />
          </children>
       </Pane>
       <Pane layoutX="138.0" prefHeight="160.0" prefWidth="495.0">
          <children>
             <Label fx:id="lbl_myUername" layoutX="13.0" layoutY="13.0" prefHeight="49.0" prefWidth="286.0" text="Thilini Dinushika">
                <font>
-                  <Font size="33.0" />
+                  <Font name="Chiller" size="41.0" />
                </font>
             </Label>
             <Label fx:id="lbl_status" layoutX="14.0" layoutY="72.0" prefHeight="17.0" prefWidth="363.0" text="Just live to  " />
             <TextField fx:id="txt_status" layoutX="14.0" layoutY="97.0" prefHeight="25.0" prefWidth="402.0" promptText="Update my status" />
             <Button layoutX="418.0" layoutY="97.0" mnemonicParsing="false" onAction="#pressStatusUpdate" text="Update" />
             <Line endX="100.0" layoutX="121.0" layoutY="146.0" startX="-100.0" strokeLineJoin="ROUND" strokeMiterLimit="20.0" />
+            <Label layoutX="235.0" layoutY="130.0" prefHeight="17.0" prefWidth="113.0" text="My Recent Posts" textFill="#a6670f">
+               <font>
+                  <Font name="Chiller" size="22.0" />
+               </font>
+            </Label>
          </children></Pane>
-      <Pane fx:id="post_pane" layoutX="218.0" layoutY="182.0" prefHeight="384.0" prefWidth="426.0" />
-      <Label layoutX="365.0" layoutY="157.0" prefHeight="17.0" prefWidth="113.0" text="My Recent Posts" />
+      <Pane fx:id="post_pane" layoutX="211.0" layoutY="165.0" prefHeight="401.0" prefWidth="433.0" />
    </children>
     <stylesheets>
         <URL value="@../CSS/MyProfile.css" />

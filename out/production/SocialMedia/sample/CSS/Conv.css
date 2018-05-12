@@ -1,46 +1,73 @@
 #btn_conv {
+    -fx-font: 10px "Trebuchet MS";
     -fx-base:	#1E90FF;
     -fx-background-image: url("../images/chat.png");
     -fx-background-size: 18 18;
     -fx-background-repeat: no-repeat;
     -fx-background-position:left;
+    -fx-effect: innershadow( three-pass-box , #27496d , 2, 0, 0, 0);
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
 }
 #btn_online{
+    -fx-font: 10px "Trebuchet MS";
     -fx-base:	#1E90FF;
     -fx-background-image: url("../images/ViewOnline.png");
     -fx-background-size: 18 18;
     -fx-background-repeat: no-repeat;
     -fx-background-position:left;
+    -fx-effect: innershadow( three-pass-box , #27496d , 2, 0, 0, 0);
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
 }
 #btn_peer_requests {
+    -fx-font: 10px "Trebuchet MS";
     -fx-base:	#1E90FF;
     -fx-background-image: url("../images/request.png");
     -fx-background-size: 18 18;
     -fx-background-repeat: no-repeat;
     -fx-background-position:left;
+    -fx-effect: innershadow( three-pass-box , #27496d , 2, 0, 0, 0);
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
 }
 #btn_discover{
+    -fx-font: 10px "Trebuchet MS";
     -fx-base:	#1E90FF;
     -fx-background-image: url("../images/peerSelect.png");
     -fx-background-size: 18 18;
     -fx-background-repeat: no-repeat;
     -fx-background-position:left;
+    -fx-effect: innershadow( three-pass-box , #27496d , 2, 0, 0, 0);
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
 }
 #btn_edit {
+    -fx-font: 10px "Trebuchet MS";
     -fx-base:	#1E90FF;
     -fx-background-image: url("../images/edit_prof.png");
     -fx-background-size: 18 18;
     -fx-background-repeat: no-repeat;
     -fx-background-position:left;
+    -fx-effect: innershadow( three-pass-box , #27496d , 2, 0, 0, 0);
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
 }
 #btn_viewPeerProfile{
+    -fx-font: 10px "Trebuchet MS";
     -fx-base:	#1E90FF;
     -fx-background-image: url("../images/ViewPeer.png");
     -fx-background-size: 18 18;
     -fx-background-repeat: no-repeat;
     -fx-background-position:left;
+    -fx-effect: innershadow( three-pass-box , #27496d , 2, 0, 0, 0);
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
 }
 #separator1{
     -fx-background-color: #e79423;
     -fx-background-radius: 2;
 }
+
+
+

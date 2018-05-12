@@ -19,6 +19,8 @@ import java.util.ArrayList;
 public class PeerConnection {
     private static PeerConnection peerConn=null;
     public static boolean initialLogin=false;
+    private static int current_msgSeqNum=0;
+    private static int current_convSeqNum=0;
     private PeerConnection(){
     }
 
@@ -77,12 +79,35 @@ public class PeerConnection {
                 os.writeObject(post);
             }else if(obj instanceof Message) {
                 Message msg = (Message) obj;
+                //this value is set to indicate the seq of packet sending in order to acheive reliability
+                msg.setUDPSeqNum(String.valueOf(current_msgSeqNum));
+                msg.setSentTimeInMillis(System.currentTimeMillis());
+                current_msgSeqNum++;
+
                 System.out.println("write to send a Message");
                 os.writeObject(msg);
+                if(current_msgSeqNum==1){
+                    //start the thread after sending the first message
+                    MessageRetransmitter.getMessageRetransmitter().start();
+                }
+                MessageRetransmitter.getMessageRetransmitter().addAMessage(msg,peerIP_ports);
+
             }else if(obj instanceof Conversation){
                 Conversation conv=(Conversation)obj;
+
+                conv.setUDPSeqNum(String.valueOf(current_convSeqNum));//initially set to 0
+                conv.setSentTimeOfConversationinMillis(System.currentTimeMillis());
+                current_convSeqNum++;
+
                 System.out.println("write to send a Conversation");
                 os.writeObject(conv);
+
+                if(current_convSeqNum==1){
+                    //start the thread after sending the first message
+                    ConversationRetransmitter.getConversationRetransmitter().start();
+                }
+                ConversationRetransmitter.getConversationRetransmitter().addAConversation(conv,peerIP_ports);
+
             }else if(obj instanceof DiscoverdPeer){
                 DiscoverdPeer joinReq=(DiscoverdPeer) obj;
                 System.out.println("Write to send  a Dis_peer");
@@ -92,7 +117,11 @@ public class PeerConnection {
                 System.out.println("Peer Object that i sent"+peer.getUsername()+""+peer.getIp()+""+peer.getPort());
                 System.out.println("Write to send A peer");
                 os.writeObject(peer);
-            }
+            }else if(obj instanceof String){
+                String str=(String) obj;
+                System.out.println("Write to send A String");
+                os.writeObject(str);
+        }
             //os.writeObject(student);
             //os.writeObject(post);
             byte[] data = outputStream.toByteArray();
@@ -105,6 +134,7 @@ public class PeerConnection {
             //DatagramPacket sendPacket = new DatagramPacket(data, data.length, InetAddress.getByName("127.0.0.1"), 13967);
             for (ReceivingPeer receiver : peerIP_ports) {
                 DatagramPacket sendPacket = new DatagramPacket(data, data.length, receiver.getIP(), receiver.getPort());
+
                 this.socket.send(sendPacket);
             }
             //earlier this two is the code.Not the loop

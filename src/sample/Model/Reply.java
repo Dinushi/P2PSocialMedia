@@ -7,8 +7,9 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 public class Reply implements Serializable {
+    private String reply_creator;
 
-    private  String username;
+    private  String username;//this username means the actual owener of the post
     private String content;
     private LocalDateTime date_created;
     private int post_id;
@@ -62,4 +63,11 @@ public class Reply implements Serializable {
     }
 
 
+    public String getReply_creator() {
+        return reply_creator;
+    }
+
+    public void setReply_creator(String reply_creator) {
+        this.reply_creator = reply_creator;
+    }
 }

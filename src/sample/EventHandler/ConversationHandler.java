@@ -4,6 +4,7 @@ import javafx.application.Platform;
 import sample.CommunicationHandler.PeerConnection;
 import sample.CommunicationHandler.ReceivingPeer;
 import sample.Controller.ChatController;
+import sample.Controller.Validator;
 import sample.DBHandler.DbHandler;
 import sample.Model.Conversation;
 import sample.Model.Message;
@@ -27,8 +28,7 @@ public class ConversationHandler {
             peerConn.sendViaSocket(conv, receivers);
         }
     }
-
-
+//wgen adding a new conversation to db,its first message is also added here with
     private synchronized static void addToDb(Conversation conv){
         DbHandler db=new DbHandler();
         db.addNewConv(conv);
@@ -45,13 +45,38 @@ public class ConversationHandler {
         System.out.println("Received conversation title"+conv.getTitle());
         System.out.println("Initiator username"+conv.getConversation_initiator().getUsername());
         System.out.println("conv_id"+conv.getConversation_id());
+        System.out.println("chat member"+conv.getChatPartner().get(0).getUsername());
+        //check whether the chat already exists
+        DbHandler db=new DbHandler();
+        int availability=db.removeAConversation(conv);
+        db.closeConnection();
+        if(availability==0){
+            if(conv.getChatPartner().size()==1){
+                System.out.println("Conv size is 1");
+                conv.setTitle(conv.getConversation_initiator().getUsername());//This one should see the other peer's name as the title.
+                conv.getChatPartner().clear();
+                conv.addPartner(conv.getConversation_initiator());
+                System.out.println("Conv size now"+conv.getChatPartner().size());
+            }else{
+                ArrayList<Peer> tempartners=new ArrayList<>();
 
-        conv.setTitle(conv.getConversation_initiator().getUsername());//This one should see the other peer's name as the title.
-        System.out.println("Received conversation  new title"+conv.getTitle());
-        addToDb(conv);
-        if(ChatController.chatController!=null){
-            ChatController.chatController.gotANewConversation(conv);
+                for (Peer p:conv.getChatPartner()){
+                    if(p.getUsername()!= Validator.thisPeer.getUsername()){
+                        tempartners.add(p);
+                    }
+                }
+                tempartners.add(conv.getConversation_initiator());
+                conv.setChatPartners(tempartners);
+            }
+            System.out.println("Received conversation  new title"+conv.getTitle());
+            addToDb(conv);
+            if(ChatController.chatController!=null){
+                ChatController.chatController.gotANewConversation(conv);
+            }
+
         }
+
+
 
     }
 
@@ -63,7 +88,7 @@ public class ConversationHandler {
     }
     public static void sendMessageToPartners(Conversation conv,Message msg){
         addMsgToDb(msg);
-        System.out.println("came here laaa laaa sending a message to the chin app");
+        System.out.println("came here laaa laaa sending a message");
         System.out.println("sent message conv_id  "+msg.getConversation_id());
         System.out.println("Initiator username"+msg.getConversation_initiator().getUsername());
         System.out.println("sent  message msg_id  "+msg.getMessage_id());
@@ -81,14 +106,25 @@ public class ConversationHandler {
             peerConn.sendViaSocket(msg, receivers);
         }
     }
-
-    private synchronized static void addMsgToDb(Message msg){
+    public static synchronized void deleteConversation(Conversation conv){
         DbHandler db=new DbHandler();
-        db.addAMessage(msg);
+        db.removeAConversation(conv);//method to delete all data regarding this chat
         db.closeConnection();
     }
+    public static void informPartnersAboutChatDeletion(Conversation conv){
+        sendTheInitialConversation(conv);
+        //conversation is sent back again.Then receiver verifies if it is alrady known delete the conversation
+    }
+
+    public synchronized static boolean addMsgToDb(Message msg){
+        DbHandler db=new DbHandler();
+        boolean result=db.addAMessage(msg);
+        db.closeConnection();
+        return result;
+    }
     public synchronized static void gotAMessage(Message msg){
-        System.out.println("came here laaa laaa getting a message from the chin app");
+
+        System.out.println("came here got got getting a message ");
         System.out.println("Received message conv_id  "+msg.getConversation_id());
         System.out.println("Initiator username"+msg.getConversation_initiator().getUsername());
         System.out.println("Received message msg_id  "+msg.getMessage_id());
@@ -99,6 +135,7 @@ public class ConversationHandler {
         msg.setStatus("U");
         DbHandler db=new DbHandler();
         Conversation conv=db.getAConversation(msg.getConversation_id(),msg.getConversation_initiator().getUsername());
+        //A message is aded to the db only if a conversation available
         if(conv!=null){
             conv.addMessage(msg);
             addMsgToDb(msg);

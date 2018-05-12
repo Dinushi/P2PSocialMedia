@@ -1,0 +1,11 @@
+
+.root {
+    -fx-background-image: url("../images/reply.jpg");
+    -fx-padding: 20;
+    -fx-background-position: center;
+    -fx-background-repeat: stretch;
+    -fx-background-size: auto;
+    -fx-background-size: 327 425;
+
+
+}

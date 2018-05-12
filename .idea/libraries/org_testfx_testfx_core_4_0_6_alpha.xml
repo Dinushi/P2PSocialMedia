@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="org.testfx:testfx-core:4.0.6-alpha" type="repository">
+    <properties maven-id="org.testfx:testfx-core:4.0.6-alpha" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/testfx/testfx-core/4.0.6-alpha/testfx-core-4.0.6-alpha.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

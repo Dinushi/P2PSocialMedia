@@ -61,7 +61,7 @@ public class PeerProfileController implements Initializable {
         this.peer=peer;
     }
     public void initialize(URL url, ResourceBundle rb ) {
-       // peer=find the way to get the selected peer to this place
+
         if(peer.getProf_pic()==null){
             showDefaultProfPic();
 

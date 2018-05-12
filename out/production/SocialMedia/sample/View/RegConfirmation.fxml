@@ -2,23 +2,28 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="381.0" prefWidth="355.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.View.RegConfirmation">
+<AnchorPane prefHeight="318.0" prefWidth="351.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller.LoginConfirmationController">
    <children>
-      <Pane layoutX="2.0" prefHeight="200.0" prefWidth="355.0">
+      <Pane prefHeight="202.0" prefWidth="355.0">
          <children>
-            <Label layoutX="74.0" layoutY="48.0" prefHeight="17.0" prefWidth="229.0" text="You have Successfully Registerd as" />
-            <TextField layoutX="96.0" layoutY="75.0" />
+            <Label layoutX="55.0" layoutY="56.0" prefHeight="17.0" prefWidth="229.0" text="You have Successfully Registerd " textFill="#221e1e">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Label>
             <Label layoutX="36.0" layoutY="130.0" prefHeight="17.0" prefWidth="169.0" text="Do you want to continue login" />
-            <Button layoutX="221.0" layoutY="124.0" mnemonicParsing="false" text="Yes" />
-            <Button layoutX="277.0" layoutY="124.0" mnemonicParsing="false" text="No" />
+            <Button layoutX="221.0" layoutY="124.0" mnemonicParsing="false" onAction="#pressLogin" text="Yes" textFill="#0b064d" />
+            <Button layoutX="277.0" layoutY="124.0" mnemonicParsing="false" text="No" textFill="#1c0b5b" />
          </children>
       </Pane>
-      <ImageView fitHeight="185.0" fitWidth="359.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true" />
+      <ImageView fitHeight="117.0" fitWidth="357.0" layoutY="201.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../Images/appHomeBack.jpg" />
+         </image></ImageView>
    </children>
 </AnchorPane>

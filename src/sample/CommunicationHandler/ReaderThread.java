@@ -22,7 +22,7 @@ public class ReaderThread extends  Thread {
 
         while(true) {
             Thread.currentThread().setPriority(8);
-            byte[] incomingData = new byte[4096];
+            byte[] incomingData = new byte[30*1024];
 
             DatagramPacket incomingPacket = new DatagramPacket(incomingData, incomingData.length);
             System.out.println("Ready to accept a packet");

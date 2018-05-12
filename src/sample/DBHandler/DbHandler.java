@@ -6,6 +6,7 @@ import javafx.scene.control.Alert;
 import sample.CommunicationHandler.ReceivingPeer;
 import sample.Controller.AlertHelper;
 import sample.Controller.LoginController;
+import sample.Controller.Validator;
 import sample.Model.*;
 
 import java.net.InetAddress;
@@ -169,6 +170,25 @@ public class DbHandler {
         }
         return allPeers;
     }
+    public synchronized String identifyThePeer(InetAddress ip,int port) {
+        PreparedStatement statement = null;
+        try {
+            statement = conn.prepareStatement("select USERNAME from PEER WHERE IP=? AND PORT=?");
+            statement.setString(1, String.valueOf(ip));
+            statement.setInt(2, port);
+            ResultSet resultSet = statement.executeQuery();
+            statement.clearParameters();
+            if (resultSet.next()) {
+                return resultSet.getString("USERNAME");
+            }
+            return null;
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return null;
+
+        }
+
+    }
 
     public synchronized ArrayList<String> selectAllPeerUsernames() {
         PreparedStatement statement = null;
@@ -210,6 +230,31 @@ public class DbHandler {
         System.out.print("At Db :" + allPeerUsernames);
         return allPeerUsernames;
     }
+    public synchronized ArrayList<Post> getNewlyCreatedPosts(LocalDateTime last_logged_timeofPeer) {
+        PreparedStatement statement = null;
+        ArrayList<Post> allPosts = new ArrayList<>();
+        Post post = null;
+        try {
+            statement = conn.prepareStatement("select * from POST WHERE USERNAME= ? AND CREATED_DATE >?");
+            statement.setString(1, String.valueOf(Validator.username));
+            Timestamp timestamp = Timestamp.valueOf(last_logged_timeofPeer);
+            statement.setTimestamp(2,timestamp);
+
+            //statement = conn.prepareStatement("select * from POST ");
+            //statement.setString(1, String.valueOf(Owner.myUsername));
+            ResultSet resultSet = statement.executeQuery();
+            statement.clearParameters();
+            while (resultSet.next()) {
+                post = new Post(resultSet.getString("USERNAME"), resultSet.getString("CONTENT"), resultSet.getInt("POST_ID"));
+                System.out.println("Post is retrieved");
+                post.setDate_created(resultSet.getTimestamp("CREATED_DATE").toLocalDateTime());
+                allPosts.add(post);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return allPosts;
+    }
 
     public synchronized ArrayList<Post> getPosts(boolean myPostsOnly,String username) {
         PreparedStatement statement = null;
@@ -238,6 +283,27 @@ public class DbHandler {
             e.printStackTrace();
         }
         return allPosts;
+    }
+    public synchronized Post checkTheAvailabilityOfAPost(String username,int post_id) {
+        PreparedStatement statement = null;
+        Post post = null;
+        try {
+
+            statement = conn.prepareStatement("select * from POST WHERE USERNAME = ? AND POST_ID=? ");
+            statement.setString(1, String.valueOf(username));
+            statement.setInt(2,post_id);
+
+            ResultSet resultSet = statement.executeQuery();
+            statement.clearParameters();
+            if(resultSet.next()) {
+                post = new Post(resultSet.getString("USERNAME"), resultSet.getString("CONTENT"), resultSet.getInt("POST_ID"));
+                System.out.println("A post of this reply is available");
+                post.setDate_created(resultSet.getTimestamp("CREATED_DATE").toLocalDateTime());
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public synchronized boolean addNewPost(Post post) {
@@ -270,7 +336,7 @@ public class DbHandler {
             ResultSet resultSet = statement.executeQuery();
             statement.clearParameters();
             if (resultSet.next()) {
-                post_ID = resultSet.getInt("POST_ID");
+                post_ID = resultSet.getInt(1);
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -352,7 +418,7 @@ public class DbHandler {
                 String userName=resultSet.getString("USERNAME");
                 InetAddress ip=null;
                 try {
-                   ip=InetAddress.getByName(resultSet.getString("IP").substring(1));
+                    ip=InetAddress.getByName(resultSet.getString("IP").substring(1));
                 } catch (UnknownHostException e) {
                     e.printStackTrace();
                 }
@@ -389,14 +455,15 @@ public class DbHandler {
     public synchronized boolean addNewReply(Reply reply) {
         try {
 
-            String template = "INSERT INTO APP.REPLY (USERNAME,POST_ID,REPLY_ID,CONTENT,CREATED_DATE) values (?,?,?,?,?)";
+            String template = "INSERT INTO APP.REPLY (USERNAME,POST_ID,REPLY_ID,REPLY_CREATOR,CONTENT,CREATED_DATE) values (?,?,?,?,?,?)";
             PreparedStatement stmt = conn.prepareStatement(template);
             stmt.setString(1, reply.getUsername());
             stmt.setInt(2, reply.getPost_id());
             stmt.setInt(3, reply.getReply_id());
-            stmt.setString(4, reply.getContent());
+            stmt.setString(4, reply.getReply_creator());
+            stmt.setString(5, reply.getContent());
             Timestamp timestamp = Timestamp.valueOf(reply.getDate_created());
-            stmt.setTimestamp(5,timestamp);
+            stmt.setTimestamp(6,timestamp);
             //stmt.setDate(5, java.sql.Date.valueOf(reply.getDate_created().toLocalDate()));
             stmt.executeUpdate();
 
@@ -440,6 +507,7 @@ public class DbHandler {
             statement.clearParameters();
             while (resultSet.next()) {
                 reply = new Reply(resultSet.getString("USERNAME"), resultSet.getString("CONTENT"), resultSet.getInt("POST_ID"), resultSet.getInt("REPLY_ID"));
+                reply.setReply_creator(resultSet.getString("REPLY_CREATOR"));
                 System.out.println("Reply is retrieved");
                 reply.setDate_created(resultSet.getTimestamp("CREATED_DATE").toLocalDateTime());
                 allReplies.add(reply);
@@ -449,6 +517,51 @@ public class DbHandler {
         }
         return allReplies;
     }
+
+    public synchronized ArrayList<Conversation> getNewlyCreatedConversationsWithAssociatedMessages(String partner_username,LocalDateTime last_logged_timeofPeer,boolean needConv) {
+        PreparedStatement statement = null;
+        ArrayList<Conversation> allNewConversationsCreatedAfterThisTime = new ArrayList<>();
+        Conversation conv = null;
+        try {
+            if(needConv) {
+                statement = conn.prepareStatement("select * from CONVERSATION NATURAL JOIN CHAT WHERE CONVERSATION_INITIATOR=? AND PARTNER= ? AND STARTED_DATE>?");
+                statement.setString(1, String.valueOf(Validator.username));
+                statement.setString(2, String.valueOf(partner_username));
+                Timestamp timestamp = Timestamp.valueOf(last_logged_timeofPeer);
+                statement.setTimestamp(3, timestamp);
+            }else{
+                statement = conn.prepareStatement("select * from CONVERSATION NATURAL JOIN CHAT WHERE PARTNER= ? AND STARTED_DATE<?");
+                statement.setString(1, String.valueOf(partner_username));
+                Timestamp timestamp = Timestamp.valueOf(last_logged_timeofPeer);
+                statement.setTimestamp(2, timestamp);
+            }
+
+
+            ResultSet resultSet = statement.executeQuery();
+            statement.clearParameters();
+            while (resultSet.next()) {
+                conv = new Conversation();
+                conv.setConversation_id(resultSet.getInt("CONVERSATION_ID"));
+                conv.setConversation_initiator(this.getPeer(resultSet.getString("CONVERSATION_INITIATOR")));
+                conv.setStarted_date(resultSet.getTimestamp("STARTED_DATE").toLocalDateTime());
+                conv.setTitle(resultSet.getString("CONV_TITLE"));
+                if (resultSet.getString("NEW_RECEIVED_MESSAGES") == "T") {
+                    conv.setUnseenMessages(true);
+                } else {
+                    conv.setUnseenMessages(false);
+                }
+                if(needConv) {
+                    conv.setChatPartners(this.getChatPartners(conv.getConversation_id(), conv.getConversation_initiator().getUsername()));
+                    conv.setMessages(this.getMessages(conv.getConversation_id(), conv.getConversation_initiator().getUsername(),null,false));
+                }
+                allNewConversationsCreatedAfterThisTime.add(conv);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return allNewConversationsCreatedAfterThisTime;
+    }
+
 
     public synchronized ArrayList<Conversation> getAllConversationsWithNewMessages() {
         PreparedStatement statement = null;
@@ -472,7 +585,7 @@ public class DbHandler {
                     conv.setUnseenMessages(false);
                 }
                 conv.setChatPartners(this.getChatPartners(conv.getConversation_id(), conv.getConversation_initiator().getUsername()));
-                conv.setMessages(this.getMessages(conv.getConversation_id(), conv.getConversation_initiator().getUsername()));
+                conv.setMessages(this.getMessages(conv.getConversation_id(), conv.getConversation_initiator().getUsername(),null,false));
                 allConversations.add(conv);
             }
         } catch (SQLException e) {
@@ -502,8 +615,8 @@ public class DbHandler {
                     conv.setUnseenMessages(false);
                 }
                 conv.setChatPartners(this.getChatPartners(conv.getConversation_id(), conv.getConversation_initiator().getUsername()));
-                conv.setMessages(this.getMessages(conv.getConversation_id(), conv.getConversation_initiator().getUsername()));
-               return conv;
+                conv.setMessages(this.getMessages(conv.getConversation_id(), conv.getConversation_initiator().getUsername(),null,false));
+                return conv;
             }
         } catch (SQLException e) {
             e.printStackTrace();
@@ -535,14 +648,26 @@ public class DbHandler {
 
     }
 
-    public ArrayList<Message> getMessages(int conversation_id, String conversation_initiator) {
+
+    public ArrayList<Message> getMessages(int conversation_id, String conversation_initiator,LocalDateTime last_logged_timeofPeer,boolean needToFilterByTime) {
         PreparedStatement statement = null;
         ArrayList<Message> messages = new ArrayList<>();
         Message msg;
         try {
-            statement = conn.prepareStatement("select * from MESSAGE where CONVERSATION_ID = ? AND CONVERSATION_INITIATOR =? ORDER BY TIME  ");
-            statement.setInt(1, conversation_id);
-            statement.setString(2, conversation_initiator);
+            if(needToFilterByTime){
+                statement = conn.prepareStatement("select * from MESSAGE where CONVERSATION_ID = ? AND CONVERSATION_INITIATOR =? AND MESSAGE_CREATOR=? AND TIME>? ORDER BY TIME  ");
+                statement.setInt(1, conversation_id);
+                statement.setString(2, conversation_initiator);
+                statement.setString(3, Validator.username);
+                Timestamp timestamp = Timestamp.valueOf(last_logged_timeofPeer);
+                statement.setTimestamp(4, timestamp);
+
+            }else {
+                statement = conn.prepareStatement("select * from MESSAGE where CONVERSATION_ID = ? AND CONVERSATION_INITIATOR =? ORDER BY TIME  ");
+                statement.setInt(1, conversation_id);
+                statement.setString(2, conversation_initiator);
+            }
+
             ResultSet resultSet = statement.executeQuery();
             statement.clearParameters();
             while (resultSet.next()) {
@@ -646,6 +771,58 @@ public class DbHandler {
             return false;
         }
 
+    }
+    public synchronized int removeAConversation(Conversation conv) {
+        removeChatPartners(conv);
+        removeMessages(conv);
+        PreparedStatement statement = null;
+        try {
+            statement = conn.prepareStatement("delete from APP.CONVERSATION where CONVERSATION_ID=? AND CONVERSATION_INITIATOR=? ");
+            statement.setInt(1,conv.getConversation_id() );
+            statement.setString(2, conv.getConversation_initiator().getUsername());
+            int result = statement.executeUpdate();
+            statement.clearParameters();
+            System.out.println("conersation removal : " + result);
+            return result;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+    private  int removeChatPartners(Conversation conv) {
+
+        PreparedStatement statement = null;
+        try {
+            statement = conn.prepareStatement("delete from APP.CHAT where CONVERSATION_ID=? AND CONVERSATION_INITIATOR=?");
+            statement.setInt(1,conv.getConversation_id() );
+            statement.setString(2, conv.getConversation_initiator().getUsername());
+            int result = statement.executeUpdate();
+            statement.clearParameters();
+            System.out.println("Chat Partner removal : " + result);
+            return result;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
+    }
+    private  int removeMessages(Conversation conv) {
+
+        PreparedStatement statement = null;
+        try {
+            statement = conn.prepareStatement("delete from APP.MESSAGE where CONVERSATION_ID=? AND CONVERSATION_INITIATOR=? ");
+            statement.setInt(1, conv.getConversation_id());
+            statement.setString(2, conv.getConversation_initiator().getUsername());
+            int result = statement.executeUpdate();
+            statement.clearParameters();
+            System.out.println("Messages removal : " + result);
+            return result;
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return 0;
+        }
     }
 
     public synchronized boolean addChatPartnersToChatTable(int conversation_id, String conversation_initiator, String partner) {

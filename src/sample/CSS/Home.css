@@ -1,10 +1,24 @@
 
 .root {
-    -fx-app-background: cornsilk;
-    -fx-background-color: -fx-app-background;
+    -fx-background-image: url("../images/newNewHome.jpg");
     -fx-padding: 20;
+    -fx-background-position: center;
+    -fx-background-repeat: stretch;
+    -fx-background-size: auto;
+    -fx-background-size: 747 601;
+
 }
 
+#txt_post{
+    -fx-background-color: transparent;
+    -fx-opacity: 0.1;
+}
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+}
+.scroll-pane {
+    -fx-background-color: transparent;
+}
 .right-page-turn {
     -fx-rotate: 3;
     -fx-translate-y: -2;
@@ -12,12 +26,25 @@
     -fx-background-color: -fx-app-background;
     -fx-effect: dropshadow(three-pass-box, grey, 10, 0, 0, 15);
 }
+#lbl_username{
+    -fx-fill: rgba(203, 211, 207, 0.76);
+    -fx-font: 28px "Chiller";
+    -fx-font-weight: bold;
+}
+#img{
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    border-style: solid;
+    border-width: 1px;
+    border-color: lightgrey;
+}
 
 .FlowPane {
     -fx-background-color: whitesmoke;
 }
 #sep1{
-    -fx-background-color: 	#8B008B;
+    -fx-background-color: #0f078b;
     -fx-background-radius: 4;
 }
 
@@ -34,4 +61,30 @@
 }
 #Post_contentPane{
     -fx-background-color:  #e9eefc;
+}
+#btn_post_share{
+    -fx-background-size: 18 18;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:left;
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(#171769, #2A5058);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-font: 10px "Trebuchet MS";
+    -fx-text-fill: white;
+    -fx-effect: innershadow( three-pass-box , #27496d , 2, 0, 0, 0);
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
+}
+#btn_post_cancel{
+    -fx-background-size: 18 18;
+    -fx-background-repeat: no-repeat;
+    -fx-background-position:left;
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(#171769, #2A5058);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+    -fx-font: 10px "Trebuchet MS";
+    -fx-text-fill: white;
+    -fx-effect: innershadow( three-pass-box , #27496d , 2, 0, 0, 0);
+    -fx-border-radius: 15px;
+    -fx-background-radius: 15px;
 }

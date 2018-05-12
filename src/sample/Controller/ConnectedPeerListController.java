@@ -110,49 +110,7 @@ public class ConnectedPeerListController implements Initializable {
                             stage.setTitle("Peer Profile");
                             stage.setScene(new Scene(root, 650.0, 574.0));
                             stage.show();
-                            /*
-                            Parent root = FXMLLoader.load(getClass().getResource("../View/PeerProfile.fxml"));
-                            Stage stage = new Stage();
-                            stage.setTitle("Peer Profile");
-                            stage.setScene(new Scene(root, 650.0, 574.0));
-                            stage.show();
-                            */
-                            /*
-                            //UI eka initialize unata passe value eka use wenw witharak this is ok..But can't be used if it is referd in initialize()
-                            FXMLLoader fxmlLoader=new FXMLLoader();
-                            fxmlLoader.setLocation(getClass().getResource("../View/PeerProfile.fxml"));
-                            fxmlLoader.load();
 
-                            PeerProfileController peerProfileController=fxmlLoader.getController();
-                            peerProfileController.setChoosedPeer(peer);
-
-                            Parent p=fxmlLoader.getRoot();
-                            Stage stage = new Stage();
-                            stage.setTitle("Peer Profile");
-                            stage.setScene(new Scene(p, 650.0, 574.0));
-                            stage.showAndWait();
-*/
-                            /*
-                            int j =Integer.parseInt(b1.getId());
-                            System.out.println("selected Peer id"+j);
-                            Peer p=allPeers.get(j);
-
-                            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("../View/PeerProfile.fxml"));
-
-                            Parent root = (Parent)fxmlLoader.load();
-                            Stage stage = new Stage();
-                            stage.setTitle("Peer Profile");
-                            PeerProfileController controller = fxmlLoader.<PeerProfileController>getController();
-                            controller.setChoosedPeer(p);
-                            Scene scene = new Scene(root,650.0, 574.0);
-
-                            stage.setScene(scene);
-
-                            stage.show();
-                            */
-
-                            // Hide this current window (if this is what you want)
-                            //((Node) (event.getSource())).getScene().getWindow().hide();
                         } catch (IOException ex) {
                             ex.printStackTrace();
                         }
