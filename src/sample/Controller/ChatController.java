@@ -20,6 +20,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.FlowPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -45,10 +46,7 @@ public class ChatController {
 
     @FXML
     public TabPane tabPane;//this is the pane which hold all tabs
-    //private ArrayList<Tab> allAddedTabs=new ArrayList<>();----------------------
     private ArrayList<String> allAddedTabs;
-    //ListView<Pane> list;
-    //ObservableList<Pane> panes ;
 
     private ArrayList<Conversation> allConversations;
 
@@ -72,17 +70,12 @@ public class ChatController {
         }
 
         Tab tab = new Tab("All Conversations");
-        // Rectangle rect = new Rectangle(200, 200, Color.RED);
-        //VBox v=new VBox();
-        ///ListView<Pane> list = new ListView<Pane>();
+
         ListView<Pane> list = new ListView<Pane>();
-        ///ObservableList<Pane> panes = FXCollections.observableArrayList();
         ObservableList<Pane> panes = FXCollections.observableArrayList();
 
         for (int i = all_conversations.size()-1; i>=0 ; i--) {
-            //for (int i = 0; i < all_conversations.size(); i++) {
-            // StackPane p1= new StackPane();
-            //p1.setAlignment(Pos.CENTER);
+
 
             FlowPane p1 = new FlowPane();
             p1.setVgap(8);
@@ -133,7 +126,7 @@ public class ChatController {
             label3.setFont(Font.font("Cambria", 15));
 
 
-            Label label4 = new Label(all_conversations.get(i).getMessages().get(0).getContent());
+            Label label4 = new Label(all_conversations.get(i).getMessages().get(all_conversations.get(i).getMessages().size()-1).getContent());
             label4.setFont(Font.font("Arial", 12));
             label4.setWrapText(true);
             Button b1 = new Button("View");
@@ -152,6 +145,7 @@ public class ChatController {
                     //tabPane.getTabs().add(tab);
                 }
             });
+            /*
             b1.setStyle("-fx-font: 10 arial; -fx-base: #b6e7c9;");
 
             Button b2 = new Button("Delete");
@@ -177,7 +171,8 @@ public class ChatController {
             }else{
                 p1.getChildren().addAll(label3, label4, b1);
             }
-            //p1.getChildren().addAll(label3, label4, b1);
+            */
+            p1.getChildren().addAll(label3, label4, b1);
 
             panes.add(p1);
             //v.getChildren().setAll(p1);
@@ -193,41 +188,12 @@ public class ChatController {
                     }
                 });
         tabPane.getTabs().add(tab);
-
-        //A label with the text element
-        //Label label2 = new Label("Dinushi1234");
-        //A label with the text element and graphical icon
-
-        //Label label1 = new Label("Dinushi1234");
-        //Label label3 = new Label("Dinushi1234", img);
-        //label3.setMinWidth(50);
-        //label3.setMinHeight(50);
-        //p1.getChildren().addAll(label1,label3 );
-        //v.getChildren().setAll(p1);
-        //tab.setContent(v);
-
-        //ListView<Pane> list = new ListView<Pane>();
-        //ObservableList<Pane> panes = FXCollections.observableArrayList (
-        // p1,new Pane());
-
-        ObservableList<String> items = FXCollections.observableArrayList(
-                "Single", "Double", "Suite", "Family App");
-        //list.setItems(panes);
-
-        //ScrollPane s1 = new ScrollPane();
-        //s1.setPrefSize(120, 120);
-        //s1.setContent(rect);
-        //tab.setContent(list);
-        // tabPane.getTabs().add(tab);
-
-
     }
     private int checkAvailabilityOfTab(ArrayList<Tab> availableTabs,Conversation conv){
         int i=1;
         System.out.println("Avaialable"+availableTabs.size());
         while(i<availableTabs.size()){
             if(availableTabs.get(i).getId().equalsIgnoreCase(conv.getTitle())){
-                System.out.println("founddddddddddddddddddddd a sililllllll r tab"+i);
                 return i;
             }
             i++;
@@ -244,27 +210,9 @@ public class ChatController {
         tabPane.getTabs().forEach(tab -> availableTabs.add(tab));
         int index=checkAvailabilityOfTab(availableTabs,conv);
         if(index>0){
-            System.out.println("Going to remove Tabbbbbbbbbbbb");
             tabPane.getTabs().remove(index);
         }
 
-        /*
-        int tab=allAddedTabs.indexOf(conv.getTitle());
-        System.out.println("tab index"+tab);
-        tabPane.getTabs().remove(tab);
-        */
-
-
-/*
-        for(Tab t: allAddedTabs){
-            if(t.getId()==conv.getTitle()) {
-                tab1 = t;//This assigment does not happens....checkk.....
-                System.out.println("removed a tab");
-            }
-        }
-        */
-
-        //allAddedTabs.remove(tab1);
         System.out.println("after tab removal");
 
         FlowPane flow = new FlowPane(Orientation.VERTICAL);
@@ -280,7 +228,7 @@ public class ChatController {
         for(Peer peer:chatPartners){
             System.out.println("name pf the chat partner"+peer.getUsername());
             Label lbl=new Label(peer.getUsername()+" ");
-            lbl.setTextFill(Color.web("#0076a3"));
+            lbl.setTextFill(Color.web("#fbf1f1"));
             lbl.setFont(Font.font("Cambria", 15));
             partnerView.getChildren().add(lbl);
             // Label label3 = new Label(, img2);if possible add a image of the user
@@ -293,18 +241,25 @@ public class ChatController {
         ScrollPane s1 = new ScrollPane();
         s1.setFitToHeight(true);
         s1.setFitToWidth(true);
-        s1.setPrefSize(400, 400);
+        s1.setPrefSize(300, 300);
 
         //ListView<Pane> list_inner = new ListView<Pane>();
         //ObservableList<Pane> panes_inner  = FXCollections.observableArrayList();
-        ListView<Label> list_inner = new ListView<Label>();//------------
-        ObservableList<Label> panes_inner  = FXCollections.observableArrayList();//------
+        ListView<HBox> list_inner = new ListView<HBox>();//------------
+        ObservableList<HBox> panes_inner  = FXCollections.observableArrayList();//------
+
+        list_inner.setMinSize(380.0, Control.USE_PREF_SIZE);
+        list_inner.setMaxSize(380.0, Control.USE_PREF_SIZE);
+
+
 
         for(Message msg:chatMessages){
             //FlowPane p3=new FlowPane();
 
+            HBox hBox;
             Label label5;
-            if(msg.getMsg_creator()==Owner.myUsername){
+            if(msg.getMsg_creator().equalsIgnoreCase(Owner.myUsername)){
+                System.out.println("createdBy me"+msg.getContent());
                 ImageView img7;
                 if(Validator.thisPeer.getProf_pic()!=null){
                     ByteArrayInputStream in2 = new ByteArrayInputStream(Validator.thisPeer.getProf_pic());
@@ -326,18 +281,19 @@ public class ChatController {
                     img7.setFitHeight(25);
                     img7.setFitWidth(25);
                     img7.setPreserveRatio(true);
-                }
-                System.out.println("My message");
-                //Image image2 = new Image(getClass().getResourceAsStream("dinu.jpg"));//modify code to get the image from database
-                // ImageView img2 = new ImageView(image2);
-                // img2.setFitHeight(25);
-                //img2.setFitWidth(25);
-                //img2.setPreserveRatio(true);
+                 }
 
                 label5 = new Label(msg.getContent(), img7);
-                label5.setTextFill(Color.web("#87CEFA"));
+                label5.setTextFill(Color.web("#7f41db"));
                 label5.setFont(Font.font("Cambria", 12));
+
+                hBox=new HBox();
+                hBox.getChildren().add(label5);
+                hBox.setAlignment(Pos.BASELINE_LEFT);
+                //vBox.getChildren().add(hBox);
+                //vBox.setSpacing(10);
             }else{
+                System.out.println("createdBy Chiiiiiiiiiiin"+msg.getContent());
                 DbHandler db4=new DbHandler();
                 Peer peer=db4.getPeer(msg.getMsg_creator());
                 db4.closeConnection();
@@ -364,13 +320,17 @@ public class ChatController {
                     img8.setPreserveRatio(true);
                 }
                 label5 = new Label(msg.getContent(), img8);
-                label5.setTextFill(Color.web("#20B2AA"));
+                label5.setTextFill(Color.web("#0277BD"));
                 label5.setFont(Font.font("Cambria", 12));
+
+                hBox=new HBox();
+                hBox.getChildren().add(label5);
+                hBox.setAlignment(Pos.BASELINE_RIGHT);
 
             }
 
             // p3.getChildren().add(label5);
-            panes_inner.add(label5);
+            panes_inner.add(hBox);
                  }
         list_inner.setItems(panes_inner);
         s1.setContent(list_inner);
@@ -420,7 +380,7 @@ public class ChatController {
                     ConversationHandler.sendTheInitialConversation(conv);//at the conv creation conv is send together with 1st message
                     textField2.setText("");
                 }else{
-                    System.out.println("sending the message to partner");
+                    System.out.println("sending the message to partner#########################");
                     ConversationHandler.sendMessageToPartners(conv,msg);
                     textField2.setText("");
                 }
@@ -450,10 +410,13 @@ public class ChatController {
                 System.out.println("My message");
 
                 labelnxt = new Label(msg.getContent(), img3);
-                labelnxt.setTextFill(Color.web("#87CEFA"));
+                labelnxt.setTextFill(Color.web("#7f41db"));
                 labelnxt.setFont(Font.font("Cambria", 12));
+                HBox hBox=new HBox();
+                hBox.getChildren().add(labelnxt);
+                hBox.setAlignment(Pos.BASELINE_LEFT);
 
-                panes_inner.add(labelnxt);
+                panes_inner.add(hBox);
 
             }
         });
@@ -486,7 +449,7 @@ public class ChatController {
         //peersla prompt karaan page ekak pennana
         //methana mulu page ekama generate karanan
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("../View/addPartner.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/sample/View/addPartner.fxml"));
             Stage stage2 = new Stage();
             stage2.setTitle("New Conversation");
             stage2.setScene(new Scene(root, 315, 566));
@@ -513,27 +476,7 @@ public class ChatController {
 
             }
         });
-        /*
-        Platform.runLater(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Parent root = FXMLLoader.load(getClass().getResource("../View/addPartner.fxml"));
-                    Stage stage2 = new Stage();
-                    stage2.setTitle("New Conversation");
-                    stage2.setScene(new Scene(root, 282, 466));
-                    stage2.show();
-                    Conversation conv=new Conversation();
-                    allConversations.add(conv);
-                    this.showConversations(allConversations);
 
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-
-        */
 
     }
 }

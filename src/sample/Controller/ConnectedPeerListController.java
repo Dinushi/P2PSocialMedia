@@ -48,7 +48,7 @@ public class ConnectedPeerListController implements Initializable {
         db.closeConnection();
 
         ScrollPane s1 = new ScrollPane();
-        s1.setPrefSize(334, 460);
+        s1.setPrefSize(253, 386);
 
         ListView<Pane> list = new ListView<Pane>();
         ObservableList<Pane> panes = FXCollections.observableArrayList();
@@ -99,7 +99,7 @@ public class ConnectedPeerListController implements Initializable {
                             System.out.println("selected Peer id"+j);
                             Peer peer=allPeers.get(j);
 
-                            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/PeerProfile.fxml"));
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample/View/PeerProfile.fxml"));
 
                             // Create a controller instance
                             PeerProfileController controller = new PeerProfileController(peer);

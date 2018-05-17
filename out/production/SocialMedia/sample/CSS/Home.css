@@ -1,6 +1,6 @@
 
 .root {
-    -fx-background-image: url("../images/newNewHome.jpg");
+    -fx-background-image: url("../Images/newNewHome.jpg");
     -fx-padding: 20;
     -fx-background-position: center;
     -fx-background-repeat: stretch;
@@ -30,9 +30,6 @@
     -fx-fill: rgba(203, 211, 207, 0.76);
     -fx-font: 28px "Chiller";
     -fx-font-weight: bold;
-
-
-
 }
 #img{
     width: 64px;

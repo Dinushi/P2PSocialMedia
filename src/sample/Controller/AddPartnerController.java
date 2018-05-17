@@ -1,5 +1,6 @@
 package sample.Controller;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
@@ -41,7 +42,7 @@ public class AddPartnerController {
     @FXML
     private Pane paneTitle;
     @FXML
-    private Button btn_newChatOK;
+    private JFXButton btn_newChatOK;
 
 
     public void initialize() {
@@ -126,6 +127,7 @@ public class AddPartnerController {
         peerPane.getChildren().add(s1);
 
     }
+    //The selected peers are set and a conversation is created
     public void pressOk(ActionEvent event) throws IOException {
         //In here the conversation is created and send the conversation object to other peers
         ((Stage)(((Button)event.getSource()).getScene().getWindow())).close();
@@ -172,12 +174,6 @@ public class AddPartnerController {
         System.out.println("Ceating a new Tab to the coversation");
         ChatController.chatController.createNewConversationTab(conv,true);
 
-        //Parent root = FXMLLoader.load(getClass().getResource("../View/Chats.fxml"));
-        //Stage stage = new Stage();
-        //stage.setTitle("My Conversations");
-        //stage.setScene(new Scene(root, 369.0, 465.0));
-
-        ///stage.show();
 
     }
     public void pressCancel(ActionEvent event){

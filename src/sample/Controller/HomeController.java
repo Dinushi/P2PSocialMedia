@@ -115,7 +115,7 @@ public class HomeController{
 
 
     }
-    private void displayPosts(ArrayList<Post> allPosts){
+    public void displayPosts(ArrayList<Post> allPosts){
 
         System.out.println("At postsrC:"+allPosts);
 
@@ -124,6 +124,7 @@ public class HomeController{
         s1.setFitToHeight(true);
         s1.setFitToWidth(true);
         s1.setPrefSize(475, 433);
+        s1.setStyle("-fx-background: #B2DFDB;");
 
 
         list = new ListView<Pane>();
@@ -200,6 +201,42 @@ public class HomeController{
             p3.setPadding(new Insets(0, 0, 0, 15));
             p3.setBorder(new Border(new BorderStroke(Color.DARKGREY,
                     BorderStrokeStyle.SOLID, CornerRadii.EMPTY, BorderWidths.DEFAULT)));
+            Button b1 = new Button("View All");
+            b1.setAlignment(Pos.BASELINE_RIGHT);
+            b1.setId(String.valueOf(i));
+            b1.setStyle("-fx-font: 09 arial; -fx-base: #a9a9a9;");
+
+
+            b1.setOnAction(new EventHandler<ActionEvent>() {
+                @Override
+                public void handle(ActionEvent e) {
+                    try {
+                        int j =Integer.parseInt(b1.getId());
+                        System.out.println("selected Peer id"+j);
+                        Post post=allPosts.get(j);
+
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample/View/ReplyView.fxml"));
+
+                        // Create a controller instance
+                        ReplyController replyController=new ReplyController(post);
+
+                        // Set it in the FXMLLoader
+                        loader.setController(replyController);
+                        Parent root= loader.load();
+                        Stage stage = new Stage();
+                        stage.setTitle("All Replies");
+                        Scene scene=new Scene(root, 327.0, 425.0);
+                        stage.setScene(scene);
+                        stage.setResizable(false);
+                        scene.getStylesheets().add(getClass().getResource("/sample/CSS/Reply.css").toString());
+                        stage.show();
+
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                }
+            });
+
 
             if(lst_reply!=null) {
                 //p3 = new FlowPane();
@@ -244,6 +281,7 @@ public class HomeController{
                 label5.setFont(Font.font("Cambria", 12));
                 Label label6 = new Label(lst_reply.getContent());
                 //Label label6 = new Label(allPosts.get(i).getLastReply().getContent());
+                /*
                 Button b1 = new Button("View All");
                 b1.setAlignment(Pos.BASELINE_RIGHT);
                 b1.setId(String.valueOf(i));
@@ -258,7 +296,7 @@ public class HomeController{
                             System.out.println("selected Peer id"+j);
                             Post post=allPosts.get(j);
 
-                            FXMLLoader loader = new FXMLLoader(getClass().getResource("../View/ReplyView.fxml"));
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("/sample/View/ReplyView.fxml"));
 
                             // Create a controller instance
                             ReplyController replyController=new ReplyController(post);
@@ -270,7 +308,8 @@ public class HomeController{
                             stage.setTitle("All Replies");
                             Scene scene=new Scene(root, 327.0, 425.0);
                             stage.setScene(scene);
-                            scene.getStylesheets().add(getClass().getResource("../CSS/Reply.css").toString());
+                            stage.setResizable(false);
+                            scene.getStylesheets().add(getClass().getResource("/sample/CSS/Reply.css").toString());
                             stage.show();
 
                         } catch (IOException ex) {
@@ -278,7 +317,7 @@ public class HomeController{
                         }
                     }
                 });
-
+*/
                 //b1.setStyle("-fx-font: 10 arial; -fx-base: #b6e7c9;");
                 p3.getChildren().addAll(label5, label6, b1);
                 p3.setStyle("-fx-background-color: rgba(66,98,100,0.5); -fx-background-radius: 10;");
@@ -288,7 +327,7 @@ public class HomeController{
                 //Label label5 = new Label(allPosts.get(i).getLastReply().getUsername(), img2);
                 label5.setTextFill(Color.web("#0076a3"));
                 label5.setFont(Font.font("Cambria", 12));
-                p3.getChildren().addAll(label5);
+                p3.getChildren().addAll(label5,b1);
             }
 
             FlowPane p4 = new FlowPane();
@@ -314,9 +353,21 @@ public class HomeController{
                     int j =Integer.parseInt(b2.getId().substring(b2.getId().length()-1));
                     System.out.println(j);
                     Post p=allPosts.get(j);
-                    Reply reply=new Reply(Owner.myUsername,textField2.getText(),p.getPostID(),Reply.getNextReplyId(p.getPostID()));
+                    Reply reply=new Reply(p.getUsername(),textField2.getText(),p.getPostID(),Reply.getNextReplyId(p.getPostID()));
                     reply.setReply_creator(Validator.username);
                     System.out.println("got the reply "+textField2.getText());
+                    if(p3.getChildren().size()==3){
+                        p3.getChildren().remove(0);
+                        p3.getChildren().remove(1);
+                        p3.getChildren().add(0,new Label(Validator.thisPeer.getUsername(),img));
+                        p3.getChildren().add(1,new Label(textField2.getText()));
+                    }else if (p3.getChildren().size()==2) {
+                        p3.getChildren().remove(0);
+                        p3.getChildren().add(0,new Label(Validator.thisPeer.getUsername(),img));
+                        p3.getChildren().add(2,new Label(textField2.getText()));
+                    }
+
+                    textField2.setText("");
                     p.addReply(reply);
                     p.sendReply(reply);//This is to sent the reply to required peers
                     //This reply is not yet sent to any one
@@ -348,7 +399,7 @@ public class HomeController{
         }
         list.setItems(panes);
         s1.setContent(list);
-        s1.setOpacity(0.7);
+        s1.setOpacity(0.8);
         s1.setStyle("-fx-background-color: transparent; -fx-padding: 10;");
         if(!wall.getChildren().isEmpty()){
             wall.getChildren().remove(0);
@@ -378,10 +429,10 @@ public class HomeController{
         DbHandler db=new DbHandler();
         int post_id=db.getMyMaxPostID()+1;
         db.closeConnection();
-        btn_post_share.setText("");
         Post p=new Post(Owner.myUsername,txt_post.getText(),post_id);
         //load the post view again
         allPosts.add(0,p);
+        txt_post.setText("");
         displayPosts(allPosts);
         Runnable run = new Runnable() {
             public void run() {
@@ -397,10 +448,10 @@ public class HomeController{
 
     public void pressPeerRequests(ActionEvent event){
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("../View/PeerRequest.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/sample/View/PeerRequest.fxml"));
             Stage stage = new Stage();
             stage.setTitle("New Peer Requests");
-            stage.setScene(new Scene(root, 335.0, 470.0));
+            stage.setScene(new Scene(root, 353.0, 470.0));
             stage.show();
         }catch(IOException e) {
             e.printStackTrace();
@@ -412,11 +463,11 @@ public class HomeController{
         //Parent root = FXMLLoader.load(getClass().getResource("../View/Register.fxml"));
         if(MyProfileController.myProfileController==null) {
             try {
-                Parent root = FXMLLoader.load(getClass().getResource("../View/MyProfile.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("/sample/View/MyProfile.fxml"));
                 Stage stage = new Stage();
                 stage.setTitle("My Profile");
                 stage.setScene(new Scene(root, 650.0, 574.0));
-
+                stage.setResizable(false);
                 stage.setOnHiding(new EventHandler<WindowEvent>() {
 
                     @Override
@@ -448,12 +499,12 @@ public class HomeController{
                                     notALoginOut=false;
                                     HomeController.homeController=null;
                                     try {
-                                        Parent root = FXMLLoader.load(getClass().getResource("../View/AppHome.fxml"));
+                                        Parent root = FXMLLoader.load(getClass().getResource("/sample/View/AppHome.fxml"));
                                         Stage stage = new Stage();
                                         stage.setTitle("PeerNet");
                                         Scene scene=new Scene(root, 747, 601);
                                         stage.setScene(scene);
-                                        scene.getStylesheets().add(getClass().getResource("../CSS/Home.css").toString());
+                                        scene.getStylesheets().add(getClass().getResource("/sample/CSS/Home.css").toString());
                                         stage.show();
                                         ((Node) (event2.getSource())).getScene().getWindow().hide();
                                     } catch (IOException e) {
@@ -482,16 +533,13 @@ public class HomeController{
 
     }
     public void pressConversation(ActionEvent event){
-        //PostHandler.gotAPost(new Post("Chin","Hii all come here plz"));
-       // System.out.println("Coversations are opening");
-        //Parent root = FXMLLoader.load(getClass().getResource("../View/Register.fxml"));
         if(ChatController.chatController==null){
             try {
-                Parent root = FXMLLoader.load(getClass().getResource("../View/Chats.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("/sample/View/Chats.fxml"));
                 Stage stage = new Stage();
                 stage.setTitle("My Conversations");
                 stage.setScene(new Scene(root, 369.0, 465.0));
-
+                stage.setResizable(false);
                 // Hide this current window (if this is what you want)
                 //((Node) (event.getSource())).getScene().getWindow().hide();
 
@@ -525,11 +573,11 @@ public class HomeController{
         //Parent root = FXMLLoader.load(getClass().getResource("../View/Register.fxml"));
         if (DiscoveredPeerViewController.discoveredPeerViewController== null) {
             try {
-                Parent root = FXMLLoader.load(getClass().getResource("../View/DiscoveredPeerView.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("/sample/View/DiscoveredPeerView.fxml"));
                 Stage stage = new Stage();
                 stage.setTitle("All Discoverd Peers");
                 stage.setScene(new Scene(root, 343.0, 515.0));
-
+                stage.setResizable(false);
                 stage.setOnHiding(new EventHandler<WindowEvent>() {
 
                     @Override
@@ -559,11 +607,11 @@ public class HomeController{
         //Parent root = FXMLLoader.load(getClass().getResource("../View/Register.fxml"));
         if (ConnectedPeerListController.connectedPeerListController == null) {
             try {
-                Parent root = FXMLLoader.load(getClass().getResource("../View/ViewPeerProfileList.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("/sample/View/ViewPeerProfileList.fxml"));
                 Stage stage = new Stage();
                 stage.setTitle("All Connected Peers");
-                stage.setScene(new Scene(root, 313.0, 544.0));
-
+                stage.setScene(new Scene(root, 313.0, 470.0));
+                stage.setResizable(false);
                 stage.setOnHiding(new EventHandler<WindowEvent>() {
 
                     @Override
@@ -572,7 +620,6 @@ public class HomeController{
 
                             @Override
                             public void run() {
-                                System.out.println("Closing the edit peerList");
                                 ConnectedPeerListController.connectedPeerListController=null;
 
                             }
@@ -594,10 +641,13 @@ public class HomeController{
         //Parent root = FXMLLoader.load(getClass().getResource("../View/Register.fxml"));
         if (OnlinePeerController.onlinePeerController == null) {
             try {
-                Parent root = FXMLLoader.load(getClass().getResource("../View/OnlinePeers.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("/sample/View/OnlinePeers.fxml"));
                 Stage stage = new Stage();
                 stage.setTitle("Online Peers");
-                stage.setScene(new Scene(root, 313.0, 544.0));
+                Scene scene=new Scene(root, 426.0, 392.0);
+                stage.setScene(scene);
+                stage.setResizable(false);
+                scene.getStylesheets().add(getClass().getResource("/sample/CSS/OnlinePeers.css").toString());
 
                 stage.setOnHiding(new EventHandler<WindowEvent>() {
 

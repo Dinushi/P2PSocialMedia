@@ -96,7 +96,8 @@ public class CreateDB{
                     "  CONTENT VARCHAR(300)," +
                     "  CREATED_DATE TIMESTAMP,"+
                     "  CONSTRAINT FK_reply FOREIGN KEY (USERNAME,POST_ID) REFERENCES POST(USERNAME,POST_ID) ,"+
-                    "  CONSTRAINT PK_reply PRIMARY KEY (USERNAME,POST_ID,REPLY_ID))");
+                    "  CONSTRAINT FK_reply2 FOREIGN KEY (REPLY_CREATOR) REFERENCES PEER(USERNAME) ,"+
+                    "  CONSTRAINT PK_reply PRIMARY KEY (USERNAME,POST_ID,REPLY_CREATOR,REPLY_ID))");
 
             System.out.println("REPLY table created.");
         } catch (SQLException ex) {

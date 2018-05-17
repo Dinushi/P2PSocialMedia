@@ -41,8 +41,9 @@ public class Main extends Application {
 
         Parent root = FXMLLoader.load(getClass().getResource("View/Login.fxml"));
         primaryStage.setTitle("Login P2P social media");
-        Scene scene=new Scene(root, 400, 300);
+        Scene scene=new Scene(root, 547, 372);
         primaryStage.setScene(scene);
+        primaryStage.setResizable(false);
         scene.getStylesheets().add(getClass().getResource("CSS/Login.css").toString());
         primaryStage.show();
 

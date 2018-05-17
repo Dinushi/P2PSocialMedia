@@ -19,8 +19,7 @@ public class HeartBeatHandler extends  Thread{
     public static ArrayList<Peer> allConnectedPeers;
 
     public void run(){
-
-       // while(true){
+        if(!PeerConnection.initialLogin){
             DbHandler db=new DbHandler();
             allConnectedPeers=db.getAllPeers("T");
             db.closeConnection();
@@ -28,26 +27,46 @@ public class HeartBeatHandler extends  Thread{
             for (Peer sel_peer : allConnectedPeers) {
                 receivingPeers.add(new ReceivingPeer(sel_peer.getIp(),sel_peer.getPort()));
             }
-            System.out.println("sending mu last log out time"+Validator.last_logOuttime);
+            System.out.println("Sending my last log out time"+Validator.last_logOuttime);
             PeerConnection.getPeerConnection().sendViaSocket(Validator.last_logOuttime,receivingPeers);
-            /*
             try {
-                Thread.sleep(10000);
+                Thread.sleep(300000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-            */
+        }else{
+            DbHandler db=new DbHandler();
+            allConnectedPeers=db.getAllPeers("T");
+            db.closeConnection();
+        }
 
-        //}
+        while(true){
+            try {
+                ArrayList<ReceivingPeer> receivingPeers2=new ArrayList<>();
+                int i=0;
+                for (Peer sel_peer : allConnectedPeers) {
+                    receivingPeers2.add(new ReceivingPeer(sel_peer.getIp(),sel_peer.getPort()));
+                    allConnectedPeers.get(i).setOnlineStatus(false);
+                    i++;
+                }
+                //This checks the online presence of user once five minutes
+                PeerConnection.getPeerConnection().sendViaSocket("AreYouON",receivingPeers2);
+                Thread.sleep(300000);
+
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
 
 
     }
+    //call when each user send a heartbeat to check online presence,known that the packet sender is also online
     public  static synchronized void gotAPeerACK(InetAddress ip, int port) {
-        //know that the peers i informed that i have logged,are responsed back.Mean they are online
         updateOnlineStatus(ip,port);
 
     }
     public static void updateOnlineStatus(InetAddress ip, int port){
+        System.out.println("updating the online status of the peer");
         for (int i = 0; i < allConnectedPeers.size(); i++) {
             Peer peer = allConnectedPeers.get(i);
             if (peer.getIp() == ip && peer.getPort() == port) {
@@ -56,6 +75,7 @@ public class HeartBeatHandler extends  Thread{
             }
         }
     }
+    //call when a data about a user log in after a time
     public static void shareMissedDataWithPeer(InetAddress ip,int port, LocalDateTime last_logged_time){
         DbHandler db=new DbHandler();
         ReceivingPeer rec_peer=new ReceivingPeer(ip,port);
@@ -91,6 +111,7 @@ public class HeartBeatHandler extends  Thread{
     public  static synchronized void gotPeerLoginAlert(InetAddress ip, int port, LocalDateTime last_logged_time){
         //what happens when i get a packet with last connected time of a peer
         //Know that a peer is online and requesting data.
+        System.out.println("Got a peer Login alert");
         updateOnlineStatus(ip,port);
         shareMissedDataWithPeer(ip,port,last_logged_time);
     }

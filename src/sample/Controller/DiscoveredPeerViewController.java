@@ -1,5 +1,6 @@
 package sample.Controller;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -35,7 +36,7 @@ public class DiscoveredPeerViewController {
     @FXML
     private Pane paneTitle;
     @FXML
-    private Button btn_connect;
+    private JFXButton btn_connect;
     public DiscoveredPeerViewController(){discoveredPeerViewController=this;}
 
 
@@ -112,7 +113,7 @@ public class DiscoveredPeerViewController {
         //Parent root = FXMLLoader.load(getClass().getResource("../View/Register.fxml"));
         if (SelectPeers.selectPeers== null) {
             try {
-                Parent root = FXMLLoader.load(getClass().getResource("../View/SelectPeers.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("/sample/View/SelectPeers.fxml"));
                 Stage stage = new Stage();
                 stage.setTitle("All Your Peers");
                 stage.setScene(new Scene(root, 323.0, 527.0));

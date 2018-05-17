@@ -53,7 +53,7 @@ public class ReplyController implements Initializable {
         s1 = new ScrollPane();
         s1.setFitToHeight(true);
         s1.setFitToWidth(true);
-        s1.setPrefSize(256, 329);
+        s1.setPrefSize(301, 359);
 
         list = new ListView<Pane>();
         panes = FXCollections.observableArrayList();
@@ -112,10 +112,5 @@ public class ReplyController implements Initializable {
         s1.setContent(list);
         s1.setOpacity(0.7);
         ReplyPane.getChildren().add(s1);
-
     }
-
-
-
-
 }

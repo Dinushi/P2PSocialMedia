@@ -55,6 +55,7 @@ public class Reply implements Serializable {
     public int getReply_id() {
         return reply_id;
     }
+
     public static int getNextReplyId(int post_id){
         DbHandler db=new DbHandler();
         int nxt_reply_id=db.getMyMaxReplyID(post_id)+1;

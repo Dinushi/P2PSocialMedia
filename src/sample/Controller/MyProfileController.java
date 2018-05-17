@@ -232,7 +232,7 @@ public class MyProfileController{
                     public void handle(ActionEvent e) {
                         try {
 
-                            Parent root = FXMLLoader.load(getClass().getResource("../View/ReplyView.fxml"));
+                            Parent root = FXMLLoader.load(getClass().getResource("/sample/View/ReplyView.fxml"));
                             Stage stage = new Stage();
                             stage.setTitle("All Replies for this post");
                             stage.setScene(new Scene(root, 369.0, 465.0));
@@ -319,7 +319,7 @@ public class MyProfileController{
     }
 
 
-
+    //This will store the edited data of the project
     public void   pressProfDataEdit(ActionEvent e) {
         TextField t1=new TextField();
         t1.setPromptText("Your New Name");

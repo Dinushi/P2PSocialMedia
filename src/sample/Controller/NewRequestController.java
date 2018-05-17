@@ -1,5 +1,6 @@
 package sample.Controller;
 
+import com.jfoenix.controls.JFXButton;
 import com.sun.org.apache.xerces.internal.util.SymbolTable;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -37,10 +38,10 @@ public class NewRequestController {
     private Pane request_pane;
 
     @FXML
-    private Button btn_ok;
+    private JFXButton btn_ok;
 
     @FXML
-    private Button btn_cancel;
+    private JFXButton btn_cancel;
 
 
     ArrayList<Peer> selectedPeers;
@@ -55,9 +56,10 @@ public class NewRequestController {
         rejectedPeers = new ArrayList<>();
 
         ScrollPane s1 = new ScrollPane();
-        s1.setPrefSize(284, 352);
+        s1.setPrefSize(255, 361);
 
         ListView<Pane> list = new ListView<Pane>();
+
         ObservableList<Pane> panes = FXCollections.observableArrayList();
 
         Tab tab = new Tab("Recent Requests");
@@ -66,7 +68,7 @@ public class NewRequestController {
 
             FlowPane p1 = new FlowPane();
             p1.setVgap(6);
-            p1.setHgap(40);
+            p1.setHgap(30);
             p1.setPrefWrapLength(200);
             Image image = new Image(getClass().getResourceAsStream("dinu.jpg"));//modify code to get the image from database
             ImageView img = new ImageView(image);
@@ -119,7 +121,7 @@ public class NewRequestController {
             });
 
             b1.setStyle("-fx-font: 10 arial; -fx-base: #b6e7c9;");
-            p1.getChildren().addAll(label3, b1,b2);
+            p1.getChildren().addAll( b1,b2,label3);
 
             panes.add(p1);
         }
@@ -148,9 +150,10 @@ public class NewRequestController {
     //}
     public void pressCancel(ActionEvent e){
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("../View/peerRequests.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/sample/View/peerRequests.fxml"));
             Stage stage = new Stage();
             stage.setTitle("New Peer Requests");
+            stage.setResizable(false);
             stage.setScene(new Scene(root, 369.0, 465.0));
             stage.show();
 

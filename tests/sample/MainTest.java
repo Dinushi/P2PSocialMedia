@@ -55,17 +55,21 @@ public class MainTest extends ApplicationTest {
 */
 
     }
+    @Test
+    public void registorPress () {
+        //Label label = (Label) GuiTest.find("#label");
+        clickOn("#btn_register");
+
+        // assertThat(label.getText(), is("This is a test!"));
+    }
+
 
 
     @Before
     public void setUp () throws Exception {
     }
 
-    @Test public void should_contain_button() {
-        // expect:
-        verifyThat("#btn_login", hasText("Login"));
-        verifyThat("#btn_cancel", hasText("Cancel"));
-    }
+
     @Test
     public  void testCancelButtion(){
         clickOn("#userName");
@@ -92,6 +96,7 @@ public class MainTest extends ApplicationTest {
 
        // assertThat(label.getText(), is("This is a test!"));
     }
+
 
 
 

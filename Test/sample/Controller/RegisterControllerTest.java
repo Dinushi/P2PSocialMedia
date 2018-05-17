@@ -15,7 +15,49 @@ import static org.junit.Assert.*;
 */
 public class RegisterControllerTest {
     RegisterController rc;
-    /*
+
+    @Before
+    public void setRequiredParameters(){
+        rc=new RegisterController();
+    }
+
+
+    @Test
+    public void validateTheUserData() {
+        boolean result=rc.validateTheUserData("Thilini Dinushika","Thilini123","Akuressa","Dinu_123","Dinu_123");
+        assertEquals(true,result);
+
+    }
+
+    @Test
+    public void validatePassword() {
+        boolean result3=rc.validatePassword("Dinu_123");
+        assertEquals(true,result3);
+
+        //boolean result2=rc.validatePasswordEntered("Dinu_123","Dinu_123");
+        //assertEquals(true,result2);
+    }
+
+    @Test
+    public void validateUsername() {
+        boolean result=rc.validateUsername("Thilini_123");
+        assertEquals(true,result);
+
+    }
+
+    @Test
+    public void validateFullName() {
+        boolean result3=rc.validateFullName_HomeTown("Thilini Dinushika",true);
+        assertEquals(true,result3);
+
+    }
+    @Test
+    public void validateHomeTown() {
+        boolean result3=rc.validateFullName_HomeTown("Matara",false);
+        assertEquals(true,result3);
+
+    }
+      /*
         @Parameterized.Parameters
         public static Object[] validUsernameProvider() {
            /*create and return a Collection
@@ -103,45 +145,4 @@ public class RegisterControllerTest {
 
     }*/
 
-    @Before
-    public void setRequiredParameters(){
-        rc=new RegisterController();
-    }
-
-
-    @Test
-    public void validateTheUserData() {
-        boolean result=rc.validateTheUserData("Thilini Dinushika","Thilini123","Akuressa","Dinu_123","Dinu_123");
-        assertEquals(true,result);
-
-    }
-
-    @Test
-    public void validatePassword() {
-        boolean result3=rc.validatePassword("Dinu_123");
-        assertEquals(true,result3);
-
-        //boolean result2=rc.validatePasswordEntered("Dinu_123","Dinu_123");
-        //assertEquals(true,result2);
-    }
-
-    @Test
-    public void validateUsername() {
-        boolean result=rc.validateUsername("Thilini_123");
-        assertEquals(true,result);
-
-    }
-
-    @Test
-    public void validateFullName() {
-        boolean result3=rc.validateFullName_HomeTown("Thilini Dinushika",true);
-        assertEquals(true,result3);
-
-    }
-    @Test
-    public void validateHomeTown() {
-        boolean result3=rc.validateFullName_HomeTown("Matara",false);
-        assertEquals(true,result3);
-
-    }
 }

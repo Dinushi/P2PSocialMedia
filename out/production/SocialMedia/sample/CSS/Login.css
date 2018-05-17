@@ -1,20 +1,13 @@
 .root {
-    -fx-background-image: url("../images/login_background.jfif");
+    -fx-background-image: url("../Images/new_login.jpg");
     -fx-background-position: center;
     -fx-background-repeat: stretch;
     -fx-background-size: auto;
-    -fx-background-size: 400 300;
+    -fx-background-size: 547 372;
 
 }
-.text-field {
-    -fx-fill: FIREBRICK;
-    -fx-background-color: #2A5058;
-    -fx-font-weight: bold;
-    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
-}
-.text-field:hover {
-    -fx-background-color: linear-gradient(#2A5058, #61a2b1);
-}
+
+
 .welcome{
     -fx-font-size: 20px;
     -fx-font-weight: bold;
@@ -33,14 +26,4 @@
     -fx-font-weight: bold;
     -fx-text-fill: #388CAB;
     -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
-}
-.button {
-    -fx-text-fill: white;
-    -fx-font-family: "Arial Narrow";
-    -fx-font-weight: bold;
-    -fx-background-color: linear-gradient(#61a2b1, #2A5058);
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
-}
-.button:hover {
-    -fx-background-color: linear-gradient(#2A5058, #61a2b1);
 }

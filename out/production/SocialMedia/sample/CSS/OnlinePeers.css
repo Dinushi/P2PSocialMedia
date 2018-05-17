@@ -1,0 +1,8 @@
+#img_pane {
+    -fx-background-image: url("../Images/online_back3.jpg");
+    -fx-background-position: center;
+    -fx-background-repeat: stretch;
+    -fx-background-size: auto;
+    -fx-background-size: 85 68;
+
+}

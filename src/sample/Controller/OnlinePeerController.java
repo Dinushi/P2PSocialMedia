@@ -34,7 +34,8 @@ public class OnlinePeerController {
         System.out.println("size of peers at heaer"+allPeers.size());
 
         ScrollPane s1 = new ScrollPane();
-        s1.setPrefSize(258, 359);
+        s1.setPrefSize(255, 331);
+        s1.setStyle("-fx-background: #4DD0E1;");
 
         ListView<Pane> list = new ListView<Pane>();
         ObservableList<Pane> panes = FXCollections.observableArrayList();
@@ -45,6 +46,7 @@ public class OnlinePeerController {
                 p1.setVgap(6);
                 p1.setHgap(60);
                 p1.setPrefWrapLength(200);
+                p1.setStyle("-fx-background: #B2EBF2;");
                 ImageView img2;
 
                 if(allPeers.get(i).getProf_pic()!=null){

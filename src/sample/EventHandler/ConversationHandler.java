@@ -31,7 +31,9 @@ public class ConversationHandler {
 //wgen adding a new conversation to db,its first message is also added here with
     private synchronized static void addToDb(Conversation conv){
         DbHandler db=new DbHandler();
-        db.addNewConv(conv);
+        System.out.println("@@@@@@@@@@@@@@@@Adding vonv to db");
+        boolean result=db.addNewConv(conv);
+        System.out.println("conv addition"+result);
         for(Peer p:conv.getChatPartner()){
             db.addChatPartnersToChatTable(conv.getConversation_id(),conv.getConversation_initiator().getUsername(),p.getUsername());
         }
@@ -42,15 +44,18 @@ public class ConversationHandler {
     }
 
     public synchronized static void gotAInitialConversation(Conversation conv){
-        System.out.println("Received conversation title"+conv.getTitle());
-        System.out.println("Initiator username"+conv.getConversation_initiator().getUsername());
-        System.out.println("conv_id"+conv.getConversation_id());
+        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@Received conversation title"+conv.getTitle());
+        System.out.println("@@@@@@@@@@@@@@@@@Initiator username"+conv.getConversation_initiator().getUsername());
+        System.out.println("@@@@@@@@@@@@@@@@conv_id"+conv.getConversation_id());
         System.out.println("chat member"+conv.getChatPartner().get(0).getUsername());
         //check whether the chat already exists
         DbHandler db=new DbHandler();
         int availability=db.removeAConversation(conv);
         db.closeConnection();
+
         if(availability==0){
+            System.out.println("@@@@@@@@@@@@@@No old conve");
+            //when a old chat is available under this chat creator
             if(conv.getChatPartner().size()==1){
                 System.out.println("Conv size is 1");
                 conv.setTitle(conv.getConversation_initiator().getUsername());//This one should see the other peer's name as the title.

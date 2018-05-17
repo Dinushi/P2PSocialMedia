@@ -18,12 +18,13 @@ public class LoginConfirmationController {
     //showLoginPage
     public void pressLogin(ActionEvent event) {
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("../View/Login.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/sample/View/Login.fxml"));
             Stage stage = new Stage();
             stage.setTitle("Login P2P social media");
-            Scene scene=new Scene(root, 400, 300);
+            Scene scene=new Scene(root, 547, 372);
             stage.setScene(scene);
-            scene.getStylesheets().add(getClass().getResource("../CSS/Login.css").toString());
+            stage.setResizable(false);
+            scene.getStylesheets().add(getClass().getResource("/sample/CSS/Login.css").toString());
             stage.show();
             // Hide this current window
             ((Node) (event.getSource())).getScene().getWindow().hide();

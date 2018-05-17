@@ -13,7 +13,7 @@ public class ReaderThread extends  Thread {
     DatagramSocket socket = null;
 
 
-
+    //This thread read the UDP socket and take peers
     public ReaderThread(DatagramSocket socket) {
         this.socket = socket;
     }
@@ -35,9 +35,6 @@ public class ReaderThread extends  Thread {
                 InetAddress sender_IPAddress = incomingPacket.getAddress();//holds the sender details
                 int sender_port = incomingPacket.getPort();
                 try {
-                    //Post post = (Post) is.readObject();
-                    //System.out.println("Post object received = " + post);
-                    //assign a seperate thread to handle the data packet
                     Object obj=is.readObject();
                     ReceivedPacketHandler pktHandler=new ReceivedPacketHandler(obj,sender_IPAddress,sender_port);
                     System.out.println("Packet is handed over to the packet handler");
@@ -46,12 +43,7 @@ public class ReaderThread extends  Thread {
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
                 }
-                //String reply = "Thank you for the message";
-                //byte[] replyBytea = reply.getBytes();
-                //DatagramPacket replyPacket =
-                        //new DatagramPacket(replyBytea, replyBytea.length, sender_IPAddress, sender_port);
-                //socket.send(replyPacket);
-                //System.exit(0);
+
             } catch (IOException e) {
                 e.printStackTrace();
             }

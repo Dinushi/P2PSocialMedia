@@ -33,6 +33,7 @@ public class NewPeerListner {
             ReceivingPeer receiver = new ReceivingPeer(d_peer.getIp(), d_peer.getPort());
             receivers.add(receiver);
             boolean result=db.addNewDiscoverdPeer(d_peer,"T");
+            //add d_peer to the DiscoverPRetransmitter
             if(result){
                 System.out.println("The known peer has stored");
             }
@@ -42,6 +43,7 @@ public class NewPeerListner {
             peerConn.sendViaSocket(Validator.thisPeer, receivers);
         }
         //add these received peers to the database
+        //stsrt the retransmitter thread
         db.closeConnection();
     }
     public static void requestPeerToSharePeerDetails(Peer peer){
@@ -58,13 +60,16 @@ public class NewPeerListner {
         System.out.println("reslt"+result);
 
         if(result==1){
+            //this is a peer that i have already requested
             newPeer.setJoined(true);
             db.addAnewPeer(newPeer);
+            //call retransmitter and remove this peer if in the list
 
             //connected with this user
         }else if(result==0){
             Peer peer_test=db.getPeer(newPeer.getUsername());
             if(peer_test==null){
+                //A new Peer that i can confirm the connectivity
                 db.addAnewPeer(newPeer);
             }else{
                 System.out.println("Got changes for profile data of a peer you know");
@@ -130,11 +135,13 @@ public class NewPeerListner {
         if(allPeers.size()<4){
             for(int i=0;i<allPeers.size();i++){
                 DiscoverdPeer d_peer=new DiscoverdPeer("PeerInfo",allPeers.get(i).getUsername(),allPeers.get(i).getIp(),allPeers.get(i).getPort());
+                System.out.println("Sending a Discoverd Peer for you"+d_peer.getUsername());
                 peerConn.sendViaSocket(d_peer,receivingPeers);
             }
         } else {
             for(int i=0;i<4;i++){
                 DiscoverdPeer d_peer=new DiscoverdPeer("PeerInfo",allPeers.get(i).getUsername(),allPeers.get(i).getIp(),allPeers.get(i).getPort());
+                System.out.println("Sending a Discoverd Peer for you"+d_peer.getUsername());
                 peerConn.sendViaSocket(d_peer,receivingPeers);
             }
         }

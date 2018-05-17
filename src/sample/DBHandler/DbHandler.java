@@ -299,6 +299,7 @@ public class DbHandler {
                 post = new Post(resultSet.getString("USERNAME"), resultSet.getString("CONTENT"), resultSet.getInt("POST_ID"));
                 System.out.println("A post of this reply is available");
                 post.setDate_created(resultSet.getTimestamp("CREATED_DATE").toLocalDateTime());
+                return post;
             }
         } catch (SQLException e) {
             e.printStackTrace();

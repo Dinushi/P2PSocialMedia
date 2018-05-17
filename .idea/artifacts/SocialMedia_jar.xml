@@ -3,12 +3,11 @@
     <output-path>$PROJECT_DIR$/out/artifacts/SocialMedia_jar</output-path>
     <root id="archive" name="SocialMedia.jar">
       <element id="module-output" name="SocialMedia" />
-      <element id="extracted-dir" path="C:/Program Files/Java/jdk/db/lib/derbytools.jar" path-in-jar="/" />
       <element id="extracted-dir" path="C:/Program Files/Java/jdk/db/lib/derbyclient.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="C:/Program Files/Java/jdk/db/lib/derbynet.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/../jfoenix-8.0.4.jar" path-in-jar="/" />
       <element id="extracted-dir" path="C:/Program Files/Java/jdk/db/lib/derby.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$APPLICATION_HOME_DIR$/lib/junit-4.12.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$APPLICATION_HOME_DIR$/lib/hamcrest-core-1.3.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/Program Files/Java/jdk/db/lib/derbytools.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="C:/Program Files/Java/jdk/db/lib/derbynet.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

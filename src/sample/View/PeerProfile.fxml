@@ -9,9 +9,9 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="559.0" prefWidth="644.0" style="-fx-background-color: #E6E6FA; -fx-border-style: solid;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="559.0" prefWidth="644.0" style="-fx-background-color: #00004d;" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Pane layoutY="165.0" prefHeight="401.0" prefWidth="212.0" style="-fx-background-color: #b3b3ff;">
+        <Pane layoutY="165.0" prefHeight="401.0" prefWidth="212.0" style="-fx-background-color: #4FC3F7;">
             <children>
                 <Label layoutX="26.0" layoutY="14.0" prefHeight="25.0" prefWidth="126.0" text="About Peer" textFill="#111111">
                <font>
@@ -27,7 +27,7 @@
                 <Label fx:id="lbl_hometown" layoutX="89.0" layoutY="125.0" text="Akuressa" textFill="#805a5a" />
                 <Pane fx:id="editPane" layoutX="7.0" layoutY="183.0" prefHeight="217.0" prefWidth="201.0" />
             </children></Pane>
-        <Pane fx:id="ProfPicPane" layoutY="-4.0" prefHeight="169.0" prefWidth="135.0" style="-fx-background-color: #2F4F4F;">
+        <Pane fx:id="ProfPicPane" layoutY="-4.0" prefHeight="169.0" prefWidth="135.0" style="-fx-background-color: #000000;">
             <children>
                 <ImageView fx:id="profPic" fitHeight="142.0" fitWidth="116.0" layoutX="14.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                     <image>
@@ -36,7 +36,7 @@
                 </ImageView>
             </children>
         </Pane>
-        <Pane layoutX="136.0" prefHeight="129.0" prefWidth="508.0" style="-fx-background-color: #B0C4DE; -fx-region-border: solid;">
+        <Pane layoutX="136.0" prefHeight="129.0" prefWidth="508.0" style="-fx-background-color: #03A9F4; ">
             <children>
                 <Label fx:id="lbl_myUername" layoutX="21.0" layoutY="14.0" prefHeight="49.0" prefWidth="286.0" text="Thilini Dinushika" textFill="#2909c9">
                     <font>

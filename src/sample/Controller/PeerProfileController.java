@@ -183,7 +183,7 @@ public class PeerProfileController implements Initializable {
                     public void handle(ActionEvent e) {
                         try {
 
-                            Parent root = FXMLLoader.load(getClass().getResource("../View/ReplyView.fxml"));
+                            Parent root = FXMLLoader.load(getClass().getResource("/sample/View/ReplyView.fxml"));
                             Stage stage = new Stage();
                             stage.setTitle("All Replies for this post");
                             stage.setScene(new Scene(root, 369.0, 465.0));
@@ -261,7 +261,7 @@ public class PeerProfileController implements Initializable {
         post_pane.getChildren().add(s1);
 
     }
-
+    //When the user has not yet given a prof pic
     private void showDefaultProfPic(){
         Image image = new Image(getClass().getResourceAsStream("default.png"));
         //File file = new File("src/Box13.jpg");

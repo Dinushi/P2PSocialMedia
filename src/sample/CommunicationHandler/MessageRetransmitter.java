@@ -54,7 +54,7 @@ public class MessageRetransmitter extends Thread{
             return this.allSentMesages.remove(seq_num);
         }else{
             for(ReceivingPeer r_peer:this.receiversOfEachPacket.get(seq_num)){
-                if(r_peer.getIP()==theReceiverWhoAcknowledged.get(0).getIP() && r_peer.getPort()==theReceiverWhoAcknowledged.get(0).getPort()){
+                if(r_peer.getIP().equals(theReceiverWhoAcknowledged.get(0).getIP()) && r_peer.getPort()==theReceiverWhoAcknowledged.get(0).getPort()){
                     receiversOfEachPacket.get(seq_num).remove(r_peer);
                     //test the above for proper performance
                     break;
@@ -68,18 +68,21 @@ public class MessageRetransmitter extends Thread{
         while(true){
             try {
                 System.out.println("started Retransmitter thread");
-                Thread.sleep(15000);
+                Thread.sleep(90000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
             long current_time=System.currentTimeMillis();
             System.out.println("going to resend a message");
             for (Message msg : allSentMesages.values())
-                if(current_time-msg.getSentTimeInMillis()>20000){
+                if(current_time-msg.getSentTimeInMillis()>40000){
                     //the message is retransmitted
                     System.out.println("ahh no ack got for this msg");
                     System.out.println(receiversOfEachPacket.get(msg.getUDPSeqNum()).get(0));
-                    PeerConnection.getPeerConnection().sendViaSocket(msg,this.receiversOfEachPacket.get(msg.getUDPSeqNum()));
+                    if(this.receiversOfEachPacket.get(msg.getUDPSeqNum())!=null){
+                        PeerConnection.getPeerConnection().sendViaSocket(msg,this.receiversOfEachPacket.get(msg.getUDPSeqNum()));
+                    }
+
                     //old entries are removed
                     this.receiversOfEachPacket.remove(msg.getUDPSeqNum());
                     this.allSentMesages.remove(msg.getUDPSeqNum());

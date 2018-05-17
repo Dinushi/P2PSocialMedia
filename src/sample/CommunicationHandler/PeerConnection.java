@@ -12,6 +12,7 @@ import java.net.SocketException;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectOutputStream;
 import java.net.*;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 
 
@@ -33,9 +34,7 @@ public class PeerConnection {
         }
     }
     DatagramSocket socket = null;
-   // public static int myPort;
-//1----listen 9877 send 9876
-    //next run listen 9876 send 9877
+
     public void createTheSocketListner() {
         try {
             //myPort=port;
@@ -63,12 +62,6 @@ public class PeerConnection {
         System.out.println("Came to send via socket");
         try {
 
-            //DatagramSocket Socket = new DatagramSocket(Owner.myPort,Owner.myIP);//this should be sent using the same port which t listens
-
-
-            //Post student = new Post("Dinushi123", "I am not well my Friends");
-
-            //System.out.println("new post is created");
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             ObjectOutputStream os = new ObjectOutputStream(outputStream);
             System.out.println("output stream ok");
@@ -110,43 +103,49 @@ public class PeerConnection {
 
             }else if(obj instanceof DiscoverdPeer){
                 DiscoverdPeer joinReq=(DiscoverdPeer) obj;
-                System.out.println("Write to send  a Dis_peer");
+                System.out.println("Write to send  a Dis_peer##################################");
                 os.writeObject(joinReq);
             }else if(obj instanceof Peer){
                 Peer peer=(Peer) obj;
                 System.out.println("Peer Object that i sent"+peer.getUsername()+""+peer.getIp()+""+peer.getPort());
                 System.out.println("Write to send A peer");
                 os.writeObject(peer);
+
             }else if(obj instanceof String){
                 String str=(String) obj;
                 System.out.println("Write to send A String");
                 os.writeObject(str);
-        }
-            //os.writeObject(student);
-            //os.writeObject(post);
+            }else if(obj instanceof LocalDateTime){
+                LocalDateTime date=(LocalDateTime) obj;
+                System.out.println("Write to send LastlogOutTime");
+                os.writeObject(date);
+            }else if(obj instanceof Reply){
+                Reply reply=(Reply) obj;
+                System.out.println("Write to send a reply");
+                os.writeObject(reply);
+            }
+
             byte[] data = outputStream.toByteArray();
             //use the dedicated socket to send data...
 
             System.out.println("ready tos send to the port");
-            //InetAddress IPAddress = InetAddress.getByName("localhost");//for now Ip is taken as Localhost
-            //take all ip and port combinations sent to al of them.
+            if(peerIP_ports!=null){
+                //Ip list should not be null
+                if(!peerIP_ports.isEmpty()){
+                    //Ip list should not be empty
+                    for (ReceivingPeer receiver : peerIP_ports) {
+                        DatagramPacket sendPacket = new DatagramPacket(data, data.length, receiver.getIP(), receiver.getPort());
 
-            //DatagramPacket sendPacket = new DatagramPacket(data, data.length, InetAddress.getByName("127.0.0.1"), 13967);
-            for (ReceivingPeer receiver : peerIP_ports) {
-                DatagramPacket sendPacket = new DatagramPacket(data, data.length, receiver.getIP(), receiver.getPort());
+                        this.socket.send(sendPacket);
+                    }
+                    System.out.println("Packet sent");
+                }
 
-                this.socket.send(sendPacket);
+
             }
-            //earlier this two is the code.Not the loop
-            //DatagramPacket sendPacket = new DatagramPacket(data, data.length, IPAddress, 9876);
 
-            //Socket.send(sendPacket);
-            System.out.println("Packet sent");
-            //DatagramPacket incomingPacket = new DatagramPacket(incomingData, incomingData.length);
-            //Socket.receive(incomingPacket);
-            //String response = new String(incomingPacket.getData());
-            //System.out.println("Response from server:" + response);
-            //Thread.sleep(2000);
+
+
 
         } catch (UnknownHostException e) {
             e.printStackTrace();
@@ -154,8 +153,6 @@ public class PeerConnection {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
-        //} catch (InterruptedException e) {
-            //e.printStackTrace();
         }
     }
 

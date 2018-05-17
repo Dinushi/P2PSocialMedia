@@ -24,6 +24,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.Serializable;
 import java.net.ConnectException;
+import java.net.InetAddress;
+import java.net.UnknownHostException;
 import java.sql.Date;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -32,6 +34,12 @@ import static sample.Controller.Validator.thisPeer;
 
 public class RegisterController {
     public static RegisterController registerController;
+
+    @FXML
+    private TextField str_bs_ip;
+
+    @FXML
+    private TextField str_bs_port;
 
 
     @FXML
@@ -309,10 +317,11 @@ public class RegisterController {
     }
     private void showRegisterSuccess(ActionEvent event){
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("../View/RegConfirmation.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/sample/View/RegConfirmation.fxml"));
             Stage stage = new Stage();
             stage.setTitle("Register Confirmation");
             Scene scene=new Scene(root, 351, 318);
+            stage.setResizable(false);
             stage.setScene(scene);
             stage.show();
             // Hide this current window
@@ -332,12 +341,12 @@ public class RegisterController {
     public void pressBackToLogin(ActionEvent event){
         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("../View/Login.fxml"));
+            root = FXMLLoader.load(getClass().getResource("/sample/View/Login.fxml"));
             Stage stage = new Stage();
             stage.setTitle("Login P2P social media");
             Scene scene=new Scene(root, 400, 300);
             stage.setScene(scene);
-            scene.getStylesheets().add(getClass().getResource("../CSS/Login.css").toString());
+            scene.getStylesheets().add(getClass().getResource("/sample/CSS/Login.css").toString());
             stage.show();
             ((Node) (event.getSource())).getScene().getWindow().hide();
 
@@ -372,6 +381,24 @@ public class RegisterController {
                 alert.showAndWait();
             }
         });
+    }
+    public void setBsIPAndPort(ActionEvent event){
+        try {
+            InetAddress bsIp=InetAddress.getByName(str_bs_ip.getText());
+            int bs_port=Integer.parseInt(str_bs_port.getText());
+            ClientConnection.bs_address=bsIp;
+            ClientConnection.bs_port_no=bs_port;
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Confirmation");
+            alert.setHeaderText("Successfully set the BS Ip and Port");
+            alert.setContentText("Now fill your data to continue");
+            alert.showAndWait();
+
+        } catch (UnknownHostException e1) {
+            e1.printStackTrace();
+        }
+
+
     }
 }
 

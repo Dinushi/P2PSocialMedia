@@ -1,5 +1,6 @@
 package sample.Controller;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
@@ -36,7 +37,7 @@ public class SelectPeers  {
         @FXML
         private Pane paneTitle;
         @FXML
-        private Button btn_OK;
+        private JFXButton btn_OK;
         public SelectPeers(){selectPeers=this;}
 
 
@@ -108,7 +109,7 @@ public class SelectPeers  {
                     }
                 });
                 b1.setStyle("-fx-font: 10 arial; -fx-base: #b6e7c9;");
-                p1.getChildren().addAll(label3, b1);
+                p1.getChildren().addAll(b1,label3);
 
                 panes.add(p1);
             }

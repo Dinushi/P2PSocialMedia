@@ -23,24 +23,25 @@ public class ReceivedPacketHandler extends Thread {
         this.sender_port=sender_port;
     }
 
-    public void run(){
+    public void run(){//once a new packet is arrived it invoke a new packet Handler Thraed
         //select the type of the packet
         if (receivedObject instanceof Post) {
             System.out.println("Packet handler got post ");
             Post post = (Post) receivedObject;
-            PostHandler.gotAPost(post);
+            PostHandler.gotAPost(post);//notify the PostHandler to show the post in the Home
             //post.notifyController();
 
         }else if (receivedObject instanceof Reply) {
             System.out.println("Packet handler got reply ");
             Reply reply=(Reply) receivedObject;
-            PostHandler.gotAReply(reply,sender_ip,sender_port);
+            PostHandler.gotAReply(reply,sender_ip,sender_port);////notify the PostHandler about the reply
             //post.notifyController();
 
         }else if(receivedObject instanceof Message) {
             System.out.println("Packet handler got a Message object");
             Message msg = (Message) receivedObject;
 
+            //once the Message is received send an ACK for the Sender
             ArrayList<ReceivingPeer> receiver=new ArrayList<>();
             receiver.add(new ReceivingPeer(sender_ip,sender_port));
             PeerConnection.getPeerConnection().sendViaSocket("MSGACK".concat(String.valueOf(msg.getUDPSeqNum())),receiver);
@@ -48,9 +49,9 @@ public class ReceivedPacketHandler extends Thread {
             ConversationHandler.gotAMessage(msg);
 
         }else if(receivedObject instanceof DiscoverdPeer) {
-            System.out.println("Packet handler got Dis_peer");
+            System.out.println("Packet handler got Dis_peerrrrrrrrrrrrrr ###########################");
             DiscoverdPeer d_peer = (DiscoverdPeer) receivedObject;
-           NewPeerListner.gotADiscoveredPeer(d_peer);
+            NewPeerListner.gotADiscoveredPeer(d_peer);
 
         }else if(receivedObject instanceof Peer){
             System.out.println("Packet handler got Peer");
@@ -63,16 +64,16 @@ public class ReceivedPacketHandler extends Thread {
             if(str=="SendMeSomePeers"){
                 NewPeerListner.gotAPeerRequestForMorePeers(this.sender_ip,this.sender_port);
             }
-            /*
+            //A peer is checking my online presence
             else if(str=="AreYouON"){
                 ArrayList<ReceivingPeer> receiver=new ArrayList<>();
                 receiver.add(new ReceivingPeer(sender_ip,sender_port));
                 PeerConnection.getPeerConnection().sendViaSocket("Yes",receiver);
-                HeartBeatHandler.gotPeerACK(sender_ip,sender_port);//Now also I know that this requested peer is online
+                HeartBeatHandler.gotAPeerACK(this.sender_ip,this.sender_port);//Now also I know that this requested peer is online
             }
-            */
+            //The peer I have checked for the online presence has Acknowledged
             else if(str=="Yes"){
-                System.out.println("got to know a peer online presence");
+                System.out.println("got to know a peer is online presence");
                 HeartBeatHandler.gotAPeerACK(sender_ip,sender_port);
             }else if(str.startsWith("MSGACK")){
                 System.out.println("Got a ACK for msg");
@@ -85,7 +86,7 @@ public class ReceivedPacketHandler extends Thread {
 
             }else if(str.startsWith("CONVACK")) {
                 System.out.println("Got a ACK for conv");
-                String seq_num = str.substring(6);
+                String seq_num = str.substring(7);
 
                 ArrayList<ReceivingPeer> convreceiver = new ArrayList<>();
                 convreceiver.add(new ReceivingPeer(sender_ip, sender_port));
@@ -97,7 +98,7 @@ public class ReceivedPacketHandler extends Thread {
             Conversation conv = (Conversation)receivedObject;
             ConversationHandler.gotAInitialConversation(conv);
 
-            //sending back the ACK for conversation
+            //once the Conversation is received send an ACK for the Sender
             ArrayList<ReceivingPeer> receiver=new ArrayList<>();
             receiver.add(new ReceivingPeer(sender_ip,sender_port));
             PeerConnection.getPeerConnection().sendViaSocket("CONVACK".concat(String.valueOf(conv.getUDPSeqNum())),receiver);
@@ -106,18 +107,19 @@ public class ReceivedPacketHandler extends Thread {
             System.out.println("Packet handler got a LocaldateTime Object");
             LocalDateTime last_logged_time = (LocalDateTime) receivedObject;
             ArrayList<ReceivingPeer> receiver=new ArrayList<>();
+
+            //send back a packet saying your online
             receiver.add(new ReceivingPeer(sender_ip,sender_port));
             PeerConnection.getPeerConnection().sendViaSocket("Yes",receiver);
+            System.out.println("add the peer as online");
+
+            //Notify the hearbeathandler about the online presence of the received peer
             HeartBeatHandler.gotPeerLoginAlert(sender_ip,sender_port,last_logged_time);//Now also I know that this requested peer
     }
 
 
 
-            //}else(req=""){
 
-            //}
-        //String type=receivedObject.getClass().getSimpleName();//this will not work
-        //Post post = (Post) receivedObject;
 
 
 

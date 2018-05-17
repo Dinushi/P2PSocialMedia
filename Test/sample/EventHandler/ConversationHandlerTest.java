@@ -30,4 +30,7 @@ public class ConversationHandlerTest {
 
     }
 
+    @Test
+    public void gotAInitialConversation() {
+    }
 }

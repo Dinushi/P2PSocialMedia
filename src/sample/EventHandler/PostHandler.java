@@ -1,13 +1,21 @@
 package sample.EventHandler;
 
+import javafx.application.Platform;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import sample.CommunicationHandler.PeerConnection;
 import sample.CommunicationHandler.ReceivingPeer;
-import sample.Controller.Validator;
+import sample.Controller.*;
 import sample.DBHandler.DbHandler;
+import sample.Model.Conversation;
 import sample.Model.Peer;
 import sample.Model.Post;
 import sample.Model.Reply;
 
+import java.io.IOException;
 import java.net.InetAddress;
 import java.util.ArrayList;
 
@@ -54,12 +62,15 @@ public class PostHandler {
     public synchronized static  void gotAReply(Reply reply, InetAddress reply_sender_ip,int reply_sender_port){
         DbHandler db=new DbHandler();
         Post post=db.checkTheAvailabilityOfAPost(reply.getUsername(),reply.getPost_id());
+        System.out.println("Post id of the received reply"+reply.getPost_id());
+        System.out.println("Post creator of the received reply"+reply.getUsername());
         if(post==null){
             System.out.println("The reply received does not belong to me");
         }else{
             db.addNewReply(reply);
             //if the reply is for a my post.Send it to other peers.
             if(post.getUsername().equalsIgnoreCase(Validator.username)){
+                System.out.println("The reply is for my post");
                 DbHandler db2=new DbHandler();
                 peerIP_ports=db2.selectAllPeerAddresses("T");
                 db2.closeConnection();
@@ -71,10 +82,23 @@ public class PostHandler {
                         edited_peerIP_ports.add(peer);
                     }
                 }
+                System.out.println("sending the reply to peers who got the post");
                 PeerConnection.getPeerConnection().sendViaSocket(reply,edited_peerIP_ports);
             }
+            //show the reply in the Home pane by reloading it.
 
-        }
+
+                ArrayList<Post> allPosts=Post.selectAllPosts();
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        HomeController.homeController.displayPosts(allPosts);
+
+                    }
+                });
+
+
+            }
 
 
 

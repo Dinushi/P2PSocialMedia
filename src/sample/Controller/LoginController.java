@@ -1,5 +1,8 @@
 package sample.Controller;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXPasswordField;
+import com.jfoenix.controls.JFXTextField;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -25,8 +28,10 @@ import sample.Model.ThisPeer;
 import java.io.*;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
+import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
 
@@ -37,18 +42,17 @@ import static sample.Controller.Validator.thisPeer;
  */
 public class LoginController {
 
-
     // Authenticate auth;
     // The reference of inputText will be injected by the FXML loader
     @FXML
-    private TextField userName;
+    private JFXTextField userName;
 
     @FXML
-    private Button btn_login;
+    private JFXButton btn_login;
 
     // The reference of outputText will be injected by the FXML loader
     @FXML
-    private TextField password;
+    private JFXPasswordField password;
     PeerConnection pc;
 
 
@@ -72,21 +76,15 @@ public class LoginController {
                     thisPeer= Peer.retrieveAPeer(userName.getText());
                     thisPeer.setOnlineStatus(true);
                 }
-                /*
-                String Strlast_logout_time=readTheUserHistory();
-                DateTimeFormatter f = DateTimeFormatter.ofPattern ( "yyyy-MM-dd HH:mm:ss.SSS" );
-                LocalDateTime localDate = LocalDateTime.parse(Strlast_logout_time,f);
-                System.out.println("My last log outTime"+localDate);
-                Validator.last_logOuttime=localDate;
-                */
-                //DateTimeFormatter f = DateTimeFormatter.ofPattern ( "yyyy-MM-dd HH:mm:ss.SSSX" );
-                //OffsetDateTime odt = OffsetDateTime.parse ( Strlast_logout_time , f );
-                //The time is not read
 
-                //DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSSX");
-                //Validator.last_logOuttime= LocalDateTime.parse(Strlast_logout_time, formatter);
-                new HeartBeatHandler().start();
+                String Strlast_logout_time=readTheUserHistory();//The last log out time of the user is read
+                long millis=Long.parseLong(Strlast_logout_time);
+                Instant instant = Instant.ofEpochMilli(millis);
+                LocalDateTime date = instant.atZone(ZoneId.systemDefault()).toLocalDateTime();
+                System.out.println("last_log_out_time"+date);
+                Validator.last_logOuttime= date;
             }
+            new HeartBeatHandler().start();
 
             //NewPeerListner.sendJoinRequestToDiscoverdPeersFromBs();
             //now only the port is specified to create a peer connection
@@ -96,12 +94,13 @@ public class LoginController {
                     "Welcome " + userName.getText());
 
             try {
-                Parent root = FXMLLoader.load(getClass().getResource("../View/AppHome.fxml"));
+                Parent root = FXMLLoader.load(getClass().getResource("/sample/View/AppHome.fxml"));
                 Stage stage = new Stage();
                 stage.setTitle("PeerNet");
                 Scene scene=new Scene(root, 747, 601);
                 stage.setScene(scene);
-                scene.getStylesheets().add(getClass().getResource("../CSS/Home.css").toString());
+                stage.setResizable(false);
+                scene.getStylesheets().add(getClass().getResource("/sample/CSS/Home.css").toString());
 
                 stage.setOnHiding(new EventHandler<WindowEvent>() {
 
@@ -131,11 +130,11 @@ public class LoginController {
                                         */
 
                                             BufferedWriter writer = new BufferedWriter(new FileWriter("History.txt"));
-                                            LocalDateTime log_out_time=LocalDateTime.now();
+                                            long log_out_time=System.currentTimeMillis();
 
 
-                                            System.out.println("storing the message created date"+log_out_time.toString());
-                                            writer.write(log_out_time.toString());
+                                            System.out.println("storing the message created date"+String.valueOf(log_out_time));
+                                            writer.write(String.valueOf(log_out_time));
 
                                             //Timestamp timestamp = Timestamp.valueOf(log_out_time);
                                             //System.out.println("storing the message created date"+timestamp);
@@ -191,13 +190,14 @@ public class LoginController {
         //Parent root = FXMLLoader.load(getClass().getResource("../View/Register.fxml"));
 
         try {
-            Parent root = FXMLLoader.load(getClass().getResource("../View/Register.fxml"));
+            Parent root = FXMLLoader.load(getClass().getResource("/sample/View/Register.fxml"));
             Stage stage = new Stage();
             stage.setTitle("Register Form");
             Scene scene=new Scene(root, 750, 550);
             //stage.setScene(new Scene(root, 400, 600));
             stage.setScene(scene);
-            scene.getStylesheets().add(getClass().getResource("../CSS/Register.css").toString());
+            stage.setResizable(false);
+            scene.getStylesheets().add(getClass().getResource("/sample/CSS/Register.css").toString());
             stage.show();
             // Hide this current window (if this is what you want)
             ((Node) (event.getSource())).getScene().getWindow().hide();

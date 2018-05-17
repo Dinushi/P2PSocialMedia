@@ -56,7 +56,7 @@
          </stylesheets>
       </Pane>
       <Separator layoutY="62.0" prefHeight="25.0" prefWidth="184.0" />
-      <Pane fx:id="wall" layoutX="225.0" layoutY="29.0" prefHeight="433.0" prefWidth="475.0" />
+      <Pane fx:id="wall" layoutX="225.0" layoutY="29.0" prefHeight="433.0" prefWidth="475.0" style="-fx-background-color: #C8E6C9;" />
       <Label layoutX="198.0" layoutY="472.0" prefHeight="17.0" prefWidth="213.0" text="Want to post to your peers?" textFill="#101575">
          <font>
             <Font name="Bernard MT Condensed" size="13.0" />

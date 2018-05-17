@@ -18,6 +18,7 @@
             <ImageView fitHeight="70.0" fitWidth="73.0" layoutX="114.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Images/logo.jfif" />
+
                </image></ImageView>
               <Label layoutX="108.0" layoutY="78.0" text="Fill Your Details" />
               <Label layoutX="39.0" layoutY="113.0" text="Name" />
@@ -40,5 +41,10 @@
          </children>
       </Pane>
       <Button layoutX="529.0" layoutY="499.0" mnemonicParsing="false" onAction="#pressBackToLogin" text="Back to Login" />
+      <Button layoutX="33.0" layoutY="512.0" mnemonicParsing="false" onAction="#setBsIPAndPort" text="Set" />
+      <TextField fx:id="str_bs_port" layoutX="33.0" layoutY="474.0" />
+      <TextField fx:id="str_bs_ip" layoutX="33.0" layoutY="409.0" />
+      <Label layoutX="36.0" layoutY="450.0" text="BS Port" />
+      <Label layoutX="36.0" layoutY="385.0" text="BS IP" />
     </children>
 </AnchorPane>

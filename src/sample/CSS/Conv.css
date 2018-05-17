@@ -1,7 +1,7 @@
 #btn_conv {
     -fx-font: 10px "Trebuchet MS";
     -fx-base:	#1E90FF;
-    -fx-background-image: url("../images/chat.png");
+    -fx-background-image: url("../Images/chat.png");
     -fx-background-size: 18 18;
     -fx-background-repeat: no-repeat;
     -fx-background-position:left;
@@ -12,7 +12,7 @@
 #btn_online{
     -fx-font: 10px "Trebuchet MS";
     -fx-base:	#1E90FF;
-    -fx-background-image: url("../images/ViewOnline.png");
+    -fx-background-image: url("../Images/ViewOnline.png");
     -fx-background-size: 18 18;
     -fx-background-repeat: no-repeat;
     -fx-background-position:left;
@@ -23,7 +23,7 @@
 #btn_peer_requests {
     -fx-font: 10px "Trebuchet MS";
     -fx-base:	#1E90FF;
-    -fx-background-image: url("../images/request.png");
+    -fx-background-image: url("../Images/request.png");
     -fx-background-size: 18 18;
     -fx-background-repeat: no-repeat;
     -fx-background-position:left;
@@ -34,7 +34,7 @@
 #btn_discover{
     -fx-font: 10px "Trebuchet MS";
     -fx-base:	#1E90FF;
-    -fx-background-image: url("../images/peerSelect.png");
+    -fx-background-image: url("../Images/peerSelect.png");
     -fx-background-size: 18 18;
     -fx-background-repeat: no-repeat;
     -fx-background-position:left;
@@ -45,7 +45,7 @@
 #btn_edit {
     -fx-font: 10px "Trebuchet MS";
     -fx-base:	#1E90FF;
-    -fx-background-image: url("../images/edit_prof.png");
+    -fx-background-image: url("../Images/edit_prof.png");
     -fx-background-size: 18 18;
     -fx-background-repeat: no-repeat;
     -fx-background-position:left;
@@ -56,7 +56,7 @@
 #btn_viewPeerProfile{
     -fx-font: 10px "Trebuchet MS";
     -fx-base:	#1E90FF;
-    -fx-background-image: url("../images/ViewPeer.png");
+    -fx-background-image: url("../Images/ViewPeer.png");
     -fx-background-size: 18 18;
     -fx-background-repeat: no-repeat;
     -fx-background-position:left;
